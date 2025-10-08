@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progressive Disclosure Design Worksheet</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f9fafb;
+            padding: 20px;
+        }
+
+        .download-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+            z-index: 1000;
+        }
+
+        .download-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(30, 58, 138, 0.4);
+        }
+
+        .container {
+            max-width: 8.5in;
+            margin: 0 auto;
+            background: white;
+            padding: 0.75in;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #374151;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        p, li {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .field {
+            border-bottom: 1px solid #d1d5db;
+            min-height: 24px;
+            margin: 8px 0;
+            padding: 4px 0;
+        }
+
+        .field-large {
+            min-height: 60px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 13px;
+        }
+
+        th, td {
+            border: 1px solid #d1d5db;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+            font-weight: 600;
+            color: #1e3a8a;
+        }
+
+        .checkbox-group {
+            margin: 12px 0;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: flex-start;
+            margin: 8px 0;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            margin-right: 8px;
+            margin-top: 2px;
+            width: 16px;
+            height: 16px;
+        }
+
+        .sketch-box {
+            border: 2px dashed #d1d5db;
+            min-height: 150px;
+            margin: 12px 0;
+            padding: 16px;
+            background: #f9fafb;
+            border-radius: 8px;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
+            border-left: 4px solid #7c3aed;
+            padding: 16px;
+            margin: 16px 0;
+            border-radius: 4px;
+        }
+
+        .example-box h4 {
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            margin-top: 48px;
+            padding-top: 16px;
+            border-top: 2px solid #e5e7eb;
+            text-align: center;
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        .footer strong {
+            color: #1e3a8a;
+        }
+
+        .page-break {
+            page-break-after: always;
+            margin: 40px 0;
+            border-bottom: 2px dashed #d1d5db;
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .download-button {
+                display: none;
+            }
+
+            .container {
+                box-shadow: none;
+                padding: 0.5in;
+                max-width: 100%;
+            }
+
+            .page-break {
+                page-break-after: always;
+                border: none;
+                margin: 0;
+            }
+
+            h2 {
+                page-break-after: avoid;
+            }
+
+            table {
+                page-break-inside: avoid;
+            }
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+    </style>
+</head>
+<body>
+    <button class="download-button" onclick="window.print()">📥 Download as PDF</button>
+
+    <div class="container">
+        <!-- Page 1 -->
+        <h1>Progressive Disclosure Design Worksheet</h1>
+        <p class="subtitle">Related Card: Design Progressive Disclosure | Format: 2-page PDF worksheet</p>
+
+        <h2>Your AI Feature</h2>
+        <p><strong>Feature Name:</strong> <span class="field"></span></p>
+        <p><strong>What it does in one sentence:</strong></p>
+        <div class="field field-large"></div>
+        <p><strong>Target user:</strong> <span class="field"></span></p>
+
+        <h2>Step 1: Identify the Layers</h2>
+        <p>Progressive disclosure means showing simple first, revealing complexity only when needed. Map your feature's complexity layers:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Layer</th>
+                    <th>What User Sees</th>
+                    <th>When They See More</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Layer 1 (First Impression)</strong><br><small style="color: #6b7280;">Example: "Generate summary" button</small></td>
+                    <td></td>
+                    <td><small style="color: #6b7280;">User clicks button</small></td>
+                </tr>
+                <tr>
+                    <td><strong>Layer 2 (Basic Controls)</strong><br><small style="color: #6b7280;">Example: "Length: Short/Medium/Long"</small></td>
+                    <td></td>
+                    <td><small style="color: #6b7280;">User clicks "Advanced"</small></td>
+                </tr>
+                <tr>
+                    <td><strong>Layer 3 (Advanced Options)</strong><br><small style="color: #6b7280;">Example: "Tone, format, keywords"</small></td>
+                    <td></td>
+                    <td><small style="color: #6b7280;">User enables "Expert mode"</small></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Step 2: What Must Be Visible Immediately?</h2>
+        <p>Check all that apply to your feature's Layer 1:</p>
+        <div class="checkbox-group">
+            <div class="checkbox-item">
+                <input type="checkbox" id="primary">
+                <label for="primary"><strong>Primary action</strong> (the main thing users do)</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="status">
+                <label for="status"><strong>Status indicator</strong> (is AI working, done, failed?)</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="output">
+                <label for="output"><strong>Output preview</strong> (show results immediately)</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="undo">
+                <label for="undo"><strong>Undo/edit</strong> (let users fix mistakes quickly)</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="confidence">
+                <label for="confidence"><strong>Confidence signal</strong> (is AI sure or guessing?)</label>
+            </div>
+        </div>
+
+        <p><strong>What's in your Layer 1:</strong></p>
+        <div class="field field-large"></div>
+
+        <h2>Step 3: What Can Wait Until Asked?</h2>
+        <h3>Layer 2 (Show when user wants more control):</h3>
+        <div class="checkbox-group">
+            <div class="checkbox-item">
+                <input type="checkbox" id="finetuning">
+                <label for="finetuning">Fine-tuning controls</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="alternatives">
+                <label for="alternatives">Alternative outputs</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="explanation">
+                <label for="explanation">Explanation of how AI works</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="advanced">
+                <label for="advanced">Advanced settings</label>
+            </div>
+        </div>
+        <p><strong>Your Layer 2 items:</strong></p>
+        <div class="field field-large"></div>
+
+        <h3>Layer 3 (Show only for power users):</h3>
+        <div class="checkbox-group">
+            <div class="checkbox-item">
+                <input type="checkbox" id="technical">
+                <label for="technical">Technical parameters</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="api">
+                <label for="api">API/integration options</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="debugging">
+                <label for="debugging">Debugging info</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="experimental">
+                <label for="experimental">Experimental features</label>
+            </div>
+        </div>
+        <p><strong>Your Layer 3 items:</strong></p>
+        <div class="field field-large"></div>
+
+        <div class="page-break"></div>
+
+        <!-- Page 2 -->
+        <h1>Progressive Disclosure Design Worksheet</h1>
+        <p class="subtitle" style="margin-bottom: 32px;">Page 2 of 2</p>
+
+        <h2>Step 4: Sketch Your Layers</h2>
+        <p><strong>Layer 1 (Default View):</strong></p>
+        <div class="sketch-box">
+            Sketch or describe your Layer 1 interface here
+        </div>
+
+        <p><strong>What triggers Layer 2?</strong></p>
+        <div class="checkbox-group">
+            <div class="checkbox-item">
+                <input type="checkbox" id="link">
+                <label for="link">"Advanced options" link</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="showmore">
+                <label for="showmore">"Show more" button</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="settings">
+                <label for="settings">Settings icon</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="other">
+                <label for="other">Other: <span class="field" style="min-width: 200px; display: inline-block;"></span></label>
+            </div>
+        </div>
+
+        <p><strong>Layer 2 (After User Expands):</strong></p>
+        <div class="sketch-box">
+            Sketch or describe your Layer 2 interface here
+        </div>
+
+        <h2>Step 5: Test with the 5-Second Rule</h2>
+        <p>Show Layer 1 to a teammate for 5 seconds, then hide it. Ask them:</p>
+        <p><strong>1. "What does this feature do?"</strong> <span class="field"></span></p>
+        <p><strong>2. "What would you click first?"</strong> <span class="field"></span></p>
+        <p><strong>3. "Do you feel confident or overwhelmed?"</strong> <span class="field"></span></p>
+
+        <p><strong>Result:</strong></p>
+        <div class="checkbox-group">
+            <div class="checkbox-item">
+                <input type="checkbox" id="pass">
+                <label for="pass"><strong style="color: #059669;">✓ PASS:</strong> They understood and felt confident</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="fail">
+                <label for="fail"><strong style="color: #dc2626;">✗ FAIL:</strong> They were confused or overwhelmed → Simplify Layer 1</label>
+            </div>
+        </div>
+
+        <h2>Step 6: Common Mistakes Checklist</h2>
+        <p>Avoid these progressive disclosure anti-patterns:</p>
+        <div class="checkbox-group">
+            <div class="checkbox-item">
+                <input type="checkbox" id="hiding">
+                <label for="hiding">❌ <strong>Hiding critical info</strong> (Don't hide things users need immediately)</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="toomany">
+                <label for="toomany">❌ <strong>Too many layers</strong> (3 layers max—more creates "treasure hunt" UX)</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="inconsistent">
+                <label for="inconsistent">❌ <strong>Inconsistent triggers</strong> (Use same pattern: "Show more" or "Advanced")</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="nodefaults">
+                <label for="nodefaults">❌ <strong>No defaults</strong> (Layer 1 must work without ANY configuration)</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="hidden">
+                <label for="hidden">❌ <strong>Hidden affordances</strong> (Users must SEE that more options exist)</label>
+            </div>
+        </div>
+
+        <h2>Step 7: Success Metrics</h2>
+        <p>How will you know progressive disclosure is working?</p>
+        <p><strong>Your target metrics:</strong></p>
+        <p>• Layer 1 completion rate: <span class="field" style="min-width: 60px; display: inline-block;"></span>%</p>
+        <p>• Time to first action: <span class="field" style="min-width: 60px; display: inline-block;"></span> seconds</p>
+        <p>• Users who need Layer 2: <span class="field" style="min-width: 60px; display: inline-block;"></span>%</p>
+
+        <h3>Next Steps</h3>
+        <div class="checkbox-group">
+            <div class="checkbox-item">
+                <input type="checkbox" id="feedback">
+                <label for="feedback">Get feedback from 3 target users on Layer 1 wireframe</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="defaults">
+                <label for="defaults">Confirm Layer 1 has smart defaults (works without configuration)</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="document">
+                <label for="document">Document what triggers each layer (write it in your spec)</label>
+            </div>
+        </div>
+
+        <div class="example-box">
+            <h4>Example: AI Writing Assistant</h4>
+            <p><strong>Layer 1:</strong> "Generate draft" button + Tone dropdown → Instant value for 90% of users</p>
+            <p><strong>Layer 2:</strong> Length slider, keywords → One click to "Advanced" for 8% of users</p>
+            <p><strong>Layer 3:</strong> Temperature, model selection → "Expert mode" for 2% of technical users</p>
+        </div>
+
+        <div class="footer">
+            <p><strong>Template created by Frank Sellhausen</strong> | AI PM Cards</p>
+            <p>ai-pm-cards.vercel.app</p>
+        </div>
+    </div>
+</body>
+</html>

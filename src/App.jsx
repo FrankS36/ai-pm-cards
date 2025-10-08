@@ -11,6 +11,7 @@ import BrowseView from './pages/BrowseView';
 import PathsDirectory from './pages/PathsDirectory';
 import AboutPage from './pages/AboutPage';
 import WorkWithMe from './pages/WorkWithMe';
+import ResourcesPage from './pages/ResourcesPage';
 import NotFound from './pages/NotFound';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
@@ -32,6 +33,7 @@ function App() {
           <Route path="/paths" element={<PathsDirectory />} />
           <Route path="/browse" element={<BrowseView />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/resources" element={<ResourcesPage />} />
           <Route path="/collaborate" element={<WorkWithMe />} />
           <Route path="/work" element={<WorkWithMe />} />
           <Route path="*" element={<NotFound />} />

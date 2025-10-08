@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Risk Assessment Scorecard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.5;
+            color: #1f2937;
+            background: #f9fafb;
+            padding: 20px;
+        }
+
+        .download-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+            z-index: 1000;
+        }
+
+        .download-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(30, 58, 138, 0.4);
+        }
+
+        .container {
+            max-width: 8.5in;
+            margin: 0 auto;
+            background: white;
+            padding: 0.75in;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            font-size: 13px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-top: 24px;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #374151;
+            margin-top: 16px;
+            margin-bottom: 10px;
+        }
+
+        p, li {
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+        .header-info {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        .header-info div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-info label {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 4px;
+        }
+
+        .field {
+            border-bottom: 1px solid #d1d5db;
+            min-height: 20px;
+            padding: 2px 0;
+        }
+
+        .field-large {
+            min-height: 50px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 12px;
+        }
+
+        th, td {
+            border: 1px solid #d1d5db;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+            font-weight: 600;
+            color: #1e3a8a;
+            font-size: 12px;
+        }
+
+        .risk-key {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
+            padding: 12px;
+            border-radius: 6px;
+            margin: 12px 0;
+            font-size: 12px;
+        }
+
+        .risk-key p {
+            margin: 4px 0;
+        }
+
+        .risk-section {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 12px 0;
+            border-left: 3px solid #7c3aed;
+        }
+
+        .checkbox-group {
+            margin: 8px 0;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: flex-start;
+            margin: 6px 0;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            margin-right: 6px;
+            margin-top: 2px;
+            width: 14px;
+            height: 14px;
+        }
+
+        .action-item {
+            display: flex;
+            align-items: flex-start;
+            margin: 6px 0;
+        }
+
+        .action-item input[type="checkbox"] {
+            margin-right: 8px;
+            margin-top: 2px;
+            width: 14px;
+            height: 14px;
+        }
+
+        .decision-box {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.08) 0%, rgba(124, 58, 237, 0.08) 100%);
+            border: 2px solid #7c3aed;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+
+        .footer {
+            margin-top: 32px;
+            padding-top: 12px;
+            border-top: 2px solid #e5e7eb;
+            text-align: center;
+            color: #6b7280;
+            font-size: 11px;
+        }
+
+        .footer strong {
+            color: #1e3a8a;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .download-button {
+                display: none;
+            }
+
+            .container {
+                box-shadow: none;
+                padding: 0.5in;
+                max-width: 100%;
+            }
+
+            h2 {
+                page-break-after: avoid;
+            }
+
+            .risk-section {
+                page-break-inside: avoid;
+            }
+
+            table {
+                page-break-inside: avoid;
+            }
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+    </style>
+</head>
+<body>
+    <button class="download-button" onclick="window.print()">📥 Download as PDF</button>
+
+    <div class="container">
+        <h1>AI Risk Assessment Scorecard</h1>
+        <p class="subtitle">Related Card: Plan Model Risk Mitigation | Format: 1-page PDF scorecard</p>
+
+        <div class="header-info">
+            <div>
+                <label>Feature Name:</label>
+                <div class="field"></div>
+            </div>
+            <div>
+                <label>Assessed by:</label>
+                <div class="field"></div>
+            </div>
+            <div>
+                <label>Date:</label>
+                <div class="field"></div>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 12px;">
+            <label style="font-weight: 600; font-size: 13px;">What it does:</label>
+            <div class="field field-large"></div>
+        </div>
+
+        <h2>Risk Scoring Matrix</h2>
+        <p style="margin-bottom: 12px;"><strong>Instructions:</strong> Score each risk 1-5 (1 = low risk, 5 = critical risk). Multiply Impact × Likelihood = Risk Score.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">Risk Category</th>
+                    <th style="width: 15%;">Impact (1-5)</th>
+                    <th style="width: 15%;">Likelihood (1-5)</th>
+                    <th style="width: 15%;">Risk Score</th>
+                    <th style="width: 15%;">Priority</th>
+                    <th style="width: 15%;">Top Mitigation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Bias Risk</strong><br><small style="color: #6b7280;">Unfair outcomes</small></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Privacy Risk</strong><br><small style="color: #6b7280;">Data exposure</small></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Performance Risk</strong><br><small style="color: #6b7280;">AI failures</small></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>UX/Trust Risk</strong><br><small style="color: #6b7280;">User trust erosion</small></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Safety Risk</strong><br><small style="color: #6b7280;">Potential harm</small></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Compliance Risk</strong><br><small style="color: #6b7280;">Regulatory violations</small></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="risk-key">
+            <p><strong>Risk Priority Key:</strong></p>
+            <p>🔴 <strong>Critical (20-25):</strong> Block launch until mitigated</p>
+            <p>🟠 <strong>High (12-19):</strong> Must address before launch</p>
+            <p>🟡 <strong>Medium (6-11):</strong> Address if time permits</p>
+            <p>🟢 <strong>Low (1-5):</strong> Monitor post-launch</p>
+        </div>
+
+        <div class="two-column">
+            <div class="risk-section">
+                <h3 style="margin-top: 0;">1. Bias Risk Assessment</h3>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="bias1">
+                        <label for="bias1">Training data represents all user demographics</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="bias2">
+                        <label for="bias2">Tested outputs across different user groups</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="bias3">
+                        <label for="bias3">Feedback mechanism for users to report bias</label>
+                    </div>
+                </div>
+                <p style="margin-top: 8px;"><strong>Key risks:</strong></p>
+                <div class="field" style="min-height: 30px;"></div>
+            </div>
+
+            <div class="risk-section">
+                <h3 style="margin-top: 0;">2. Privacy Risk Assessment</h3>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="privacy1">
+                        <label for="privacy1">Data anonymized before training</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="privacy2">
+                        <label for="privacy2">Tested for data leakage in outputs</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="privacy3">
+                        <label for="privacy3">User consent obtained for data usage</label>
+                    </div>
+                </div>
+                <p style="margin-top: 8px;"><strong>Key risks:</strong></p>
+                <div class="field" style="min-height: 30px;"></div>
+            </div>
+
+            <div class="risk-section">
+                <h3 style="margin-top: 0;">3. Performance Risk</h3>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="perf1">
+                        <label for="perf1">Acceptable error rate defined: <span class="field" style="min-width: 40px; display: inline-block;"></span>%</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="perf2">
+                        <label for="perf2">Tested edge cases & adversarial inputs</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="perf3">
+                        <label for="perf3">Fallback exists when AI fails</label>
+                    </div>
+                </div>
+                <p style="margin-top: 8px;"><strong>Key risks:</strong></p>
+                <div class="field" style="min-height: 30px;"></div>
+            </div>
+
+            <div class="risk-section">
+                <h3 style="margin-top: 0;">4. UX/Trust Risk</h3>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="ux1">
+                        <label for="ux1">Users understand what AI is doing</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="ux2">
+                        <label for="ux2">Users can verify/override AI decisions</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="ux3">
+                        <label for="ux3">AI transparent about confidence levels</label>
+                    </div>
+                </div>
+                <p style="margin-top: 8px;"><strong>Key risks:</strong></p>
+                <div class="field" style="min-height: 30px;"></div>
+            </div>
+
+            <div class="risk-section">
+                <h3 style="margin-top: 0;">5. Safety Risk</h3>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="safety1">
+                        <label for="safety1">Worst-case failure scenario documented</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="safety2">
+                        <label for="safety2">Safeguards against harmful outputs</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="safety3">
+                        <label for="safety3">Human oversight for high-stakes decisions</label>
+                    </div>
+                </div>
+                <p style="margin-top: 8px;"><strong>Key risks:</strong></p>
+                <div class="field" style="min-height: 30px;"></div>
+            </div>
+
+            <div class="risk-section">
+                <h3 style="margin-top: 0;">6. Compliance Risk</h3>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="comp1">
+                        <label for="comp1">Consulted legal/compliance teams</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="comp2">
+                        <label for="comp2">Can explain AI decisions if audited</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="comp3">
+                        <label for="comp3">Data retention policies followed</label>
+                    </div>
+                </div>
+                <p style="margin-top: 8px;"><strong>Key risks:</strong></p>
+                <div class="field" style="min-height: 30px;"></div>
+            </div>
+        </div>
+
+        <h2>Overall Risk Assessment</h2>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; font-size: 13px;">
+            <div>
+                <strong>Critical Risks (🔴):</strong> <span class="field" style="min-width: 30px; display: inline-block;"></span>
+            </div>
+            <div>
+                <strong>High Risks (🟠):</strong> <span class="field" style="min-width: 30px; display: inline-block;"></span>
+            </div>
+            <div>
+                <strong>Medium Risks (🟡):</strong> <span class="field" style="min-width: 30px; display: inline-block;"></span>
+            </div>
+            <div>
+                <strong>Low Risks (🟢):</strong> <span class="field" style="min-width: 30px; display: inline-block;"></span>
+            </div>
+        </div>
+
+        <div class="decision-box">
+            <h3 style="margin-top: 0; margin-bottom: 12px;">Launch Recommendation</h3>
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="green">
+                    <label for="green"><strong style="color: #059669;">✅ Green Light:</strong> All risks mitigated or acceptable</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="yellow">
+                    <label for="yellow"><strong style="color: #d97706;">⚠️ Yellow Light:</strong> Launch with mitigations in place, monitor closely</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="red">
+                    <label for="red"><strong style="color: #dc2626;">🛑 Red Light:</strong> Do not launch until critical risks addressed</label>
+                </div>
+            </div>
+            <p style="margin-top: 12px;"><strong>Justification:</strong></p>
+            <div class="field field-large"></div>
+        </div>
+
+        <h2>Post-Launch Monitoring</h2>
+        <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 12px; margin-bottom: 12px; font-size: 13px;">
+            <div>
+                <label style="font-weight: 600;">Top 3 Metrics to Track:</label>
+                <div class="field" style="margin-top: 4px;"></div>
+                <div class="field" style="margin-top: 4px;"></div>
+                <div class="field" style="margin-top: 4px;"></div>
+            </div>
+            <div>
+                <label style="font-weight: 600;">Review Cadence:</label>
+                <div style="margin-top: 4px;">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="weekly">
+                        <label for="weekly">Weekly</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="biweekly">
+                        <label for="biweekly">Biweekly</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="monthly">
+                        <label for="monthly">Monthly</label>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <label style="font-weight: 600;">Review Owner:</label>
+                <div class="field" style="margin-top: 4px;"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Template created by Frank Sellhausen</strong> | AI PM Cards</p>
+            <p>ai-pm-cards.vercel.app</p>
+        </div>
+    </div>
+</body>
+</html>

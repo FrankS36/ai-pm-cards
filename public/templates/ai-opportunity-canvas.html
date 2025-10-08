@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Opportunity Canvas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.5;
+            color: #1f2937;
+            background: #f9fafb;
+            padding: 20px;
+        }
+
+        .download-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+            z-index: 1000;
+        }
+
+        .download-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(30, 58, 138, 0.4);
+        }
+
+        .container {
+            max-width: 8.5in;
+            margin: 0 auto;
+            background: white;
+            padding: 0.75in;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            font-size: 13px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+            margin-top: 12px;
+            margin-bottom: 8px;
+        }
+
+        p, li {
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+
+        .header-info {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-size: 13px;
+        }
+
+        .header-info div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-info label {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 4px;
+        }
+
+        .field {
+            border-bottom: 1px solid #d1d5db;
+            min-height: 20px;
+            padding: 2px 0;
+        }
+
+        .field-large {
+            min-height: 45px;
+        }
+
+        .checkbox-group {
+            margin: 8px 0;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: flex-start;
+            margin: 5px 0;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            margin-right: 6px;
+            margin-top: 2px;
+            width: 14px;
+            height: 14px;
+        }
+
+        .section-box {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 12px 0;
+            border-left: 3px solid #7c3aed;
+        }
+
+        .score-box {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.08) 0%, rgba(124, 58, 237, 0.08) 100%);
+            border: 2px solid #7c3aed;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+
+        .score-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 8px 0;
+            font-size: 13px;
+        }
+
+        .score-row strong {
+            flex: 1;
+        }
+
+        .score-input {
+            width: 60px;
+            text-align: center;
+            font-weight: 600;
+            color: #1e3a8a;
+        }
+
+        .total-score {
+            font-size: 20px;
+            font-weight: 700;
+            text-align: center;
+            padding: 16px;
+            background: white;
+            border-radius: 8px;
+            margin: 16px 0;
+            border: 2px solid #1e3a8a;
+        }
+
+        .decision-box {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
+            padding: 12px;
+            border-radius: 6px;
+            margin: 12px 0;
+        }
+
+        .footer {
+            margin-top: 24px;
+            padding-top: 12px;
+            border-top: 2px solid #e5e7eb;
+            text-align: center;
+            color: #6b7280;
+            font-size: 11px;
+        }
+
+        .footer strong {
+            color: #1e3a8a;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .download-button {
+                display: none;
+            }
+
+            .container {
+                box-shadow: none;
+                padding: 0.5in;
+                max-width: 100%;
+            }
+
+            h2 {
+                page-break-after: avoid;
+            }
+
+            .section-box {
+                page-break-inside: avoid;
+            }
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+    </style>
+</head>
+<body>
+    <button class="download-button" onclick="window.print()">📥 Download as PDF</button>
+
+    <div class="container">
+        <h1>AI Opportunity Canvas</h1>
+        <p class="subtitle">Related Card: Identify AI Opportunities | Format: 1-page PDF canvas | Go/No-Go Decision Framework</p>
+
+        <div class="header-info">
+            <div>
+                <label>Feature Idea:</label>
+                <div class="field"></div>
+            </div>
+            <div>
+                <label>Proposed by:</label>
+                <div class="field"></div>
+            </div>
+            <div>
+                <label>Date:</label>
+                <div class="field"></div>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 12px;">
+            <label style="font-weight: 600; font-size: 13px;">In one sentence, what does this AI feature do?</label>
+            <div class="field field-large"></div>
+        </div>
+
+        <h2>Part 1: User Value</h2>
+
+        <div class="section-box">
+            <h3 style="margin-top: 0;">Problem Being Solved</h3>
+            <p><strong>What user problem does this address?</strong></p>
+            <div class="field field-large"></div>
+
+            <p style="margin-top: 10px;"><strong>How do users solve this today (without AI)?</strong></p>
+            <div class="field"></div>
+
+            <p style="margin-top: 10px;"><strong>How painful is this problem?</strong></p>
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="severe">
+                    <label for="severe"><strong>Severe:</strong> Users complain frequently, actively seeking alternatives</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="moderate">
+                    <label for="moderate"><strong>Moderate:</strong> Users mention occasionally, would appreciate a fix</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="minor">
+                    <label for="minor"><strong>Minor:</strong> Nice-to-have, users have adapted to current workflow</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-box">
+            <h3 style="margin-top: 0;">AI's Unique Advantage</h3>
+            <p><strong>Why is AI uniquely suited to solve this?</strong> (check all that apply)</p>
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="automate">
+                    <label for="automate">Automates tedious manual work</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="personalize">
+                    <label for="personalize">Provides personalization at scale</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="patterns">
+                    <label for="patterns">Finds patterns humans can't see</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="247">
+                    <label for="247">Works 24/7 without human intervention</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="data">
+                    <label for="data">Processes more data than humans can</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="predictions">
+                    <label for="predictions">Makes predictions humans struggle with</label>
+                </div>
+            </div>
+
+            <p style="margin-top: 10px;"><strong>Could this be solved without AI?</strong></p>
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="easy">
+                    <label for="easy">Yes, easily → ⚠️ <strong>Warning:</strong> AI may be overkill</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="better">
+                    <label for="better">Yes, but AI makes it 10x better → ✅ Good use case</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="only">
+                    <label for="only">No, only AI can solve this → ✅ Strong use case</label>
+                </div>
+            </div>
+        </div>
+
+        <h2>Part 2: Business Value</h2>
+
+        <div class="two-column">
+            <div class="section-box">
+                <h3 style="margin-top: 0;">Expected Impact</h3>
+                <p><strong>How many users affected?</strong></p>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="high-reach">
+                        <label for="high-reach">10%+ of user base (High)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="med-reach">
+                        <label for="med-reach">1-10% of users (Medium)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="low-reach">
+                        <label for="low-reach">&lt;1% of users (Low)</label>
+                    </div>
+                </div>
+
+                <p style="margin-top: 8px;"><strong>Business metric improvement:</strong></p>
+                <div style="font-size: 12px; margin-top: 4px;">
+                    <div>Revenue: <span class="field" style="min-width: 50px; display: inline-block;"></span>%</div>
+                    <div>Retention: <span class="field" style="min-width: 50px; display: inline-block;"></span>%</div>
+                    <div>Engagement: <span class="field" style="min-width: 50px; display: inline-block;"></span>%</div>
+                    <div>Cost savings: $<span class="field" style="min-width: 70px; display: inline-block;"></span></div>
+                </div>
+            </div>
+
+            <div class="section-box">
+                <h3 style="margin-top: 0;">Effort & ROI</h3>
+                <p><strong>Effort estimate:</strong></p>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="small">
+                        <label for="small">Small (1-2 weeks)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="medium">
+                        <label for="medium">Medium (1-2 months)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="large">
+                        <label for="large">Large (3+ months)</label>
+                    </div>
+                </div>
+
+                <p style="margin-top: 8px;"><strong>ROI rough math:</strong></p>
+                <div style="font-size: 12px; margin-top: 4px;">
+                    <div>Expected value: $<span class="field" style="min-width: 70px; display: inline-block;"></span>/mo</div>
+                    <div>Cost to build: $<span class="field" style="min-width: 70px; display: inline-block;"></span></div>
+                    <div>Ongoing cost: $<span class="field" style="min-width: 70px; display: inline-block;"></span>/mo</div>
+                    <div><strong>Payback: <span class="field" style="min-width: 40px; display: inline-block;"></span> months</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <h2>Part 3: Feasibility</h2>
+
+        <div class="two-column">
+            <div class="section-box">
+                <h3 style="margin-top: 0;">Technical Feasibility</h3>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="data-yes">
+                        <label for="data-yes">Have high-quality labeled data</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="data-partial">
+                        <label for="data-partial">Need to collect/clean more data</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="data-no">
+                        <label for="data-no">Need data pipeline first ⚠️</label>
+                    </div>
+                </div>
+                <div class="checkbox-group" style="margin-top: 6px;">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="ml-yes">
+                        <label for="ml-yes">Team has shipped ML before</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="ml-partial">
+                        <label for="ml-partial">Can hire or learn ML expertise</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="ml-no">
+                        <label for="ml-no">First ML project ⚠️</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-box">
+                <h3 style="margin-top: 0;">Risk Assessment (Quick)</h3>
+                <p style="margin-bottom: 6px;">Rate each 1-5 (1=low, 5=high):</p>
+                <div style="font-size: 12px;">
+                    <div style="margin: 4px 0;">Bias/fairness: <span class="field" style="min-width: 30px; display: inline-block;"></span> / 5</div>
+                    <div style="margin: 4px 0;">Privacy/security: <span class="field" style="min-width: 30px; display: inline-block;"></span> / 5</div>
+                    <div style="margin: 4px 0;">Performance/accuracy: <span class="field" style="min-width: 30px; display: inline-block;"></span> / 5</div>
+                    <div style="margin: 4px 0;">User trust: <span class="field" style="min-width: 30px; display: inline-block;"></span> / 5</div>
+                </div>
+                <p style="margin-top: 8px; font-size: 12px;"><strong>Any risk ≥ 4?</strong> Must have mitigation plan</p>
+            </div>
+        </div>
+
+        <h2>Part 4: Go/No-Go Scoring</h2>
+
+        <div class="score-box">
+            <div class="score-row">
+                <strong>User Value Score (max 3)</strong>
+                <span class="score-input"><span class="field" style="min-width: 30px; display: inline-block;"></span> / 3</span>
+            </div>
+            <div class="score-row">
+                <strong>Business Value Score (max 3)</strong>
+                <span class="score-input"><span class="field" style="min-width: 30px; display: inline-block;"></span> / 3</span>
+            </div>
+            <div class="score-row">
+                <strong>Feasibility Score (max 3)</strong>
+                <span class="score-input"><span class="field" style="min-width: 30px; display: inline-block;"></span> / 3</span>
+            </div>
+            <div class="score-row">
+                <strong>Strategic Fit Score (max 1)</strong>
+                <span class="score-input"><span class="field" style="min-width: 30px; display: inline-block;"></span> / 1</span>
+            </div>
+        </div>
+
+        <div class="total-score">
+            TOTAL SCORE: <span class="field" style="min-width: 40px; display: inline-block;"></span> / 10
+        </div>
+
+        <div class="decision-box">
+            <p style="font-size: 12px; margin-bottom: 8px;"><strong>Decision Framework:</strong></p>
+            <div style="font-size: 12px;">
+                <p>• <strong>8-10 points:</strong> ✅ <strong>Strong Go</strong> - Build this now (high value, feasible, aligned)</p>
+                <p>• <strong>5-7 points:</strong> ⚠️ <strong>Conditional Go</strong> - Build with caveats (address gaps first)</p>
+                <p>• <strong>0-4 points:</strong> 🛑 <strong>No Go</strong> - Don't build yet (too risky or low impact)</p>
+            </div>
+        </div>
+
+        <h2>Your Decision</h2>
+        <div class="checkbox-group">
+            <div class="checkbox-item">
+                <input type="checkbox" id="go">
+                <label for="go"><strong style="color: #059669;">✅ Go</strong> - Proceeding to build</label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="conditional">
+                <label for="conditional"><strong style="color: #d97706;">⚠️ Conditional Go</strong> - Must address: <span class="field" style="min-width: 200px; display: inline-block;"></span></label>
+            </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="nogo">
+                <label for="nogo"><strong style="color: #dc2626;">🛑 No Go</strong> - Reason: <span class="field" style="min-width: 200px; display: inline-block;"></span></label>
+            </div>
+        </div>
+
+        <p style="margin-top: 12px; font-size: 13px;"><strong>Decided by:</strong> <span class="field" style="min-width: 150px; display: inline-block;"></span> <strong>Date:</strong> <span class="field" style="min-width: 100px; display: inline-block;"></span></p>
+
+        <h2>Next Steps (if Go/Conditional Go)</h2>
+        <div style="font-size: 12px;">
+            <p><strong>Immediate actions:</strong></p>
+            <div>1. <span class="field"></span></div>
+            <div>2. <span class="field"></span></div>
+            <div>3. <span class="field"></span></div>
+
+            <p style="margin-top: 10px;"><strong>Success criteria:</strong></p>
+            <div>1. <span class="field"></span></div>
+            <div>2. <span class="field"></span></div>
+
+            <p style="margin-top: 10px;"><strong>Review date:</strong> <span class="field" style="min-width: 100px; display: inline-block;"></span></p>
+        </div>
+
+        <div class="footer">
+            <p><strong>Template created by Frank Sellhausen</strong> | AI PM Cards</p>
+            <p>ai-pm-cards.vercel.app</p>
+        </div>
+    </div>
+</body>
+</html>
