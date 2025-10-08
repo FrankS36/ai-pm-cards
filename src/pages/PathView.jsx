@@ -146,7 +146,9 @@ function PathView() {
           {/* Progress Indicator */}
           <div className="path-progress">
             <div className="progress-label">
-              Card {currentCardIndex + 1} of {cards.length}
+              <span className="progress-current">{currentCardIndex + 1}</span>
+              <span className="progress-separator"> / </span>
+              <span className="progress-total">{cards.length}</span>
             </div>
             <div className="progress-dots">
               {cards.map((_, index) => (
