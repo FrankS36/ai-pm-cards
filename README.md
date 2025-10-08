@@ -1,8 +1,8 @@
-# AI PM Card Decks - React MVP
+# AI PM Card Decks
 
 A guided card system to help AI Product Managers navigate strategy, risk, and execution challenges.
 
-**Now built with React + Vite for better scalability and component reusability.**
+**128 tactical cards across 3 decks | 20 curated journey paths | Problem-focused diagnostic flow**
 
 ## 🚀 Quick Start
 
@@ -64,15 +64,25 @@ ai-pm-cards/
 ## 🎯 What's Included
 
 ### Tech Stack
-- **React 18** - Component-based UI
-- **React Router 7** - Client-side routing
+- **React 19** - Component-based UI
+- **React Router 6** - Client-side routing
 - **Vite 5** - Fast build tool and dev server
 - **Vanilla CSS** - Modular CSS files
 
-### Screens
-- Landing Page → Diagnostic Q1 → Diagnostic Q2 → Path View → Browse
-- 6 sample cards across Strategy, Risk, and Execution decks
-- Complete "Concept to Strategy" journey path
+### Content
+- **128 Cards Total**
+  - 25 Strategy cards (Vision, Value Prop, AI Feasibility, Business Model, Roadmap)
+  - 50 Risk Management cards (Risk Assessment, Model Risks, Data Risks, Trust, Compliance, Ops)
+  - 53 Execution cards (Specs, Data, Models, Testing, UX, Monitoring, MLOps, Process)
+- **20 Journey Paths** - Curated card sequences for common AI PM scenarios
+- **Problem-focused Diagnostic** - Answer questions to find the right path for your situation
+
+### Features
+- 🔄 Interactive card flipping (front/back)
+- 🗺️ Guided paths with progress tracking
+- 🔍 Browse all cards with search and filters
+- 📱 Fully responsive mobile design
+- 🎯 Problem-based navigation flow
 
 ## 🛠️ Development
 
@@ -92,20 +102,28 @@ npm run build        # Build for production
 npm run preview      # Preview production build
 ```
 
-## 🚀 Deployment
+## 🌐 Deployment
 
-Works with Netlify, Vercel, GitHub Pages, or any static host.
+**Live Site:** [Coming soon - deploying to Vercel]
 
-Build command: `npm run build`  
-Publish directory: `dist`
+**GitHub:** https://github.com/FrankS36/ai-pm-cards
 
-## 📈 Next Steps
+### Deploy Your Own
+1. Fork the repository
+2. Connect to Vercel/Netlify
+3. Build command: `npm run build`
+4. Output directory: `dist`
 
-1. Add remaining 144 cards
-2. Build 15-20 journey paths  
-3. Add search and filtering
-4. Implement bookmarks/progress tracking
+## 📈 Roadmap
+
+- [ ] Analytics integration
+- [ ] Progress tracking with localStorage
+- [ ] Bookmark favorite cards
+- [ ] Dark mode
+- [ ] Custom domain
+- [ ] Social sharing features
+- [ ] Export paths as PDFs
 
 ---
 
-**Built with React + Vite**
+**Built with React + Vite | 128 Cards | 20 Paths**
