@@ -41,7 +41,6 @@ function AboutPage() {
             <div className="author-bio">
               <p>
                 I'm <strong>Frank Sellhausen</strong>, a Product Manager at Dell Technologies where I lead AI/ML product initiatives.
-                I'm currently pursuing my MBA at Stanford Graduate School of Business (LEAD Program, 2025-2026).
               </p>
               <p>
                 My background combines deep technical expertise with strategic product leadership:
