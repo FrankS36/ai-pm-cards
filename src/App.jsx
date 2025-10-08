@@ -8,6 +8,7 @@ import DiagnosticBuilding from './pages/DiagnosticBuilding';
 import PathView from './pages/PathView';
 import BrowseView from './pages/BrowseView';
 import PathsDirectory from './pages/PathsDirectory';
+import Navigation from './components/Navigation';
 import KeyboardHelp from './components/KeyboardHelp';
 import './App.css';
 
@@ -15,6 +16,7 @@ function App() {
   return (
     <>
       <Router>
+        <Navigation />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/start" element={<DiagnosticQ1 />} />

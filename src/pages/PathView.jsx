@@ -128,18 +128,13 @@ function PathView() {
     <div className="path-view">
       <div className="container">
         <div className="path-header">
-          <div className="path-header-actions">
-            <button className="btn-back" onClick={() => navigate('/start/problem')}>
-              ← Change path
-            </button>
-            {currentCardIndex > 0 && (
-              <button className="btn-reset" onClick={handleResetProgress}>
-                Reset Progress
-              </button>
-            )}
-          </div>
           <h2>{pathInfo.title}</h2>
           <p className="path-subtitle">{cards.length} tactics to guide you</p>
+          {currentCardIndex > 0 && (
+            <button className="btn-reset" onClick={handleResetProgress}>
+              Reset Progress
+            </button>
+          )}
         </div>
 
         <div className="path-content">

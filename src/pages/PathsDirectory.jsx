@@ -41,9 +41,6 @@ function PathsDirectory() {
     <div className="paths-directory">
       <div className="container">
         <div className="paths-header">
-          <button className="btn-back" onClick={() => navigate('/')}>
-            ← Back
-          </button>
           <h2>Journey Paths</h2>
           <p className="paths-subtitle">20 curated paths to guide you through common AI PM scenarios</p>
         </div>

@@ -1,0 +1,131 @@
+.main-nav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  z-index: 1000;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+/* Logo */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-left: -0.5rem;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.nav-logo:hover {
+  background: #f9fafb;
+}
+
+.nav-logo-icon {
+  font-size: 1.5rem;
+}
+
+.nav-logo-text {
+  font-size: 1.125rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Navigation Links */
+.nav-links {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.nav-link {
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+.nav-link.active {
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+  color: #1e3a8a;
+  font-weight: 600;
+}
+
+/* Actions */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0 1rem;
+  }
+
+  .nav-content {
+    height: 56px;
+  }
+
+  .nav-logo-text {
+    font-size: 1rem;
+  }
+
+  .nav-links {
+    gap: 0.25rem;
+  }
+
+  .nav-link {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-logo-text {
+    display: none;
+  }
+
+  .nav-logo-icon {
+    font-size: 1.75rem;
+  }
+
+  .nav-link {
+    padding: 0.5rem 0.625rem;
+    font-size: 0.8125rem;
+  }
+}
