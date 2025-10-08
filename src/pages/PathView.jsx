@@ -8,9 +8,14 @@ function PathView() {
   const { pathId } = useParams();
   const navigate = useNavigate();
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   const pathInfo = cardDataJson.paths[pathId];
   const cards = pathInfo?.cardIds.map(id => cardDataJson.cards[id]) || [];
+
+  // Minimum swipe distance (in px) to trigger navigation
+  const minSwipeDistance = 50;
 
   // Load saved progress from localStorage
   useEffect(() => {
@@ -53,6 +58,32 @@ function PathView() {
       setCurrentCardIndex(0);
       localStorage.setItem(`path-progress-${pathId}`, '0');
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  // Touch swipe handlers for mobile
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      // Swiped left - go to next card
+      handleNext();
+    } else if (isRightSwipe) {
+      // Swiped right - go to previous card
+      handlePrevious();
     }
   };
 
@@ -134,7 +165,12 @@ function PathView() {
           </div>
 
           {/* Card Display */}
-          <div className="card-container">
+          <div
+            className="card-container"
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+          >
             <Card cardData={currentCard} />
           </div>
 
