@@ -13,15 +13,27 @@ function BrowseView() {
 
   const allCards = Object.values(cardDataJson.cards);
 
-  // Open card from navigation state (e.g., from related cards)
+  // Open card from navigation state (e.g., from related cards) or URL query parameter (e.g., from share link)
   useEffect(() => {
+    // Check for card ID in location state first
     if (location.state?.cardId) {
       const card = cardDataJson.cards[location.state.cardId];
       if (card) {
         setSelectedCard(card);
       }
+      return;
     }
-  }, [location.state]);
+
+    // Check for card ID in URL query parameter
+    const params = new URLSearchParams(location.search);
+    const cardId = params.get('card');
+    if (cardId) {
+      const card = cardDataJson.cards[cardId];
+      if (card) {
+        setSelectedCard(card);
+      }
+    }
+  }, [location.state, location.search]);
 
   // Keyboard shortcut to close modal with ESC
   useEffect(() => {

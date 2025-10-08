@@ -4,7 +4,7 @@
  */
 
 export const shareCard = async (card) => {
-  const url = `${window.location.origin}/browse`;
+  const url = `${window.location.origin}/browse?card=${card.id}`;
   const title = `AI PM Card: ${card.title}`;
   const text = `Check out this AI PM card: ${card.title}`;
 
