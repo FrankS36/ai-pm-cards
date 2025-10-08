@@ -10,6 +10,7 @@ function PathView() {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
+  const [showJumpMenu, setShowJumpMenu] = useState(false);
 
   const pathInfo = cardDataJson.paths[pathId];
   const cards = pathInfo?.cardIds.map(id => cardDataJson.cards[id]) || [];
@@ -55,6 +56,11 @@ function PathView() {
       setCurrentCardIndex(0);
       localStorage.setItem(`path-progress-${pathId}`, '0');
     }
+  };
+
+  const handleJumpToCard = (index) => {
+    setCurrentCardIndex(index);
+    setShowJumpMenu(false);
   };
 
   // Touch swipe handlers for mobile
@@ -132,11 +138,49 @@ function PathView() {
         <div className="path-content">
           {/* Progress Indicator */}
           <div className="path-progress">
-            <div className="progress-label">
-              <span className="progress-current">{currentCardIndex + 1}</span>
-              <span className="progress-separator"> / </span>
-              <span className="progress-total">{cards.length}</span>
+            <div className="progress-header">
+              <div className="progress-label">
+                <span className="progress-current">{currentCardIndex + 1}</span>
+                <span className="progress-separator"> / </span>
+                <span className="progress-total">{cards.length}</span>
+              </div>
+              <button
+                className="jump-menu-button"
+                onClick={() => setShowJumpMenu(!showJumpMenu)}
+                title="Jump to card"
+              >
+                Jump to...
+              </button>
             </div>
+
+            {/* Jump Menu Dropdown */}
+            {showJumpMenu && (
+              <div className="jump-menu">
+                <div className="jump-menu-header">
+                  <h3>Jump to Card</h3>
+                  <button
+                    className="jump-menu-close"
+                    onClick={() => setShowJumpMenu(false)}
+                  >
+                    ×
+                  </button>
+                </div>
+                <div className="jump-menu-list">
+                  {cards.map((card, index) => (
+                    <button
+                      key={card.id}
+                      className={`jump-menu-item ${index === currentCardIndex ? 'active' : ''} ${index < currentCardIndex ? 'completed' : ''}`}
+                      onClick={() => handleJumpToCard(index)}
+                    >
+                      <span className="jump-menu-number">{index + 1}</span>
+                      <span className="jump-menu-title">{card.title}</span>
+                      {index < currentCardIndex && <span className="jump-menu-check">✓</span>}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <div className="progress-dots">
               {cards.map((_, index) => (
                 <div
