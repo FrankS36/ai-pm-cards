@@ -309,6 +309,135 @@
   background: linear-gradient(135deg, #1e40af 0%, #8b5cf6 100%);
 }
 
+/* Completion Modal */
+.completion-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.completion-modal {
+  background: white;
+  border-radius: 24px;
+  padding: 3rem 2.5rem;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.4s ease-out;
+}
+
+.completion-celebration {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  animation: celebrate 0.6s ease-out;
+}
+
+@keyframes celebrate {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.2) rotate(-10deg);
+  }
+  50% {
+    transform: scale(1.3) rotate(10deg);
+  }
+  75% {
+    transform: scale(1.2) rotate(-5deg);
+  }
+}
+
+.completion-modal h2 {
+  margin: 0 0 1rem 0;
+  font-size: 2rem;
+  background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.completion-message {
+  color: #6b7280;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.completion-message strong {
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.completion-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.btn-completion {
+  padding: 0.875rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 2px solid #e5e7eb;
+  background: white;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-completion:hover {
+  border-color: #1e3a8a;
+  background: #f9fafb;
+  transform: translateY(-1px);
+}
+
+.btn-completion-primary {
+  background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+  color: white;
+  border: none;
+}
+
+.btn-completion-primary:hover {
+  background: linear-gradient(135deg, #1e40af 0%, #8b5cf6 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+}
+
+.completion-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #9ca3af;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.completion-close:hover {
+  background: #f3f4f6;
+  color: #374151;
+}
+
 @media (max-width: 768px) {
   .card-navigation {
     flex-direction: column;
@@ -340,5 +469,26 @@
 
   .jump-menu-title {
     font-size: 0.875rem;
+  }
+
+  .completion-modal {
+    padding: 2rem 1.5rem;
+  }
+
+  .completion-celebration {
+    font-size: 3rem;
+  }
+
+  .completion-modal h2 {
+    font-size: 1.5rem;
+  }
+
+  .completion-message {
+    font-size: 1rem;
+  }
+
+  .btn-completion {
+    font-size: 0.9375rem;
+    padding: 0.75rem 1.25rem;
   }
 }

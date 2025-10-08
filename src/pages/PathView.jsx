@@ -11,6 +11,7 @@ function PathView() {
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
   const [showJumpMenu, setShowJumpMenu] = useState(false);
+  const [showCompletionModal, setShowCompletionModal] = useState(false);
 
   const pathInfo = cardDataJson.paths[pathId];
   const cards = pathInfo?.cardIds.map(id => cardDataJson.cards[id]) || [];
@@ -40,8 +41,7 @@ function PathView() {
     if (currentCardIndex < cards.length - 1) {
       setCurrentCardIndex(currentCardIndex + 1);
     } else {
-      alert('Path completed! 🎉\n\nYou\'ve explored all tactics in this path.');
-      navigate('/start/problem');
+      setShowCompletionModal(true);
     }
   };
 
@@ -104,8 +104,7 @@ function PathView() {
           if (prev < cards.length - 1) {
             return prev + 1;
           } else {
-            alert('Path completed! 🎉\n\nYou\'ve explored all tactics in this path.');
-            navigate('/start/problem');
+            setShowCompletionModal(true);
           }
           return prev;
         });
@@ -224,6 +223,50 @@ function PathView() {
             </button>
           </div>
         </div>
+
+        {/* Completion Modal */}
+        {showCompletionModal && (
+          <div className="completion-modal-overlay" onClick={() => setShowCompletionModal(false)}>
+            <div className="completion-modal" onClick={(e) => e.stopPropagation()}>
+              <div className="completion-celebration">🎉</div>
+              <h2>Path Completed!</h2>
+              <p className="completion-message">
+                You've explored all {cards.length} tactics in <strong>{pathInfo.title}</strong>
+              </p>
+
+              <div className="completion-actions">
+                <button
+                  className="btn-completion btn-completion-primary"
+                  onClick={() => navigate('/paths')}
+                >
+                  Explore More Paths
+                </button>
+                <button
+                  className="btn-completion"
+                  onClick={() => navigate('/browse')}
+                >
+                  Browse All Cards
+                </button>
+                <button
+                  className="btn-completion"
+                  onClick={() => {
+                    handleResetProgress();
+                    setShowCompletionModal(false);
+                  }}
+                >
+                  Restart This Path
+                </button>
+              </div>
+
+              <button
+                className="completion-close"
+                onClick={() => setShowCompletionModal(false)}
+              >
+                ×
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
