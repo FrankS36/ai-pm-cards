@@ -22,6 +22,19 @@ function Card({ cardData }) {
     }
   }, [isFlipped]);
 
+  // Keyboard shortcut to flip card with spacebar
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault(); // Prevent page scroll
+        setIsFlipped(prev => !prev);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, []);
+
   return (
     <div ref={cardRef} className={`card ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip}>
       {/* Front of Card */}
@@ -50,7 +63,7 @@ function Card({ cardData }) {
         </div>
 
         <div className="card-id">{cardData.id}</div>
-        <div className="flip-hint">Click to see framework →</div>
+        <div className="flip-hint">Click or press SPACE to see framework →</div>
       </div>
 
       {/* Back of Card */}
@@ -88,7 +101,7 @@ function Card({ cardData }) {
           </div>
         </div>
 
-        <div className="flip-hint">Click to see front →</div>
+        <div className="flip-hint">Click or press SPACE to see front →</div>
       </div>
     </div>
   );
