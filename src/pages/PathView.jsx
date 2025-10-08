@@ -12,10 +12,24 @@ function PathView() {
   const pathInfo = cardDataJson.paths[pathId];
   const cards = pathInfo?.cardIds.map(id => cardDataJson.cards[id]) || [];
 
+  // Load saved progress from localStorage
   useEffect(() => {
-    setCurrentCardIndex(0);
+    const savedProgress = localStorage.getItem(`path-progress-${pathId}`);
+    if (savedProgress) {
+      const progress = parseInt(savedProgress, 10);
+      setCurrentCardIndex(progress);
+    } else {
+      setCurrentCardIndex(0);
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [pathId]);
+
+  // Save progress to localStorage whenever card index changes
+  useEffect(() => {
+    if (pathId) {
+      localStorage.setItem(`path-progress-${pathId}`, currentCardIndex.toString());
+    }
+  }, [currentCardIndex, pathId]);
 
   const handleNext = () => {
     if (currentCardIndex < cards.length - 1) {
@@ -34,6 +48,28 @@ function PathView() {
     }
   };
 
+  const handleResetProgress = () => {
+    if (confirm('Reset your progress and start from the beginning?')) {
+      setCurrentCardIndex(0);
+      localStorage.setItem(`path-progress-${pathId}`, '0');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  // Keyboard shortcuts for navigation
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (e.key === 'ArrowLeft') {
+        handlePrevious();
+      } else if (e.key === 'ArrowRight') {
+        handleNext();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [currentCardIndex, cards.length]);
+
   if (!pathInfo) {
     return <div>Path not found</div>;
   }
@@ -44,9 +80,16 @@ function PathView() {
     <div className="path-view">
       <div className="container">
         <div className="path-header">
-          <button className="btn-back" onClick={() => navigate('/start/problem')}>
-            ← Change path
-          </button>
+          <div className="path-header-actions">
+            <button className="btn-back" onClick={() => navigate('/start/problem')}>
+              ← Change path
+            </button>
+            {currentCardIndex > 0 && (
+              <button className="btn-reset" onClick={handleResetProgress}>
+                Reset Progress
+              </button>
+            )}
+          </div>
           <h2>{pathInfo.title}</h2>
           <p className="path-subtitle">{cards.length} tactics to guide you</p>
         </div>

@@ -104,7 +104,7 @@ npm run preview      # Preview production build
 
 ## 🌐 Deployment
 
-**Live Site:** [Coming soon - deploying to Vercel]
+**Live Site:** https://ai-pm-cards.vercel.app
 
 **GitHub:** https://github.com/FrankS36/ai-pm-cards
 

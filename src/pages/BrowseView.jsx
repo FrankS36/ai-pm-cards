@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import cardDataJson from '../data/cardData.json';
 import './BrowseView.css';
@@ -11,6 +11,18 @@ function BrowseView() {
   const [selectedCard, setSelectedCard] = useState(null);
 
   const allCards = Object.values(cardDataJson.cards);
+
+  // Keyboard shortcut to close modal with ESC
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (e.key === 'Escape' && selectedCard) {
+        setSelectedCard(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [selectedCard]);
 
   const filteredCards = useMemo(() => {
     return allCards.filter(card => {
