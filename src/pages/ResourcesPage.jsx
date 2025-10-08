@@ -125,7 +125,7 @@ function ResourcesPage() {
                       href={`/browse?card=${template.relatedCard}`}
                       className="view-card-link"
                     >
-                      View Related Card →
+                      View Related Framework →
                     </a>
                   </div>
                 </div>

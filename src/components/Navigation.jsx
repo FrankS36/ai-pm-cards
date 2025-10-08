@@ -31,7 +31,7 @@ function Navigation() {
               className={`nav-link ${isActive('/browse') ? 'active' : ''}`}
               onClick={() => navigate('/browse')}
             >
-              Browse Cards
+              Browse Frameworks
             </button>
             <button
               className={`nav-link ${isActive('/paths') ? 'active' : ''}`}
@@ -43,7 +43,7 @@ function Navigation() {
               className={`nav-link ${isActive('/resources') ? 'active' : ''}`}
               onClick={() => navigate('/resources')}
             >
-              Resources
+              Templates
             </button>
             <button
               className={`nav-link ${isActive('/about') ? 'active' : ''}`}
@@ -55,7 +55,7 @@ function Navigation() {
               className={`nav-link ${isActive('/collaborate') ? 'active' : ''}`}
               onClick={() => navigate('/collaborate')}
             >
-              Collaborate
+              Hire Me
             </button>
           </div>
 

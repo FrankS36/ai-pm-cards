@@ -26,7 +26,7 @@ function LandingPage() {
               Find Your Framework →
             </button>
             <button className="btn-link" onClick={() => navigate('/browse')}>
-              or browse all 150 cards
+              or browse all 150 frameworks
             </button>
           </div>
 
@@ -87,7 +87,7 @@ function LandingPage() {
                 <div className="mini-card">
                   <div className="mini-card-deck">Strategy & Risk</div>
                   <h4>When Users Don't Trust Your AI</h4>
-                  <p>8-card path with tactics</p>
+                  <p>8 frameworks with tactics</p>
                 </div>
               </div>
               <div className="solution-arrow">→</div>
@@ -164,7 +164,7 @@ function LandingPage() {
             </div>
 
             <div className="preview-footer">
-              <span className="preview-cta">Click to explore full card →</span>
+              <span className="preview-cta">Click to explore full framework →</span>
             </div>
           </div>
         </section>

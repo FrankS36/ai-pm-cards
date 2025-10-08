@@ -277,7 +277,7 @@ function PathView() {
                   className="btn-completion"
                   onClick={() => navigate('/browse')}
                 >
-                  Browse All Cards
+                  Browse All Frameworks
                 </button>
                 <button
                   className="btn-completion"

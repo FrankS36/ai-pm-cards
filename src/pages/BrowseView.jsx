@@ -80,8 +80,8 @@ function BrowseView() {
     <div className="browse-view">
       <div className="container">
         <div className="browse-header">
-          <h2>Browse All Cards</h2>
-          <p className="browse-subtitle">{cardCounts.all} tactics across 3 decks</p>
+          <h2>Browse All Frameworks</h2>
+          <p className="browse-subtitle">{cardCounts.all} frameworks across 3 decks</p>
         </div>
 
         {/* Filters */}

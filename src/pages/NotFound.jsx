@@ -31,7 +31,7 @@ function NotFound() {
             className="btn-not-found"
             onClick={() => navigate('/browse')}
           >
-            Browse Cards
+            Browse Frameworks
           </button>
         </div>
 
