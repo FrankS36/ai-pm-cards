@@ -226,11 +226,27 @@
   cursor: pointer;
   transition: all 0.2s;
   font-size: 0.95rem;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+.related-card-btn::after {
+  content: ' →';
+  color: #1e3a8a;
+  opacity: 0.5;
+  transition: all 0.2s;
 }
 
 .related-card-btn:hover {
   background: #e5e7eb;
   border-color: #1e3a8a;
+  color: #1e3a8a;
+  transform: translateX(2px);
+}
+
+.related-card-btn:hover::after {
+  opacity: 1;
+  transform: translateX(4px);
 }
 
 @media (max-width: 768px) {

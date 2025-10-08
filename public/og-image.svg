@@ -1,0 +1,62 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <rect width="1200" height="630" fill="url(#gradient)"/>
+
+  <!-- Card stack illustration (left side) -->
+  <!-- Back card -->
+  <rect x="80" y="180" width="320" height="240" rx="20" fill="rgba(255,255,255,0.15)" transform="rotate(-6 240 300)"/>
+
+  <!-- Middle card -->
+  <rect x="70" y="160" width="320" height="240" rx="20" fill="rgba(255,255,255,0.25)" transform="rotate(-3 230 280)"/>
+
+  <!-- Front card -->
+  <rect x="60" y="140" width="320" height="240" rx="20" fill="white"/>
+
+  <!-- Card content -->
+  <circle cx="220" cy="210" r="30" fill="#1e3a8a"/>
+  <path d="M220 180 L228 203 L252 210 L228 217 L220 240 L212 217 L188 210 L212 203 Z" fill="#7c3aed"/>
+
+  <rect x="120" y="280" width="200" height="12" rx="6" fill="#1e3a8a"/>
+  <rect x="120" y="310" width="140" height="10" rx="5" fill="#6b7280"/>
+  <rect x="120" y="335" width="160" height="10" rx="5" fill="#6b7280"/>
+
+  <!-- Text content (right side) -->
+  <text x="500" y="200" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="bold" fill="white">
+    AI PM Cards
+  </text>
+
+  <text x="500" y="280" font-family="system-ui, -apple-system, sans-serif" font-size="36" fill="rgba(255,255,255,0.9)">
+    128 Tactical Cards for
+  </text>
+
+  <text x="500" y="330" font-family="system-ui, -apple-system, sans-serif" font-size="36" fill="rgba(255,255,255,0.9)">
+    AI Product Managers
+  </text>
+
+  <!-- Stats -->
+  <g transform="translate(500, 400)">
+    <rect width="180" height="80" rx="12" fill="rgba(255,255,255,0.15)"/>
+    <text x="90" y="35" font-family="system-ui" font-size="32" font-weight="bold" fill="white" text-anchor="middle">128</text>
+    <text x="90" y="60" font-family="system-ui" font-size="18" fill="rgba(255,255,255,0.8)" text-anchor="middle">Cards</text>
+  </g>
+
+  <g transform="translate(710, 400)">
+    <rect width="180" height="80" rx="12" fill="rgba(255,255,255,0.15)"/>
+    <text x="90" y="35" font-family="system-ui" font-size="32" font-weight="bold" fill="white" text-anchor="middle">20</text>
+    <text x="90" y="60" font-family="system-ui" font-size="18" fill="rgba(255,255,255,0.8)" text-anchor="middle">Paths</text>
+  </g>
+
+  <g transform="translate(920, 400)">
+    <rect width="180" height="80" rx="12" fill="rgba(255,255,255,0.15)"/>
+    <text x="90" y="35" font-family="system-ui" font-size="32" font-weight="bold" fill="white" text-anchor="middle">3</text>
+    <text x="90" y="60" font-family="system-ui" font-size="18" fill="rgba(255,255,255,0.8)" text-anchor="middle">Decks</text>
+  </g>
+
+  <!-- Gradient definition -->
+  <defs>
+    <linearGradient id="gradient" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+</svg>

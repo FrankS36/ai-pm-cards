@@ -1,12 +1,48 @@
 import { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import cardDataJson from '../data/cardData.json';
 import './Card.css';
 
 function Card({ cardData }) {
   const [isFlipped, setIsFlipped] = useState(false);
   const cardRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
+  };
+
+  // Try to find and navigate to a related card
+  const handleRelatedCardClick = (e, relatedText) => {
+    e.stopPropagation(); // Prevent card flip
+
+    // Extract card title from text like "Next: Run a Model Feasibility Spike"
+    const titleMatch = relatedText.match(/(?:Next|Previous|Also):\s*(.+)/);
+    const searchTitle = titleMatch ? titleMatch[1].trim() : relatedText;
+
+    // Search for card by title
+    const allCards = Object.values(cardDataJson.cards);
+    const foundCard = allCards.find(card =>
+      card.title.toLowerCase().includes(searchTitle.toLowerCase()) ||
+      searchTitle.toLowerCase().includes(card.title.toLowerCase())
+    );
+
+    if (foundCard) {
+      // Find a path that contains this card
+      const paths = Object.values(cardDataJson.paths);
+      const pathWithCard = paths.find(path => path.cardIds.includes(foundCard.id));
+
+      if (pathWithCard) {
+        const cardIndex = pathWithCard.cardIds.indexOf(foundCard.id);
+        // Save the card index to localStorage so PathView loads it
+        localStorage.setItem(`path-progress-${pathWithCard.id}`, cardIndex.toString());
+        navigate(`/path/${pathWithCard.id}`);
+      } else {
+        alert(`Card "${foundCard.title}" found, but not in any path yet.`);
+      }
+    } else {
+      alert(`Could not find card: "${searchTitle}"\n\nTry browsing all cards instead.`);
+    }
   };
 
   // Reset flip state when card changes
@@ -94,7 +130,11 @@ function Card({ cardData }) {
           <h4>→ Related Cards</h4>
           <div className="related-cards">
             {cardData.relatedCards.map((related, index) => (
-              <button key={index} className="related-card-btn">
+              <button
+                key={index}
+                className="related-card-btn"
+                onClick={(e) => handleRelatedCardClick(e, related)}
+              >
                 {related}
               </button>
             ))}
