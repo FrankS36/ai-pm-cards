@@ -80,9 +80,134 @@
   align-items: center;
 }
 
+/* What is Card Section */
+.what-is-card {
+  margin-top: 4rem;
+  text-align: center;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.03) 0%, rgba(124, 58, 237, 0.03) 100%);
+  border-radius: 20px;
+}
+
+.what-is-card h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+.section-intro {
+  font-size: 1.125rem;
+  color: #6b7280;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  line-height: 1.7;
+}
+
+.card-anatomy {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.anatomy-item {
+  padding: 1.5rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.anatomy-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.anatomy-item h3 {
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+  color: #111827;
+  font-weight: 600;
+}
+
+.anatomy-item p {
+  color: #6b7280;
+  font-size: 0.9375rem;
+}
+
+/* Use Cases Section */
+.use-cases {
+  margin-top: 4rem;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.use-cases h2 {
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  color: #111827;
+}
+
+.use-cases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.use-case {
+  padding: 2rem;
+  background: white;
+  border-radius: 16px;
+  border: 2px solid #e5e7eb;
+  transition: all 0.3s;
+  text-align: left;
+}
+
+.use-case:hover {
+  border-color: #7c3aed;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.15);
+}
+
+.use-case-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.use-case h3 {
+  font-size: 1.125rem;
+  margin-bottom: 0.75rem;
+  color: #111827;
+  font-weight: 600;
+}
+
+.use-case-question {
+  color: #374151;
+  font-size: 0.9375rem;
+  margin-bottom: 0.75rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.use-case-solution {
+  color: #6b7280;
+  font-size: 0.9375rem;
+  margin-top: 0.5rem;
+}
+
+.use-case-solution strong {
+  color: #1e3a8a;
+}
+
+/* How It Works Section */
 .how-it-works {
   margin-top: 4rem;
   text-align: center;
+  padding: 3rem 2rem;
+  background: #f9fafb;
+  border-radius: 20px;
 }
 
 .how-it-works h2 {
@@ -96,7 +221,7 @@
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   max-width: 900px;
-  margin: 0 auto;
+  margin: 0 auto 2rem;
 }
 
 .step {
@@ -104,11 +229,21 @@
   background: white;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  position: relative;
 }
 
-.step-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+.step-number {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 auto 1rem;
 }
 
 .step h3 {
@@ -120,6 +255,102 @@
 .step p {
   color: #6b7280;
   font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.how-it-works-cta {
+  margin-top: 2rem;
+}
+
+/* Example Preview Section */
+.example-preview {
+  margin-top: 4rem;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.example-preview h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #111827;
+}
+
+.preview-card {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: left;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.preview-card:hover {
+  border-color: #7c3aed;
+  box-shadow: 0 8px 32px rgba(124, 58, 237, 0.2);
+  transform: translateY(-4px);
+}
+
+.preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.preview-deck {
+  background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+  color: white;
+  padding: 0.375rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.preview-id {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.preview-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1.5rem;
+}
+
+.preview-problem,
+.preview-framework,
+.preview-example {
+  margin-bottom: 1.25rem;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: #374151;
+}
+
+.preview-problem strong,
+.preview-framework strong,
+.preview-example strong {
+  color: #1e3a8a;
+  font-weight: 600;
+}
+
+.preview-footer {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.preview-cta {
+  color: #7c3aed;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 @media (max-width: 768px) {
@@ -133,5 +364,40 @@
 
   .cta-group {
     flex-direction: column;
+  }
+
+  .what-is-card,
+  .how-it-works {
+    padding: 2rem 1rem;
+  }
+
+  .card-anatomy {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .use-cases-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .preview-card {
+    padding: 1.5rem;
+  }
+
+  .preview-title {
+    font-size: 1.25rem;
+  }
+
+  .section-intro,
+  .what-is-card h2,
+  .use-cases h2,
+  .how-it-works h2,
+  .example-preview h2 {
+    font-size: 1.5rem;
   }
 }
