@@ -9,13 +9,13 @@ function WorkWithMe() {
       <div className="container">
         <div className="work-content">
           <div className="work-header">
-            <h1>Work With Me</h1>
+            <h1>Collaborate</h1>
             <p className="work-intro">
-              I help companies apply these frameworks to ship AI products that users adopt.
+              Let's apply these frameworks to ship AI products that users adopt.
             </p>
             <p className="work-availability">
               If your team is facing AI product challenges—user adoption, risk assessment,
-              strategic direction—I occasionally take on consulting projects.
+              strategic direction—I'd love to explore how we can work together.
             </p>
           </div>
 
@@ -64,7 +64,7 @@ function WorkWithMe() {
           </div>
 
           <div className="approach-section">
-            <h2>My Approach</h2>
+            <h2>How We'll Work Together</h2>
             <p>
               Every engagement is grounded in the frameworks from AI PM Cards—approaches I've
               tested building AI/ML products at Dell Technologies. No theory. Just practical,
@@ -72,23 +72,24 @@ function WorkWithMe() {
             </p>
             <p>
               I focus on three outcomes: user adoption, manageable risk, and sustainable execution.
-              If your AI features are technically sound but users aren't adopting them, we should talk.
+              If your AI features are technically sound but users aren't adopting them, let's talk.
             </p>
           </div>
 
           <div className="availability-section">
-            <h2>Availability</h2>
+            <h2>Let's Start a Conversation</h2>
             <p className="availability-note">
-              I take on a limited number of projects based on fit and timing. I prioritize engagements
-              where I believe I can create meaningful impact.
+              I work with teams where there's strong alignment on goals and approach. The best
+              partnerships start with understanding your unique challenges and exploring if these
+              frameworks are the right fit.
             </p>
           </div>
 
           <div className="cta-section">
-            <h2>Interested?</h2>
+            <h2>Get in Touch</h2>
             <p>
-              The best way to start a conversation is to connect with me on LinkedIn. Share a bit
-              about your challenge and we can explore if there's a good fit.
+              Connect with me on LinkedIn and share a bit about what you're working on.
+              I'd love to hear about your AI product challenges and explore how we might work together.
             </p>
             <div className="cta-buttons">
               <a

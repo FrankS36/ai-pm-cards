@@ -28,6 +28,13 @@ function Footer() {
           >
             GitHub
           </a>
+          <span className="footer-separator">•</span>
+          <a
+            href="/collaborate"
+            className="footer-link"
+          >
+            Collaborate
+          </a>
         </div>
       </div>
     </footer>

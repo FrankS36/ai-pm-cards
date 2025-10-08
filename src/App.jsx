@@ -32,6 +32,7 @@ function App() {
           <Route path="/paths" element={<PathsDirectory />} />
           <Route path="/browse" element={<BrowseView />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/collaborate" element={<WorkWithMe />} />
           <Route path="/work" element={<WorkWithMe />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

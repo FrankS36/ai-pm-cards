@@ -45,6 +45,12 @@ function Navigation() {
             >
               About
             </button>
+            <button
+              className={`nav-link ${isActive('/collaborate') ? 'active' : ''}`}
+              onClick={() => navigate('/collaborate')}
+            >
+              Collaborate
+            </button>
           </div>
 
           {/* Right side actions */}
