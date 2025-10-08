@@ -8,6 +8,7 @@ import DiagnosticBuilding from './pages/DiagnosticBuilding';
 import PathView from './pages/PathView';
 import BrowseView from './pages/BrowseView';
 import PathsDirectory from './pages/PathsDirectory';
+import NotFound from './pages/NotFound';
 import Navigation from './components/Navigation';
 import KeyboardHelp from './components/KeyboardHelp';
 import './App.css';
@@ -26,6 +27,7 @@ function App() {
           <Route path="/path/:pathId" element={<PathView />} />
           <Route path="/paths" element={<PathsDirectory />} />
           <Route path="/browse" element={<BrowseView />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
       <KeyboardHelp />
