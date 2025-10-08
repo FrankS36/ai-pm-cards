@@ -26,7 +26,6 @@ function PathView() {
     } else {
       setCurrentCardIndex(0);
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [pathId]);
 
   // Save progress to localStorage whenever card index changes
@@ -39,7 +38,6 @@ function PathView() {
   const handleNext = () => {
     if (currentCardIndex < cards.length - 1) {
       setCurrentCardIndex(currentCardIndex + 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       alert('Path completed! 🎉\n\nYou\'ve explored all tactics in this path.');
       navigate('/start/problem');
@@ -49,7 +47,6 @@ function PathView() {
   const handlePrevious = () => {
     if (currentCardIndex > 0) {
       setCurrentCardIndex(currentCardIndex - 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -57,7 +54,6 @@ function PathView() {
     if (confirm('Reset your progress and start from the beginning?')) {
       setCurrentCardIndex(0);
       localStorage.setItem(`path-progress-${pathId}`, '0');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
@@ -93,18 +89,14 @@ function PathView() {
       if (e.key === 'ArrowLeft') {
         setCurrentCardIndex(prev => {
           if (prev > 0) {
-            const newIndex = prev - 1;
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            return newIndex;
+            return prev - 1;
           }
           return prev;
         });
       } else if (e.key === 'ArrowRight') {
         setCurrentCardIndex(prev => {
           if (prev < cards.length - 1) {
-            const newIndex = prev + 1;
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            return newIndex;
+            return prev + 1;
           } else {
             alert('Path completed! 🎉\n\nYou\'ve explored all tactics in this path.');
             navigate('/start/problem');
