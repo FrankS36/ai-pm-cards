@@ -19,11 +19,12 @@
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  background: white;
+  background: var(--bg-primary);
   border-radius: 20px;
   padding: 2.5rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-lg);
   overflow-y: auto;
+  transition: background-color 0.3s ease;
 }
 
 .card-back {
@@ -76,29 +77,30 @@
   font-weight: 700;
   text-align: center;
   margin-bottom: 1.5rem;
-  color: #111827;
+  color: var(--text-primary);
 }
 
 .card-description {
   font-size: 1.125rem;
   text-align: center;
-  color: #4b5563;
+  color: var(--text-secondary);
   margin-bottom: 2rem;
   line-height: 1.7;
 }
 
 .when-to-use {
-  background: #f9fafb;
+  background: var(--bg-secondary);
   padding: 1.5rem;
   border-radius: 12px;
   margin-bottom: 2rem;
+  transition: background-color 0.3s ease;
 }
 
 .when-to-use h4 {
   font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: #6b7280;
+  color: var(--text-tertiary);
   margin-bottom: 0.75rem;
 }
 
@@ -111,12 +113,12 @@
   padding-left: 1.5rem;
   margin-bottom: 0.5rem;
   position: relative;
-  color: #1f2937;
+  color: var(--text-primary);
 }
 
 .when-to-use li::before {
   content: "•";
-  color: #1e3a8a;
+  color: var(--accent-blue);
   font-weight: bold;
   position: absolute;
   left: 0;
@@ -124,14 +126,14 @@
 
 .card-id {
   text-align: center;
-  color: #9ca3af;
+  color: var(--text-muted);
   font-size: 0.875rem;
   margin-top: auto;
 }
 
 .flip-hint {
   text-align: center;
-  color: #9ca3af;
+  color: var(--text-muted);
   font-size: 0.875rem;
   margin-top: 1rem;
 }
@@ -149,11 +151,11 @@
   font-size: 1rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: #111827;
+  color: var(--text-primary);
 }
 
 .overview {
-  color: #4b5563;
+  color: var(--text-secondary);
   margin-bottom: 1.5rem;
   line-height: 1.7;
 }
@@ -169,7 +171,7 @@
   margin-bottom: 1rem;
   padding-left: 2rem;
   position: relative;
-  color: #1f2937;
+  color: var(--text-primary);
   line-height: 1.6;
 }
 
@@ -178,7 +180,7 @@
   position: absolute;
   left: 0;
   top: 0;
-  background: #1e3a8a;
+  background: var(--accent-blue);
   color: white;
   width: 24px;
   height: 24px;
@@ -199,7 +201,7 @@
   padding-left: 1.5rem;
   margin-bottom: 0.75rem;
   position: relative;
-  color: #1f2937;
+  color: var(--text-primary);
   line-height: 1.6;
 }
 
@@ -207,7 +209,7 @@
   content: "→";
   position: absolute;
   left: 0;
-  color: #1e3a8a;
+  color: var(--accent-blue);
   font-weight: bold;
 }
 
@@ -218,35 +220,42 @@
 }
 
 .related-card-btn {
-  background: #f3f4f6;
-  border: 1px solid #e5e7eb;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-light);
   padding: 0.75rem 1rem;
   border-radius: 8px;
   text-align: left;
   cursor: pointer;
   transition: all 0.2s;
   font-size: 0.95rem;
-  color: #1f2937;
+  color: var(--text-primary);
   font-weight: 500;
 }
 
 .related-card-btn::after {
   content: ' →';
-  color: #1e3a8a;
+  color: var(--accent-blue);
   opacity: 0.5;
   transition: all 0.2s;
 }
 
 .related-card-btn:hover {
-  background: #e5e7eb;
-  border-color: #1e3a8a;
-  color: #1e3a8a;
+  background: var(--bg-secondary);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
   transform: translateX(2px);
 }
 
 .related-card-btn:hover::after {
   opacity: 1;
   transform: translateX(4px);
+}
+
+.card-share-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
 }
 
 @media (max-width: 768px) {

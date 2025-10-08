@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Card from '../components/Card';
+import ShareButton from '../components/ShareButton';
+import { sharePath } from '../utils/share';
 import cardDataJson from '../data/cardData.json';
 import './PathView.css';
 
@@ -12,6 +14,8 @@ function PathView() {
   const [touchEnd, setTouchEnd] = useState(null);
   const [showJumpMenu, setShowJumpMenu] = useState(false);
   const [showCompletionModal, setShowCompletionModal] = useState(false);
+  const [slideDirection, setSlideDirection] = useState(null);
+  const [animationPhase, setAnimationPhase] = useState('idle'); // 'idle', 'out', 'in'
 
   const pathInfo = cardDataJson.paths[pathId];
   const cards = pathInfo?.cardIds.map(id => cardDataJson.cards[id]) || [];
@@ -39,7 +43,16 @@ function PathView() {
 
   const handleNext = () => {
     if (currentCardIndex < cards.length - 1) {
-      setCurrentCardIndex(currentCardIndex + 1);
+      setSlideDirection('left');
+      setAnimationPhase('out');
+      setTimeout(() => {
+        setCurrentCardIndex(currentCardIndex + 1);
+        setAnimationPhase('in');
+        setTimeout(() => {
+          setSlideDirection(null);
+          setAnimationPhase('idle');
+        }, 300);
+      }, 300);
     } else {
       setShowCompletionModal(true);
     }
@@ -47,7 +60,16 @@ function PathView() {
 
   const handlePrevious = () => {
     if (currentCardIndex > 0) {
-      setCurrentCardIndex(currentCardIndex - 1);
+      setSlideDirection('right');
+      setAnimationPhase('out');
+      setTimeout(() => {
+        setCurrentCardIndex(currentCardIndex - 1);
+        setAnimationPhase('in');
+        setTimeout(() => {
+          setSlideDirection(null);
+          setAnimationPhase('idle');
+        }, 300);
+      }, 300);
     }
   };
 
@@ -59,8 +81,18 @@ function PathView() {
   };
 
   const handleJumpToCard = (index) => {
-    setCurrentCardIndex(index);
+    const direction = index > currentCardIndex ? 'left' : 'right';
+    setSlideDirection(direction);
+    setAnimationPhase('out');
     setShowJumpMenu(false);
+    setTimeout(() => {
+      setCurrentCardIndex(index);
+      setAnimationPhase('in');
+      setTimeout(() => {
+        setSlideDirection(null);
+        setAnimationPhase('idle');
+      }, 300);
+    }, 300);
   };
 
   // Touch swipe handlers for mobile
@@ -93,27 +125,15 @@ function PathView() {
   useEffect(() => {
     const handleKeyPress = (e) => {
       if (e.key === 'ArrowLeft') {
-        setCurrentCardIndex(prev => {
-          if (prev > 0) {
-            return prev - 1;
-          }
-          return prev;
-        });
+        handlePrevious();
       } else if (e.key === 'ArrowRight') {
-        setCurrentCardIndex(prev => {
-          if (prev < cards.length - 1) {
-            return prev + 1;
-          } else {
-            setShowCompletionModal(true);
-          }
-          return prev;
-        });
+        handleNext();
       }
     };
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [cards.length, navigate]);
+  }, [currentCardIndex, cards.length]);
 
   if (!pathInfo) {
     return <div>Path not found</div>;
@@ -127,11 +147,17 @@ function PathView() {
         <div className="path-header">
           <h2>{pathInfo.title}</h2>
           <p className="path-subtitle">{cards.length} tactics to guide you</p>
-          {currentCardIndex > 0 && (
-            <button className="btn-reset" onClick={handleResetProgress}>
-              Reset Progress
-            </button>
-          )}
+          <div className="path-header-actions">
+            <ShareButton
+              onShare={() => sharePath(pathId, pathInfo.title)}
+              label="Share Path"
+            />
+            {currentCardIndex > 0 && (
+              <button className="btn-reset" onClick={handleResetProgress}>
+                Reset Progress
+              </button>
+            )}
+          </div>
         </div>
 
         <div className="path-content">
@@ -198,7 +224,13 @@ function PathView() {
 
           {/* Card Display */}
           <div
-            className="card-container"
+            className={`card-container ${
+              animationPhase === 'out' && slideDirection === 'left' ? 'slide-out-left' :
+              animationPhase === 'out' && slideDirection === 'right' ? 'slide-out-right' :
+              animationPhase === 'in' && slideDirection === 'left' ? 'slide-in-left' :
+              animationPhase === 'in' && slideDirection === 'right' ? 'slide-in-right' :
+              ''
+            }`}
             onTouchStart={onTouchStart}
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}

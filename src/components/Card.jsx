@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ShareButton from './ShareButton';
+import { shareCard } from '../utils/share';
 import cardDataJson from '../data/cardData.json';
 import './Card.css';
 
@@ -131,6 +133,13 @@ function Card({ cardData }) {
               </button>
             ))}
           </div>
+        </div>
+
+        <div className="card-share-section" onClick={(e) => e.stopPropagation()}>
+          <ShareButton
+            onShare={() => shareCard(cardData)}
+            label="Share Card"
+          />
         </div>
 
         <div className="flip-hint">Click or press SPACE to see front →</div>

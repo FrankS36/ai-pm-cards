@@ -3,10 +3,11 @@
   top: 0;
   left: 0;
   right: 0;
-  background: white;
-  border-bottom: 1px solid #e5e7eb;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-light);
   z-index: 1000;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .nav-container {
@@ -37,7 +38,7 @@
 }
 
 .nav-logo:hover {
-  background: #f9fafb;
+  background: var(--bg-secondary);
 }
 
 .nav-logo-icon {
@@ -67,20 +68,20 @@
   border-radius: 8px;
   font-size: 0.9375rem;
   font-weight: 500;
-  color: #6b7280;
+  color: var(--text-tertiary);
   cursor: pointer;
   transition: all 0.2s;
   white-space: nowrap;
 }
 
 .nav-link:hover {
-  background: #f3f4f6;
-  color: #1f2937;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
 }
 
 .nav-link.active {
   background: linear-gradient(135deg, rgba(30, 58, 138, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
-  color: #1e3a8a;
+  color: var(--accent-blue);
   font-weight: 600;
 }
 
@@ -89,6 +90,33 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: 2px solid var(--border-light);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.theme-toggle:hover {
+  background: var(--bg-secondary);
+  border-color: var(--accent-blue);
+  transform: rotate(20deg);
+}
+
+.theme-icon {
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Mobile Responsive */

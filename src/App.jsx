@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
+import { ThemeProvider } from './context/ThemeContext';
 import LandingPage from './pages/LandingPage';
 import DiagnosticQ1 from './pages/DiagnosticQ1';
 import DiagnosticQ2Problem from './pages/DiagnosticQ2Problem';
@@ -15,7 +16,7 @@ import './App.css';
 
 function App() {
   return (
-    <>
+    <ThemeProvider>
       <Router>
         <Navigation />
         <Routes>
@@ -32,7 +33,7 @@ function App() {
       </Router>
       <KeyboardHelp />
       <Analytics />
-    </>
+    </ThemeProvider>
   );
 }
 

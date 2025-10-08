@@ -1,9 +1,11 @@
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useTheme } from '../context/ThemeContext';
 import './Navigation.css';
 
 function Navigation() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
 
   const isActive = (path) => {
     if (path === '/') return location.pathname === '/';
@@ -39,9 +41,18 @@ function Navigation() {
             </button>
           </div>
 
-          {/* Right side - could add user actions later */}
+          {/* Right side actions */}
           <div className="nav-actions">
-            {/* Help button is handled by KeyboardHelp component */}
+            <button
+              className="theme-toggle"
+              onClick={toggleTheme}
+              aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+              title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+            >
+              <span className="theme-icon">
+                {theme === 'light' ? '🌙' : '☀️'}
+              </span>
+            </button>
           </div>
         </div>
       </div>
