@@ -1,0 +1,674 @@
+[
+  {
+    "id": "STRAT-002",
+    "deck": "strategy",
+    "category": "AI Feasibility",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Data Availability Assessment",
+    "description": "Evaluate whether you have sufficient quality data to train or fine-tune AI models effectively.",
+    "whenToUse": [
+      "Before committing to custom model development",
+      "When deciding between pre-trained models vs. fine-tuning",
+      "If stakeholders assume AI will work without examining data reality"
+    ],
+    "overview": "Most AI failures stem from insufficient or poor-quality data. This framework helps you assess data readiness before investing in AI development.",
+    "steps": [
+      "Quantify data volume: Count labeled examples per category. Most supervised tasks need 1,000+ examples minimum, 10,000+ for production quality",
+      "Assess data quality: Check for label accuracy (>95% correct?), class balance (no category <5% of total), representative coverage of edge cases",
+      "Evaluate data accessibility: Where does data live? Can you legally use it for ML? What's the pipeline to access and update it?",
+      "Identify data gaps: What scenarios are missing? What would it cost to collect/label the missing data?",
+      "Create data roadmap: Can you launch with existing data? When will you have sufficient data for v2 improvements?"
+    ],
+    "tips": [
+      "Start with data audit before pitching AI features—60% of AI projects fail due to data issues",
+      "Budget 30-50% of AI development time for data collection and labeling, not just model work"
+    ],
+    "relatedCards": [
+      "Previous: Map Model Capabilities",
+      "Next: Establish Data Labeling Pipeline",
+      "Related: Define AI Success Metrics"
+    ],
+    "icon": "📊"
+  },
+  {
+    "id": "STRAT-003",
+    "deck": "strategy",
+    "category": "AI Feasibility",
+    "difficulty": "advanced",
+    "companyContext": "both",
+    "title": "AI Technical Debt Calculator",
+    "description": "Estimate the long-term maintenance costs of AI systems beyond initial development.",
+    "whenToUse": [
+      "When creating business cases for AI investments",
+      "Before choosing between simple rules vs. ML solutions",
+      "When stakeholders focus only on development costs, ignoring operations"
+    ],
+    "overview": "AI systems accumulate technical debt faster than traditional software due to model drift, data dependencies, and monitoring needs. This tool helps quantify ongoing costs.",
+    "steps": [
+      "Calculate model maintenance: Retraining frequency (monthly? quarterly?) × engineer time per retrain × salary. Add monitoring/on-call costs",
+      "Estimate infrastructure costs: Inference compute (API calls × cost per call), training compute, data storage and pipelines",
+      "Factor in data pipeline maintenance: Label quality audits, dataset versioning, feature engineering updates, data validation systems",
+      "Account for model updates: As AI capabilities improve, you'll need to evaluate and integrate new models every 6-12 months",
+      "Compare total 3-year cost: AI solution vs. non-AI alternatives. Include development + operations + opportunity cost"
+    ],
+    "tips": [
+      "Rule of thumb: AI operational costs are 3-5× the initial development cost over 3 years",
+      "For low-stakes features, simple heuristics often beat ML when total cost of ownership is considered"
+    ],
+    "relatedCards": [
+      "Previous: Build vs. Buy vs. API Decision",
+      "Next: AI ROI Projection Model",
+      "Related: Model Performance Degradation"
+    ],
+    "icon": "💰"
+  },
+  {
+    "id": "STRAT-004",
+    "deck": "strategy",
+    "category": "AI Feasibility",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Latency Budget Planning",
+    "description": "Define acceptable response times for AI features and architect systems to meet latency requirements.",
+    "whenToUse": [
+      "When designing user-facing AI features",
+      "Before selecting model architectures or inference infrastructure",
+      "If users complain that AI features feel slow"
+    ],
+    "overview": "AI model latency directly impacts user experience and adoption. This tactic helps you set realistic latency targets and engineer to meet them.",
+    "steps": [
+      "Define user expectations: Real-time (<100ms)? Interactive (<1s)? Asynchronous (>5s okay)? Base on user research and competitive benchmarks",
+      "Break down latency sources: Network roundtrip + model inference + post-processing + database queries. Measure each component",
+      "Set component budgets: Allocate total budget across pipeline. Example: 800ms total = 200ms network + 400ms inference + 200ms other",
+      "Optimize critical path: Can you use smaller models? Batch predictions? Cache results? Move compute closer to users?",
+      "Establish degradation strategy: If model is slow, show partial results, streaming responses, or fallback to faster (less accurate) model"
+    ],
+    "tips": [
+      "Aim for <1 second for most user-facing AI features—users perceive longer waits as broken",
+      "Test latency at p95 and p99, not just average—tail latency kills UX for real users"
+    ],
+    "relatedCards": [
+      "Previous: Run a Model Feasibility Spike",
+      "Next: Design Graceful Degradation",
+      "Related: Define AI Success Metrics"
+    ],
+    "icon": "⚡"
+  },
+  {
+    "id": "STRAT-005",
+    "deck": "strategy",
+    "category": "AI Feasibility",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Edge Case Scenario Mapping",
+    "description": "Systematically identify and prioritize edge cases where AI will fail, then design mitigation strategies.",
+    "whenToUse": [
+      "After initial feasibility testing shows promise",
+      "Before launching AI features to production",
+      "When designing AI user experience and error handling"
+    ],
+    "overview": "AI models always have edge cases where they fail. This framework helps you find them proactively and decide how to handle them.",
+    "steps": [
+      "Brainstorm failure modes: Run team workshop listing scenarios where AI might fail (rare inputs, ambiguous cases, adversarial examples, distribution shifts)",
+      "Collect real edge cases: Review support tickets, user feedback, and competitive failures. Test your prototype with extreme inputs",
+      "Quantify frequency and impact: Estimate % of users affected × severity of bad outcome. Create 2×2 matrix of frequency/impact",
+      "Prioritize mitigation: High-frequency or high-impact cases need solutions before launch. Low/low can ship with monitoring",
+      "Design fallback strategies: Human review, confidence thresholds, fallback to simpler methods, explicit 'AI can't help here' messages"
+    ],
+    "tips": [
+      "Plan for 5-20% of inputs to hit edge cases in production—AI is never 100% accurate",
+      "Show your edge case matrix to legal/trust & safety teams early—some failures have regulatory or PR risk"
+    ],
+    "relatedCards": [
+      "Previous: Data Availability Assessment",
+      "Next: Confidence Threshold Tuning",
+      "Related: Design Graceful Degradation"
+    ],
+    "icon": "🎯"
+  },
+  {
+    "id": "STRAT-006",
+    "deck": "strategy",
+    "category": "AI Feasibility",
+    "difficulty": "advanced",
+    "companyContext": "both",
+    "title": "Multi-Model Strategy Design",
+    "description": "Plan when and how to combine multiple AI models to solve complex product problems.",
+    "whenToUse": [
+      "When a single model can't meet all product requirements",
+      "When building AI products with multiple capabilities (e.g., search + summarization + recommendations)",
+      "Before scaling initial AI prototypes into full product suites"
+    ],
+    "overview": "Most mature AI products use multiple specialized models rather than one general model. This tactic helps you architect multi-model systems effectively.",
+    "steps": [
+      "Map capabilities to models: Break your product into distinct AI tasks (classification, generation, ranking, etc.). Assign best-fit model type to each",
+      "Design model orchestration: Sequential (Model A → Model B)? Parallel (A + B → combine results)? Conditional (if A confident, skip B)?",
+      "Manage dependencies: What happens if Model A fails? Does Model B still work? Build fallback chains and circuit breakers",
+      "Optimize for cost and latency: Can you run cheaper/faster models first, then escalate to expensive models only when needed?",
+      "Version and deploy independently: Each model should have its own versioning, monitoring, and rollback capability"
+    ],
+    "tips": [
+      "Start with single model, add models only when user needs clearly justify complexity",
+      "Use smaller, specialized models over one large model when possible—lower cost, faster, easier to debug"
+    ],
+    "relatedCards": [
+      "Previous: Build vs. Buy vs. API Decision",
+      "Next: AI Feature Sequencing",
+      "Related: Latency Budget Planning"
+    ],
+    "icon": "🔗"
+  },
+  {
+    "id": "STRAT-007",
+    "deck": "strategy",
+    "category": "Business Model & Pricing",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "AI Unit Economics Model",
+    "description": "Calculate the true cost per user or per action for AI features to ensure sustainable economics.",
+    "whenToUse": [
+      "Before launching AI products with usage-based costs",
+      "When setting pricing for AI-powered features",
+      "If AI costs are growing faster than revenue"
+    ],
+    "overview": "AI features have variable costs (compute, API calls, tokens) that scale with usage. This framework helps you model profitability at scale.",
+    "steps": [
+      "Calculate cost per prediction: Inference costs + model hosting + data pipeline costs / number of predictions. Track separately for different models/features",
+      "Estimate average usage per user: Based on product analytics or beta testing, how many AI actions does typical user take per month?",
+      "Model cost at scale: User base × actions per user × cost per action. Project at 10×, 100×, 1000× current scale",
+      "Determine unit economics target: For SaaS, aim for LTV:CAC of 3:1. For freemium, AI costs should be <30% of revenue per paying user",
+      "Identify optimization levers: Can you cache results? Batch requests? Use cheaper models for simple queries? Set usage caps?"
+    ],
+    "tips": [
+      "OpenAI/Anthropic costs drop 50-90% yearly—don't over-optimize current pricing, but do monitor costs weekly",
+      "Set usage limits for free tiers to prevent runaway costs—Notion AI limits free users to 20 actions"
+    ],
+    "relatedCards": [
+      "Next: AI Feature Pricing Strategy",
+      "Related: AI Technical Debt Calculator",
+      "Related: Usage-Based vs. Seat-Based Pricing"
+    ],
+    "icon": "💵"
+  },
+  {
+    "id": "STRAT-009",
+    "deck": "strategy",
+    "category": "Business Model & Pricing",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "AI Feature Pricing Strategy",
+    "description": "Determine how to monetize AI capabilities: bundled, add-on, usage-based, or premium tier.",
+    "whenToUse": [
+      "Before launching AI features to customers",
+      "When deciding whether AI justifies price increases",
+      "If competitors are undercutting your AI pricing"
+    ],
+    "overview": "AI pricing is evolving rapidly. This framework helps you choose a monetization model that captures value while remaining competitive.",
+    "steps": [
+      "Assess AI value perception: Does AI unlock new use cases or just improve existing workflows? New capabilities justify premium pricing",
+      "Benchmark competitive pricing: Survey 5-10 competitors. Are they charging for AI separately or bundling? What's the price premium?",
+      "Model pricing options: (1) Bundled free (2) Add-on flat fee (3) Usage-based (4) Higher tier only. Calculate revenue and adoption for each",
+      "Test willingness to pay: Run pricing surveys or A/B tests with beta users. What % would pay $X for AI features?",
+      "Choose initial strategy: Start conservative (bundle free or low add-on), then raise prices as value is proven. Easier to decrease later than increase"
+    ],
+    "tips": [
+      "Usage-based pricing aligns incentives but adds billing complexity—only use if users heavily value usage flexibility",
+      "Avoid 'AI tax' perception—if AI just makes existing features slightly better, don't charge separately"
+    ],
+    "relatedCards": [
+      "Previous: AI Unit Economics Model",
+      "Next: Freemium AI Strategy",
+      "Related: Define AI Value Proposition"
+    ],
+    "icon": "💎"
+  },
+  {
+    "id": "STRAT-010",
+    "deck": "strategy",
+    "category": "Business Model & Pricing",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Freemium AI Strategy",
+    "description": "Design free vs. paid AI feature splits that drive conversion while controlling costs.",
+    "whenToUse": [
+      "When adding AI to existing freemium products",
+      "If free tier AI costs are unsustainable",
+      "When optimizing free-to-paid conversion rates"
+    ],
+    "overview": "AI features have real per-use costs, making traditional unlimited free tiers risky. This tactic helps you balance growth and unit economics.",
+    "steps": [
+      "Define free tier AI budget: Calculate sustainable cost per free user (e.g., $0.10-0.50/month). Convert to action limits (e.g., 20 AI queries/month)",
+      "Identify conversion-driving features: Which AI capabilities are 'need to have' for power users? Gate those behind paywall after taste",
+      "Design progression path: Free tier = 'try it' (10-50 actions). Paid tier = 'use it daily' (unlimited or high cap like 500/month)",
+      "Implement soft limits: Don't hard-block at limit. Show 'X uses left this month' warnings. Offer one-time upgrades or wait until next month",
+      "Monitor conversion metrics: What % of free users hit limits? What % convert within 7 days of hitting limit? Adjust limits to optimize revenue"
+    ],
+    "tips": [
+      "Monthly resets create urgency—users convert when they need AI now, not when they accumulate limits over time",
+      "Make free tier generous enough for authentic trial—less than 10 AI actions feels like a demo, not a product"
+    ],
+    "relatedCards": [
+      "Previous: AI Feature Pricing Strategy",
+      "Next: Usage-Based vs. Seat-Based Pricing",
+      "Related: AI Unit Economics Model"
+    ],
+    "icon": "🎁"
+  },
+  {
+    "id": "STRAT-011",
+    "deck": "strategy",
+    "category": "Business Model & Pricing",
+    "difficulty": "advanced",
+    "companyContext": "both",
+    "title": "Usage-Based vs. Seat-Based Pricing",
+    "description": "Choose the right pricing model for AI products by evaluating usage patterns and customer preferences.",
+    "whenToUse": [
+      "When designing pricing for new AI products",
+      "If customers complain about current pricing model",
+      "When usage varies widely across customer segments"
+    ],
+    "overview": "AI products can charge per seat, per usage, or hybrid models. Each has tradeoffs for revenue predictability, sales friction, and customer satisfaction.",
+    "steps": [
+      "Analyze usage distribution: Plot AI actions per user. If variance is low (most users similar), seat-based works. If high variance (10× difference), usage-based fits better",
+      "Assess customer preference: Enterprise prefers predictable costs (seat-based). Startups prefer pay-as-you-grow (usage-based). Survey target customers",
+      "Model revenue scenarios: Calculate ARR under each model at different growth stages. Which maximizes revenue at 100, 1000, 10000 customers?",
+      "Consider operational complexity: Usage-based requires real-time metering, billing reconciliation, and overage management. Seat-based is simpler",
+      "Test hybrid approaches: Base seat price + usage overages (Anthropic model). Or tiered usage buckets (Notion AI: $10 for 200 actions)"
+    ],
+    "tips": [
+      "Default to seat-based for B2B SaaS—procurement prefers predictable budgets, and sales cycles are faster",
+      "Use usage-based for API products or when AI is core value prop and usage varies 10×+ across customers"
+    ],
+    "relatedCards": [
+      "Previous: Freemium AI Strategy",
+      "Next: Enterprise AI Packaging",
+      "Related: AI Unit Economics Model"
+    ],
+    "icon": "📊"
+  },
+  {
+    "id": "STRAT-013",
+    "deck": "strategy",
+    "category": "Business Model & Pricing",
+    "difficulty": "advanced",
+    "companyContext": "enterprise",
+    "title": "Enterprise AI Packaging",
+    "description": "Design AI product tiers and packaging that align with enterprise buying processes and budgets.",
+    "whenToUse": [
+      "When selling AI products to companies with 1000+ employees",
+      "If enterprise deals stall due to pricing or packaging concerns",
+      "When building multi-year roadmap for enterprise features"
+    ],
+    "overview": "Enterprise customers buy AI differently than SMBs—they need security, compliance, dedicated support, and volume discounts. This framework helps you package appropriately.",
+    "steps": [
+      "Create enterprise tier: Include SSO, audit logs, data residency, SLAs, dedicated support, custom contracts. Price 3-5× higher than self-serve tiers",
+      "Offer volume discounts: Tiered pricing based on seats/usage. 100-500 users = 10% off, 500-1000 = 20% off, 1000+ = custom pricing",
+      "Bundle services: Professional services for implementation, training, custom model fine-tuning. Charge separately or include in annual contracts",
+      "Design annual commit incentives: Offer 15-25% discount for annual prepay vs. monthly. Reduces churn and improves cash flow",
+      "Build custom pricing tools: Sales team needs calculator to quickly quote multi-year, multi-product, multi-region deals. Automate approval workflows"
+    ],
+    "tips": [
+      "Enterprise sales cycles are 6-12 months—ensure trial/POC pricing covers your costs but removes friction",
+      "Security and compliance are table stakes, not upsells—include in base enterprise tier or risk disqualification"
+    ],
+    "relatedCards": [
+      "Previous: Usage-Based vs. Seat-Based Pricing",
+      "Next: AI ROI Projection Model",
+      "Related: AI Feature Pricing Strategy"
+    ],
+    "icon": "🏢"
+  },
+  {
+    "id": "STRAT-014",
+    "deck": "strategy",
+    "category": "Business Model & Pricing",
+    "difficulty": "advanced",
+    "companyContext": "both",
+    "title": "AI ROI Projection Model",
+    "description": "Build data-driven ROI models that help customers justify AI product investments to their executives.",
+    "whenToUse": [
+      "When selling high-cost AI products to enterprise",
+      "If sales team struggles to justify AI pricing",
+      "When creating case studies and marketing materials"
+    ],
+    "overview": "Enterprise buyers need quantifiable ROI to get budget approval. This framework helps you build credible, customized ROI projections.",
+    "steps": [
+      "Identify cost savings: Time saved per user × hourly cost × number of users. Example: 5 hours/week × $50/hour × 100 users = $1.3M/year",
+      "Quantify revenue impact: Increased conversion, faster sales cycles, better retention. Tie AI features to revenue metrics with A/B test data",
+      "Build ROI calculator: Create spreadsheet or web tool where prospects input their metrics (team size, salaries, current processes). Auto-calculate payback period",
+      "Validate with case studies: Get 3-5 customers to share actual ROI achieved. Use median results as conservative estimates for prospects",
+      "Present tiered scenarios: Conservative (10th percentile outcomes), expected (median), optimistic (90th percentile). Let buyers choose their assumptions"
+    ],
+    "tips": [
+      "Aim for <6 month payback period for SMB, <12 months for enterprise—longer periods face budget scrutiny",
+      "Include implementation costs in ROI model—honest projections build trust and set realistic expectations"
+    ],
+    "relatedCards": [
+      "Previous: Enterprise AI Packaging",
+      "Next: Define AI Value Proposition",
+      "Related: AI Technical Debt Calculator"
+    ],
+    "icon": "📈"
+  },
+  {
+    "id": "STRAT-016",
+    "deck": "strategy",
+    "category": "Business Model & Pricing",
+    "difficulty": "intermediate",
+    "companyContext": "startup",
+    "title": "AI Cost Containment Tactics",
+    "description": "Implement strategies to reduce AI infrastructure and API costs without sacrificing user experience.",
+    "whenToUse": [
+      "When AI costs are growing faster than revenue",
+      "Before raising prices or cutting features due to costs",
+      "When optimizing for profitability after growth phase"
+    ],
+    "overview": "AI costs can spiral quickly as usage grows. This tactic provides proven strategies to reduce costs by 30-70% without hurting UX.",
+    "steps": [
+      "Implement caching: Cache frequent queries/prompts. GitHub Copilot caches common code completions, reducing API calls 40%",
+      "Use tiered models: Route simple queries to cheaper models (GPT-3.5), complex to expensive (GPT-4). Classification model decides routing",
+      "Optimize prompts: Shorter prompts = lower costs. Test if you can achieve same quality with 50% fewer tokens. Use prompt compression techniques",
+      "Batch requests: Combine multiple API calls into single batch request where latency allows. Reduces overhead costs",
+      "Set usage quotas: Implement per-user rate limits to prevent abuse and runaway costs. Alert users before hitting limits"
+    ],
+    "tips": [
+      "Audit your top 10% of users—often 5-10% of users drive 50%+ of costs. Target optimizations or pricing to them",
+      "Monitor cost per active user weekly—catch problems early before they become existential"
+    ],
+    "relatedCards": [
+      "Previous: AI Unit Economics Model",
+      "Next: Latency Budget Planning",
+      "Related: Freemium AI Strategy"
+    ],
+    "icon": "💰"
+  },
+  {
+    "id": "STRAT-017",
+    "deck": "strategy",
+    "category": "Roadmap & Prioritization",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "AI Feature Prioritization",
+    "description": "Systematically prioritize which AI features to build first based on value, feasibility, and strategic fit.",
+    "whenToUse": [
+      "When planning quarterly or annual AI roadmaps",
+      "If stakeholders disagree on which AI features to build",
+      "When you have more AI ideas than engineering capacity"
+    ],
+    "overview": "Not all AI features are created equal. This framework helps you score and rank AI initiatives using a multi-factor model.",
+    "steps": [
+      "Score user value: Rate each feature 1-10 on user impact. Base on user interviews, surveys, and revenue potential. Weight by user segment size",
+      "Assess technical feasibility: Rate 1-10 based on data availability, model maturity, engineering complexity. Get ML team input",
+      "Evaluate strategic alignment: Does this AI feature support core product strategy? Build competitive moat? Enable platform vision?",
+      "Estimate effort: T-shirt size (S/M/L/XL) for development time. Include data prep, model training, integration, and testing",
+      "Calculate priority score: (Value × Strategic Fit) / Effort. Feasibility acts as a filter—don't build infeasible ideas regardless of value"
+    ],
+    "tips": [
+      "Build 'quick wins' first (high value, low effort) to build momentum and credibility for AI program",
+      "Avoid 'AI for AI's sake'—if a non-AI solution scores higher on value/effort, build that instead"
+    ],
+    "relatedCards": [
+      "Previous: Define AI Value Proposition",
+      "Next: AI Feature Sequencing",
+      "Related: Map Model Capabilities"
+    ],
+    "icon": "🎯"
+  },
+  {
+    "id": "STRAT-018",
+    "deck": "strategy",
+    "category": "Roadmap & Prioritization",
+    "difficulty": "advanced",
+    "companyContext": "both",
+    "title": "AI Feature Sequencing",
+    "description": "Plan the optimal order to release AI features based on dependencies, learning, and user adoption.",
+    "whenToUse": [
+      "When building multi-feature AI product roadmaps",
+      "If early AI features failed to gain traction",
+      "When planning phased rollouts over 6-12 months"
+    ],
+    "overview": "The sequence of AI features matters as much as the features themselves. This tactic helps you order releases for maximum learning and adoption.",
+    "steps": [
+      "Map feature dependencies: Which features require data from others? Which share models or infrastructure? Build dependency graph",
+      "Identify learning milestones: Which features teach you about user behavior, model performance, or data quality that inform later features?",
+      "Plan adoption curve: Start with features that drive frequent engagement (daily use). Delay features that need behavior change until users are habituated",
+      "Balance quick wins and strategic bets: Alternate between fast-shipping incremental features and longer-term platform investments",
+      "Design version gates: V1 = prove value with simple approach. V2 = improve quality with better models. V3 = scale with platform features"
+    ],
+    "tips": [
+      "Ship user-facing AI value in first 60 days—builds credibility and user excitement for future features",
+      "Don't boil the ocean—better to ship 3 excellent AI features than 10 mediocre ones"
+    ],
+    "relatedCards": [
+      "Previous: AI Feature Prioritization",
+      "Next: Crawl-Walk-Run AI Roadmap",
+      "Related: Multi-Model Strategy Design"
+    ],
+    "icon": "📅"
+  },
+  {
+    "id": "STRAT-019",
+    "deck": "strategy",
+    "category": "Roadmap & Prioritization",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Crawl-Walk-Run AI Roadmap",
+    "description": "Structure AI product evolution in three phases: simple MVP, improved accuracy, and scaled platform.",
+    "whenToUse": [
+      "When planning multi-year AI product strategy",
+      "If stakeholders push for perfect AI before any launch",
+      "When communicating AI maturity stages to executives"
+    ],
+    "overview": "Successful AI products evolve through predictable stages. This framework helps you plan realistic progression from prototype to platform.",
+    "steps": [
+      "Crawl (Months 1-3): Ship simplest AI that provides value. Use pre-trained models, limit scope, manual fallbacks. Goal: prove users want this",
+      "Walk (Months 4-9): Improve accuracy and coverage. Fine-tune models, expand training data, reduce edge cases. Goal: daily use by core users",
+      "Run (Months 10-18): Scale and automate. Custom models, real-time retraining, platform features. Goal: product differentiator at scale",
+      "Define success metrics for each phase: Crawl = engagement. Walk = quality scores. Run = competitive moat metrics",
+      "Communicate trade-offs: Crawl is fast but imperfect. Walk is better but not ready for all use cases. Run is mature but requires investment"
+    ],
+    "tips": [
+      "Don't skip Crawl—90% of AI learnings come from real users, not internal testing",
+      "Plan 12-18 months minimum for Run phase—AI platforms require sustained investment to build moats"
+    ],
+    "relatedCards": [
+      "Previous: AI Feature Sequencing",
+      "Next: Minimum Viable AI Feature",
+      "Related: Run a Model Feasibility Spike"
+    ],
+    "icon": "🚶"
+  },
+  {
+    "id": "STRAT-020",
+    "deck": "strategy",
+    "category": "Roadmap & Prioritization",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Minimum Viable AI Feature",
+    "description": "Define the smallest AI feature that delivers real user value and validates core hypotheses.",
+    "whenToUse": [
+      "When starting new AI product initiatives",
+      "If AI projects are taking too long to ship",
+      "When stakeholders want to add too many capabilities before launch"
+    ],
+    "overview": "AI features risk over-engineering. This framework helps you identify the minimal scope that proves value without waste.",
+    "steps": [
+      "Identify core user job: What's the single most important task AI helps with? Cut everything else for V1",
+      "Define minimum quality bar: What accuracy/latency is 'good enough' to be useful? Don't aim for perfection—aim for better than status quo",
+      "Limit initial scope: Constrain to single use case, user segment, or content type. Example: AI summaries for docs only, not all content",
+      "Use existing tools: Pre-trained models, third-party APIs, manual fallbacks. Build custom solutions only after validating demand",
+      "Set learning goals: What do you need to learn from V1 to inform V2? Design experiments to answer key questions"
+    ],
+    "tips": [
+      "Ship MVAI in 4-6 weeks—if it takes longer, scope is too big",
+      "Perfect is the enemy of shipped—60% accuracy that users love beats 95% accuracy that never launches"
+    ],
+    "relatedCards": [
+      "Previous: Crawl-Walk-Run AI Roadmap",
+      "Next: AI Experiment Framework",
+      "Related: Run a Model Feasibility Spike"
+    ],
+    "icon": "🎯"
+  },
+  {
+    "id": "STRAT-021",
+    "deck": "strategy",
+    "category": "Roadmap & Prioritization",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "AI Experiment Framework",
+    "description": "Design and run controlled experiments to validate AI product hypotheses before full development.",
+    "whenToUse": [
+      "When testing new AI feature ideas with uncertain value",
+      "Before committing to expensive AI development",
+      "If stakeholders need proof that AI will drive metrics"
+    ],
+    "overview": "AI features should be validated like any product feature. This tactic helps you design experiments that prove or disprove AI value quickly.",
+    "steps": [
+      "Define hypothesis: Clear, testable statement. Example: 'AI-generated summaries will increase doc engagement by 20%'",
+      "Choose experiment type: A/B test (AI vs. control), Wizard of Oz (humans simulate AI), prototype (limited real AI), or survey (measure willingness to use)",
+      "Set success criteria: What metrics move? By how much? What's the minimum effect size to justify building?",
+      "Design minimal experiment: Smallest sample size and shortest duration to reach statistical significance. Use power analysis",
+      "Analyze and decide: If hypothesis validated, green-light feature. If invalidated, pivot or kill. If inconclusive, run follow-up experiment"
+    ],
+    "tips": [
+      "Wizard of Oz experiments (humans pretending to be AI) are faster than building real AI—use for early validation",
+      "Run experiments on 5-10% of users initially—limits risk if AI performs poorly"
+    ],
+    "relatedCards": [
+      "Previous: Minimum Viable AI Feature",
+      "Next: AI Feature Kill Criteria",
+      "Related: Define AI Success Metrics"
+    ],
+    "icon": "🧪"
+  },
+  {
+    "id": "STRAT-022",
+    "deck": "strategy",
+    "category": "Roadmap & Prioritization",
+    "difficulty": "advanced",
+    "companyContext": "both",
+    "title": "AI Feature Kill Criteria",
+    "description": "Establish clear conditions for when to shut down or deprioritize AI features that aren't working.",
+    "whenToUse": [
+      "Before launching new AI features",
+      "When AI features have low adoption despite investment",
+      "If engineering resources are spread too thin across AI initiatives"
+    ],
+    "overview": "Most AI features fail. Having pre-defined kill criteria prevents sunk cost fallacy and frees resources for better ideas.",
+    "steps": [
+      "Set adoption thresholds: Define minimum active users or usage frequency. Example: If <10% of users try feature after 3 months, kill it",
+      "Define quality floors: Minimum acceptable accuracy, latency, or user satisfaction scores. If model can't hit bar after 2 improvement cycles, kill",
+      "Establish cost ceilings: Maximum cost per user or cost as % of revenue. If unit economics don't improve to target within 6 months, kill",
+      "Monitor competitive position: If competitors ship superior AI faster, evaluate whether to kill and copy or double down on differentiation",
+      "Create kill decision process: Who decides? How often do you review? What's the communication plan to users and stakeholders?"
+    ],
+    "tips": [
+      "Review AI features quarterly—technology and user needs evolve fast, yesterday's good idea may be today's distraction",
+      "Celebrate kills as much as launches—killing bad features is good product management"
+    ],
+    "relatedCards": [
+      "Previous: AI Experiment Framework",
+      "Next: AI Tech Debt Prioritization",
+      "Related: AI Feature Prioritization"
+    ],
+    "icon": "🗑️"
+  },
+  {
+    "id": "STRAT-023",
+    "deck": "strategy",
+    "category": "Roadmap & Prioritization",
+    "difficulty": "advanced",
+    "companyContext": "both",
+    "title": "AI Tech Debt Prioritization",
+    "description": "Systematically prioritize AI technical debt against new features to maintain sustainable development velocity.",
+    "whenToUse": [
+      "When AI features are slowing down due to accumulated tech debt",
+      "If model performance is degrading or infrastructure is brittle",
+      "When planning roadmap balance between new features and improvements"
+    ],
+    "overview": "AI systems accumulate technical debt faster than traditional software. This framework helps you prioritize debt paydown strategically.",
+    "steps": [
+      "Categorize AI tech debt: Model debt (outdated models, drift), data debt (stale datasets, pipeline brittleness), infra debt (scaling issues, monitoring gaps), code debt (ML code quality)",
+      "Assess impact: How does each debt item affect user experience, development velocity, costs, or risk? Rate 1-10 on each dimension",
+      "Estimate effort: Size each debt item (S/M/L/XL). Get ML team input on complexity and dependencies",
+      "Calculate debt ROI: (Impact on velocity + risk reduction) / Effort. Prioritize highest ROI debt first",
+      "Allocate capacity: Dedicate 20-30% of AI engineering capacity to tech debt each quarter. Don't let it slip to 0% or accumulate to 100%"
+    ],
+    "tips": [
+      "Address model drift and data quality debt immediately—these directly impact users and compound over time",
+      "Trade-off rule: If new feature will create significant debt, either fix existing debt first or simplify feature scope"
+    ],
+    "relatedCards": [
+      "Previous: AI Feature Kill Criteria",
+      "Next: Model Refresh Cadence",
+      "Related: AI Technical Debt Calculator"
+    ],
+    "icon": "🔧"
+  },
+  {
+    "id": "STRAT-024",
+    "deck": "strategy",
+    "category": "Roadmap & Prioritization",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Model Refresh Cadence",
+    "description": "Plan regular cycles to evaluate and upgrade AI models as technology improves and data grows.",
+    "whenToUse": [
+      "When setting up AI product development processes",
+      "If models are getting stale but team has no refresh plan",
+      "When planning long-term AI platform investments"
+    ],
+    "overview": "AI capabilities improve rapidly. This tactic helps you establish rhythms for evaluating new models and upgrading production systems.",
+    "steps": [
+      "Set evaluation cadence: Review new model releases quarterly. For fast-moving areas (LLMs), monthly. Track benchmarks and release notes",
+      "Define upgrade triggers: Automatic upgrade if new model improves accuracy >10%, reduces latency >30%, or cuts costs >50% with no quality loss",
+      "Plan testing windows: Allocate 1-2 weeks per quarter for ML team to test new models against production data and metrics",
+      "Manage version transitions: Run A/B tests (old model vs. new) before full rollout. Keep rollback plan for 2 weeks post-deployment",
+      "Schedule major refreshes: Every 6-12 months, revisit model architecture fundamentally. Is there a better approach than current solution?"
+    ],
+    "tips": [
+      "Don't chase every model release—upgrade only when clear user benefit or cost savings justify the work",
+      "Document model lineage—track which model version was used when for debugging and compliance"
+    ],
+    "relatedCards": [
+      "Previous: AI Tech Debt Prioritization",
+      "Next: AI Platform vs. Feature Decision",
+      "Related: Model Performance Degradation"
+    ],
+    "icon": "🔄"
+  },
+  {
+    "id": "STRAT-025",
+    "deck": "strategy",
+    "category": "Roadmap & Prioritization",
+    "difficulty": "advanced",
+    "companyContext": "both",
+    "title": "AI Platform vs. Feature Decision",
+    "description": "Decide when to invest in reusable AI infrastructure vs. building point solutions for specific features.",
+    "whenToUse": [
+      "After shipping 2-3 successful AI features",
+      "When engineering velocity on AI features is slowing",
+      "If considering building in-house ML platform capabilities"
+    ],
+    "overview": "There's a tension between shipping features fast and building scalable platforms. This framework helps you decide when to invest in platforms.",
+    "steps": [
+      "Identify pattern repetition: Are you solving similar AI problems 3+ times? Similar data pipelines? Similar model patterns? Repetition justifies platform",
+      "Calculate platform ROI: Cost to build platform ÷ (time saved per feature × number of future features). ROI > 3× justifies investment",
+      "Assess team maturity: Platform work requires senior ML/infra engineers. Do you have the talent? Can you hire or train?",
+      "Evaluate build vs. buy: Can you use external platforms (SageMaker, Vertex AI, Hugging Face) instead of building? Usually cheaper and faster",
+      "Phase platform investment: Don't build the whole platform upfront. Start with highest-pain areas (e.g., model deployment, monitoring) and expand"
+    ],
+    "tips": [
+      "Default to features until you have 5+ AI use cases in production—premature platform work is waste",
+      "Platform work takes 2-3× longer than estimated—only invest when truly needed for scale"
+    ],
+    "relatedCards": [
+      "Previous: Model Refresh Cadence",
+      "Next: Multi-Model Strategy Design",
+      "Related: Build vs. Buy vs. API Decision"
+    ],
+    "icon": "🏗️"
+  }
+]

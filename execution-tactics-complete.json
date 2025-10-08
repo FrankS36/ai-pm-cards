@@ -1,0 +1,1709 @@
+[
+  {
+    "id": "EXEC-001",
+    "deck": "execution",
+    "category": "Requirements & Specs",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Write AI Product Specs",
+    "description": "Create comprehensive product requirements documents tailored for AI features with probabilistic behaviors.",
+    "whenToUse": [
+      "When scoping a new AI feature before development begins",
+      "When communicating requirements to ML engineers and designers",
+      "Before estimating timelines or resources for AI projects"
+    ],
+    "overview": "AI specs differ from traditional PRDs because they must account for uncertainty, edge cases, and model limitations. This framework ensures nothing critical is missed.",
+    "steps": [
+      "Define the user problem: What task does AI solve? What's the current painful alternative? Include 3-5 specific user scenarios.",
+      "Specify success criteria: Model performance thresholds (accuracy, precision, recall), latency limits, cost constraints, user satisfaction targets.",
+      "Document failure modes: What happens when model is wrong? When it's unsure? When it's slow? Define graceful degradation paths.",
+      "List edge cases explicitly: Enumerate at least 10 scenarios where AI might fail. How should system behave for each?",
+      "Define data requirements: Training data volume, labeling needs, refresh frequency, privacy constraints, retention policies.",
+      "Map dependencies: APIs, infrastructure, monitoring tools, human-in-the-loop processes, fallback systems."
+    ],
+    "tips": [
+      "Include example inputs and expected outputs for 5 typical cases and 5 edge cases",
+      "Specify what's in scope for MVP vs. future iterations—prevents scope creep"
+    ],
+    "relatedCards": [
+      "Next: Define AI Success Metrics",
+      "Next: Write AI Acceptance Criteria",
+      "Related: Document Edge Cases & Failure Modes"
+    ],
+    "icon": "📝"
+  },
+  {
+    "id": "EXEC-002",
+    "deck": "execution",
+    "category": "Requirements & Specs",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Define AI Success Metrics",
+    "description": "Establish clear, measurable criteria for what \"good enough\" means for your AI feature.",
+    "whenToUse": [
+      "Before starting AI development or model training",
+      "When aligning stakeholders on AI launch criteria",
+      "When evaluating if your AI feature is ready to ship"
+    ],
+    "overview": "AI products need different success metrics than traditional software. This tactic helps you define multi-dimensional success criteria.",
+    "steps": [
+      "Define user-facing metrics: Task completion rate, user satisfaction, time saved, NPS for AI feature",
+      "Define model metrics: Accuracy, precision, recall, F1 score (choose based on use case—favor recall for search, precision for moderation)",
+      "Define system metrics: Latency (p50, p95, p99), cost per prediction, uptime/availability, error rates",
+      "Set minimum bars: What's the minimum acceptable level for each metric to ship? Base on user research and competitive analysis.",
+      "Weight by importance: Rank metrics by priority with percentages (e.g., user satisfaction 40%, accuracy 30%, latency 20%, cost 10%)"
+    ],
+    "tips": [
+      "Always include latency—a slow model frustrates users even if accurate. Aim for <1s for interactive features.",
+      "Get ML engineers to validate that metrics are achievable before committing to stakeholders"
+    ],
+    "relatedCards": [
+      "Previous: Write AI Product Specs",
+      "Next: Create Model Evaluation Rubric",
+      "Related: Set Up Model Monitoring"
+    ],
+    "icon": "📊"
+  },
+  {
+    "id": "EXEC-003",
+    "deck": "execution",
+    "category": "Requirements & Specs",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Write AI Acceptance Criteria",
+    "description": "Define testable conditions that AI features must meet before marking stories complete or shipping to users.",
+    "whenToUse": [
+      "When writing user stories for AI features during sprint planning",
+      "Before QA begins testing AI functionality",
+      "When determining if an AI feature is ready for launch"
+    ],
+    "overview": "Traditional acceptance criteria assume deterministic behavior. AI features need probabilistic acceptance criteria that account for uncertainty.",
+    "steps": [
+      "Functional criteria: Define what the feature does. Example: 'Given user query, system returns relevant results in <1s'",
+      "Performance criteria: Set minimum bars. Example: 'Accuracy >85% on validation set, precision >90% for top 3 results'",
+      "Edge case handling: Test boundaries. Example: 'When confidence <70%, show 'Not sure' message instead of prediction'",
+      "UX criteria: User experience standards. Example: 'Loading indicator appears within 100ms, shows model confidence level'",
+      "Monitoring criteria: Observability requirements. Example: 'Log all predictions with confidence scores, latency, and user feedback'"
+    ],
+    "tips": [
+      "Use 'When/Given/Then' format for clarity: 'Given ambiguous input, when model confidence <70%, then show 3 options instead of 1'",
+      "Include negative test cases: What should NOT happen (e.g., 'System never returns offensive content')"
+    ],
+    "relatedCards": [
+      "Previous: Define AI Success Metrics",
+      "Next: Document Edge Cases & Failure Modes",
+      "Related: Design AI Testing Strategy"
+    ],
+    "icon": "✓"
+  },
+  {
+    "id": "EXEC-004",
+    "deck": "execution",
+    "category": "Requirements & Specs",
+    "difficulty": "advanced",
+    "companyContext": "both",
+    "title": "Document Edge Cases & Failure Modes",
+    "description": "Systematically identify and specify how AI systems should behave when encountering unusual inputs or model failures.",
+    "whenToUse": [
+      "During AI product spec writing, before development starts",
+      "When designing error handling and fallback strategies",
+      "After discovering edge cases in testing or production"
+    ],
+    "overview": "AI models fail in unpredictable ways. Documenting edge cases upfront prevents surprises and builds user trust through graceful degradation.",
+    "steps": [
+      "Brainstorm input edge cases: Empty inputs, extremely long inputs, non-English text, special characters, adversarial inputs, ambiguous requests",
+      "Identify model failure modes: Low confidence predictions, contradictory outputs, hallucinations, timeout/latency spikes, model unavailable",
+      "Define system behaviors: For each edge case, specify exact system response—show error message? Fallback to rules? Route to human?",
+      "Document user communication: What does user see? Example: 'I'm not confident about this answer' vs. hiding uncertainty",
+      "Prioritize edge cases: Mark which must be handled at launch (P0) vs. can be addressed later (P1, P2)"
+    ],
+    "tips": [
+      "Aim to document 20-30 edge cases minimum—real AI systems encounter dozens of failure modes",
+      "Test your edge case handling with red teaming before launch"
+    ],
+    "relatedCards": [
+      "Previous: Write AI Acceptance Criteria",
+      "Next: Write User Stories for AI Features",
+      "Related: Design AI Error States"
+    ],
+    "icon": "⚠️"
+  },
+  {
+    "id": "EXEC-005",
+    "deck": "execution",
+    "category": "Requirements & Specs",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Write User Stories for AI Features",
+    "description": "Craft user stories that capture AI-specific requirements, uncertainty, and iterative learning needs.",
+    "whenToUse": [
+      "During sprint planning for AI development",
+      "When breaking down large AI epics into deliverable increments",
+      "When communicating AI requirements to cross-functional teams"
+    ],
+    "overview": "AI user stories must account for model training, evaluation, iteration, and uncertainty—not just feature implementation.",
+    "steps": [
+      "Start with user value: 'As a [user], I want [AI capability] so that [benefit]'. Focus on outcome, not technology.",
+      "Add AI-specific details: Include model type, accuracy target, latency requirement, data source, fallback behavior",
+      "Split into layers: Story 1: MVP with simple model. Story 2: Improve accuracy. Story 3: Add personalization. Build incrementally.",
+      "Include training stories: 'As an ML engineer, I need labeled data to train the classification model' counts as a story",
+      "Add monitoring stories: 'As a PM, I want to see model accuracy in production to know when to retrain'"
+    ],
+    "tips": [
+      "Use this format: 'As a [user], I want [AI feature] with [performance level] so that [outcome]'",
+      "Always pair feature stories with monitoring/evaluation stories in the same sprint"
+    ],
+    "relatedCards": [
+      "Previous: Document Edge Cases & Failure Modes",
+      "Next: Specify Model Constraints & Requirements",
+      "Related: Plan Model Development Sprint"
+    ],
+    "icon": "📖"
+  },
+  {
+    "id": "EXEC-006",
+    "deck": "execution",
+    "category": "Requirements & Specs",
+    "difficulty": "advanced",
+    "companyContext": "both",
+    "title": "Specify Model Constraints & Requirements",
+    "description": "Define technical constraints and non-functional requirements that limit model selection and architecture choices.",
+    "whenToUse": [
+      "Before ML engineers begin model selection or architecture design",
+      "When negotiating tradeoffs between accuracy, latency, and cost",
+      "When evaluating whether to use pre-trained vs. custom models"
+    ],
+    "overview": "Model constraints define the boundaries within which ML teams operate. Clear constraints prevent wasted effort on solutions that won't meet real-world needs.",
+    "steps": [
+      "Latency constraints: Define max acceptable response time. Example: 'P95 latency <500ms' or 'Batch processing <1 hour'",
+      "Cost constraints: Set budget per prediction or monthly inference spend. Example: '$0.001 per prediction max' or '$5K/month inference budget'",
+      "Data constraints: Privacy requirements, data location restrictions, retention limits. Example: 'No PII can leave EU data centers'",
+      "Infrastructure constraints: On-premise vs. cloud, GPU availability, scaling requirements. Example: 'Must run on CPU-only instances'",
+      "Model size constraints: Deployment target limits. Example: 'Model must fit in 100MB for mobile deployment'"
+    ],
+    "tips": [
+      "Document 'must-have' vs. 'nice-to-have' constraints—helps ML engineers make tradeoff decisions",
+      "Re-evaluate constraints quarterly—technology improves, costs drop, requirements change"
+    ],
+    "relatedCards": [
+      "Previous: Write User Stories for AI Features",
+      "Next: Create Model Evaluation Rubric",
+      "Related: Build vs. Buy vs. API Decision"
+    ],
+    "icon": "⚙️"
+  },
+  {
+    "id": "EXEC-007",
+    "deck": "execution",
+    "category": "Requirements & Specs",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Create Model Evaluation Rubric",
+    "description": "Build a standardized scorecard for comparing model candidates and making go/no-go decisions.",
+    "whenToUse": [
+      "When evaluating multiple model approaches or vendors",
+      "Before final model selection for production deployment",
+      "When comparing fine-tuned models against baselines"
+    ],
+    "overview": "A rubric brings objectivity to model selection by scoring candidates across weighted criteria, preventing bias toward newest/fanciest models.",
+    "steps": [
+      "List evaluation dimensions: Accuracy, latency, cost, maintainability, explainability, fairness, ease of deployment",
+      "Define scoring criteria: For each dimension, create 1-5 scale. Example: Accuracy: 1=<70%, 2=70-80%, 3=80-85%, 4=85-90%, 5=>90%",
+      "Assign weights: Total should equal 100%. Example: Accuracy 35%, Latency 25%, Cost 20%, Maintainability 15%, Explainability 5%",
+      "Evaluate candidates: Score each model on every dimension. Calculate weighted total score.",
+      "Set minimum bars: Define deal-breakers. Example: 'Any score <3 on Accuracy is automatic rejection regardless of other scores'"
+    ],
+    "tips": [
+      "Include non-technical stakeholders in weighting exercise—reveals business priorities",
+      "Document evaluation in decision log for future reference when explaining model choices"
+    ],
+    "relatedCards": [
+      "Previous: Specify Model Constraints & Requirements",
+      "Next: Plan Data Collection Strategy",
+      "Related: Define AI Success Metrics"
+    ],
+    "icon": "📋"
+  },
+  {
+    "id": "EXEC-008",
+    "deck": "execution",
+    "category": "Requirements & Specs",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Define Human-in-the-Loop Requirements",
+    "description": "Specify when and how humans should review, override, or augment AI decisions.",
+    "whenToUse": [
+      "For high-stakes AI decisions (hiring, lending, medical, legal)",
+      "When model accuracy alone is insufficient for user trust",
+      "When designing content moderation or fraud detection systems"
+    ],
+    "overview": "Many AI products require human oversight for accuracy, safety, or compliance. This tactic defines the human role in your AI system.",
+    "steps": [
+      "Identify human intervention triggers: When does AI route to human? Low confidence (<70%)? Specific content types? Random sampling?",
+      "Define review workflows: Who reviews? What information do they see? What actions can they take? What's the SLA?",
+      "Specify override rules: Can humans override AI? Is override logged? Does it retrain the model?",
+      "Design feedback loops: How do human decisions improve the model? Label correction? Active learning prioritization?",
+      "Plan for scale: What happens when review volume exceeds capacity? Which cases get priority?"
+    ],
+    "tips": [
+      "Start with 100% human review at launch, then gradually decrease as model improves and you build trust",
+      "Track human-AI agreement rates—if humans override >20%, your model needs improvement"
+    ],
+    "relatedCards": [
+      "Next: Design Active Learning Workflow",
+      "Related: Design AI Error States",
+      "Related: Plan Content Moderation Strategy"
+    ],
+    "icon": "👤"
+  },
+  {
+    "id": "EXEC-009",
+    "deck": "execution",
+    "category": "Data Strategy",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Plan Data Collection Strategy",
+    "description": "Design systematic approach to gathering, labeling, and maintaining high-quality training data.",
+    "whenToUse": [
+      "Before starting AI development when you lack sufficient data",
+      "When planning to improve model performance through more data",
+      "When designing data pipelines for continuous learning"
+    ],
+    "overview": "Data is the foundation of AI success. This framework helps you plan data acquisition from diverse sources while maintaining quality.",
+    "steps": [
+      "Quantify data needs: Calculate required examples per class/scenario. Start with 1K minimum, 10K target, 100K for production scale.",
+      "Identify data sources: Internal logs, user-generated content, purchased datasets, web scraping, partnerships, synthetic generation",
+      "Plan collection timeline: Map data acquisition to development phases. Example: 'MVP needs 5K labeled examples by Month 2'",
+      "Design labeling workflow: Who labels? Internal team, contractors, crowdsourcing? What's the quality bar? How much does it cost?",
+      "Build validation process: How do you verify label quality? Inter-rater agreement? Expert review? Automated checks?",
+      "Set refresh cadence: How often do you collect new data? Daily, weekly, monthly? What triggers data updates?"
+    ],
+    "tips": [
+      "Budget $0.10-$5 per label depending on complexity—data labeling often costs more than development",
+      "Prioritize data diversity over volume—1K diverse examples beats 10K similar ones"
+    ],
+    "relatedCards": [
+      "Previous: Create Model Evaluation Rubric",
+      "Next: Establish Data Labeling Pipeline",
+      "Related: Data Availability Assessment"
+    ],
+    "icon": "📥"
+  },
+  {
+    "id": "EXEC-010",
+    "deck": "execution",
+    "category": "Data Strategy",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Establish Data Labeling Pipeline",
+    "description": "Build efficient, quality-controlled workflows for annotating training data at scale.",
+    "whenToUse": [
+      "When you have raw data but need labeled examples for supervised learning",
+      "When scaling from prototype to production-quality models",
+      "When managing ongoing labeling for model improvements"
+    ],
+    "overview": "Data labeling is often the bottleneck in AI development. A well-designed pipeline balances speed, cost, and quality.",
+    "steps": [
+      "Choose labeling approach: In-house experts (high quality, slow, expensive), contractors (medium quality, faster, moderate cost), crowdsourcing (variable quality, fastest, cheap)",
+      "Design labeling interface: Simple, clear instructions with examples. Include 'unsure' option. Show previous labels for context.",
+      "Implement quality controls: Gold standard test sets (10-20% of labels), measure inter-rater agreement (aim for >80%), require 2-3 labelers per example for disagreement detection",
+      "Set up labeling workflow: Task assignment, review queue, dispute resolution process, label correction mechanism",
+      "Track metrics: Labels per hour, cost per label, label quality score, labeler agreement rates",
+      "Iterate on guidelines: Update labeling instructions weekly based on common errors and edge cases"
+    ],
+    "tips": [
+      "Start with small batch (100 examples), measure quality, adjust process before scaling to thousands",
+      "Pay labelers fairly—quality correlates with compensation and training"
+    ],
+    "relatedCards": [
+      "Previous: Plan Data Collection Strategy",
+      "Next: Design Active Learning Workflow",
+      "Related: Training Data Quality Assurance"
+    ],
+    "icon": "🏷️"
+  },
+  {
+    "id": "EXEC-011",
+    "deck": "execution",
+    "category": "Data Strategy",
+    "difficulty": "advanced",
+    "companyContext": "both",
+    "title": "Design Active Learning Workflow",
+    "description": "Implement smart sampling strategies that prioritize labeling the most valuable training examples.",
+    "whenToUse": [
+      "When you have large amounts of unlabeled data but limited labeling budget",
+      "When trying to improve model performance efficiently",
+      "When deploying models that learn from production data"
+    ],
+    "overview": "Active learning reduces labeling costs by 40-70% by intelligently selecting which examples to label next based on model uncertainty.",
+    "steps": [
+      "Set up uncertainty sampling: Deploy model, capture predictions with confidence scores. Queue low-confidence examples (<70%) for human review.",
+      "Implement diversity sampling: Don't just label uncertain examples—also sample to cover edge cases and rare scenarios. Use clustering.",
+      "Create review interface: Show model prediction + confidence, allow labeler to correct or confirm, capture reasoning for corrections",
+      "Feed labels back: Retrain model weekly or monthly with new labels. Measure if accuracy improves.",
+      "Balance exploration vs. exploitation: 80% uncertain examples (exploitation), 20% random samples (exploration for coverage)"
+    ],
+    "tips": [
+      "Start active learning after you have 1K baseline labels—need initial model for uncertainty estimates",
+      "Track label efficiency: Are you getting accuracy gains per 100 labels? If not, switch sampling strategy"
+    ],
+    "relatedCards": [
+      "Previous: Establish Data Labeling Pipeline",
+      "Next: Implement Data Versioning",
+      "Related: Define Human-in-the-Loop Requirements"
+    ],
+    "icon": "🎯"
+  },
+  {
+    "id": "EXEC-012",
+    "deck": "execution",
+    "category": "Data Strategy",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Implement Data Versioning",
+    "description": "Track and manage different versions of training datasets for reproducibility and model comparison.",
+    "whenToUse": [
+      "When you start training models and need to track which data produced which results",
+      "When managing multiple model experiments in parallel",
+      "When debugging model performance regressions"
+    ],
+    "overview": "Data versioning is like git for datasets. It ensures you can reproduce results, compare model versions, and debug issues.",
+    "steps": [
+      "Choose versioning tool: DVC (Data Version Control), LakeFS, Pachyderm, or simple S3 buckets with timestamps",
+      "Define versioning strategy: Version on data changes (new labels), schema changes (new features), or time-based (monthly snapshots)",
+      "Tag datasets: Use semantic versioning (v1.0, v1.1) or timestamps (2025-01-15). Link each model to its training data version.",
+      "Document dataset changes: Changelog for each version: what changed, why, how many examples added/removed/modified",
+      "Set up access controls: Who can create new versions? Who can modify existing ones? Ensure test/validation sets never leak."
+    ],
+    "tips": [
+      "Pin production models to specific data versions—makes rollbacks and debugging much easier",
+      "Store data samples in version control (100 examples) so teammates can inspect without downloading full dataset"
+    ],
+    "relatedCards": [
+      "Previous: Design Active Learning Workflow",
+      "Next: Generate Synthetic Training Data",
+      "Related: Track Model Experiments"
+    ],
+    "icon": "🗂️"
+  },
+  {
+    "id": "EXEC-013",
+    "deck": "execution",
+    "category": "Data Strategy",
+    "difficulty": "advanced",
+    "companyContext": "both",
+    "title": "Generate Synthetic Training Data",
+    "description": "Create artificial training examples to augment real data, especially for rare cases or privacy-sensitive scenarios.",
+    "whenToUse": [
+      "When you lack sufficient real examples for certain categories",
+      "When dealing with rare events (fraud, medical conditions, edge cases)",
+      "When privacy regulations limit access to real user data"
+    ],
+    "overview": "Synthetic data can supplement real examples, but quality matters. This tactic ensures synthetic data improves rather than harms model performance.",
+    "steps": [
+      "Choose generation method: Rule-based (templates with variations), generative models (GANs, VAEs), LLMs (for text), data augmentation (transforms)",
+      "Start with augmentation: For images/text, apply transforms to real data—rotate, crop, paraphrase. Easiest way to 10x your dataset.",
+      "Validate realism: Can humans distinguish synthetic from real examples? If yes, synthetic data is too artificial.",
+      "Test model performance: Train on real data only, then real + synthetic. Does synthetic data improve validation accuracy? If not, discard it.",
+      "Balance synthetic vs. real: Keep real data as majority (70-90%), use synthetic as supplement (10-30%) for rare cases"
+    ],
+    "tips": [
+      "Synthetic data works best for augmenting rare classes—don't use it to replace real data collection",
+      "For LLM-generated data, use diverse prompts and validate that examples are factually correct"
+    ],
+    "relatedCards": [
+      "Previous: Implement Data Versioning",
+      "Next: Implement Data Privacy Controls",
+      "Related: Plan Data Collection Strategy"
+    ],
+    "icon": "🧬"
+  },
+  {
+    "id": "EXEC-014",
+    "deck": "execution",
+    "category": "Data Strategy",
+    "difficulty": "advanced",
+    "companyContext": "both",
+    "title": "Implement Data Privacy Controls",
+    "description": "Build safeguards to protect user privacy throughout data collection, training, and inference.",
+    "whenToUse": [
+      "When handling PII (personally identifiable information) or sensitive data",
+      "Before launching in regulated industries (healthcare, finance, education)",
+      "When users express privacy concerns about AI features"
+    ],
+    "overview": "Privacy isn't just compliance—it's user trust. This framework helps you embed privacy into your data pipeline from day one.",
+    "steps": [
+      "Classify data sensitivity: Public, internal, confidential, PII, PHI. Apply appropriate controls to each tier.",
+      "Implement data minimization: Collect only data necessary for model training. Avoid collecting PII when possible.",
+      "Anonymize training data: Remove names, emails, IDs. Use tokenization, pseudonymization, or differential privacy techniques.",
+      "Set retention limits: Define how long you keep training data. Delete after 1-2 years unless needed for compliance.",
+      "Control access: Role-based access to training data. Log all data access. Require data handling training for team members.",
+      "Plan for deletion: Users can request data deletion (GDPR, CCPA). Have process to remove user data from training sets."
+    ],
+    "tips": [
+      "Use secure enclaves or federated learning for ultra-sensitive data—model trains without centralizing raw data",
+      "Document all privacy measures in your AI product specs—legal and compliance teams need this"
+    ],
+    "relatedCards": [
+      "Previous: Generate Synthetic Training Data",
+      "Next: Training Data Quality Assurance",
+      "Related: Data Governance & Compliance"
+    ],
+    "icon": "🔒"
+  },
+  {
+    "id": "EXEC-015",
+    "deck": "execution",
+    "category": "Data Strategy",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Training Data Quality Assurance",
+    "description": "Systematically detect and fix data quality issues that degrade model performance.",
+    "whenToUse": [
+      "Before training models on new datasets",
+      "When model performance is worse than expected",
+      "When setting up ongoing data quality monitoring"
+    ],
+    "overview": "Garbage in, garbage out. This checklist helps you identify and resolve common data quality issues before they tank your model.",
+    "steps": [
+      "Check label accuracy: Sample 200 random examples, manually verify labels. Aim for >95% correct. If lower, retrain labelers or fix guidelines.",
+      "Detect label noise: Find examples where multiple labelers disagree. Review and correct. High disagreement indicates unclear guidelines.",
+      "Assess class balance: Count examples per category. If any class is <5% of total, collect more examples or use class weighting.",
+      "Find duplicates: Use hashing or fuzzy matching to detect near-duplicate examples. Remove to prevent train/test leakage.",
+      "Validate feature quality: Check for missing values, outliers, incorrect data types. Implement feature validation pipeline.",
+      "Test representative coverage: Does training data cover all scenarios users will encounter in production? Identify gaps."
+    ],
+    "tips": [
+      "Automate quality checks—run on every new data batch before adding to training set",
+      "Track data quality metrics over time—catch degradation early"
+    ],
+    "relatedCards": [
+      "Previous: Implement Data Privacy Controls",
+      "Next: Design Data Refresh Strategy",
+      "Related: Establish Data Labeling Pipeline"
+    ],
+    "icon": "✓"
+  },
+  {
+    "id": "EXEC-016",
+    "deck": "execution",
+    "category": "Data Strategy",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Design Data Refresh Strategy",
+    "description": "Plan how and when to update training data to keep models accurate as the world changes.",
+    "whenToUse": [
+      "When deploying models that will run for months or years",
+      "When user behavior or content patterns evolve over time",
+      "When setting up MLOps processes for production systems"
+    ],
+    "overview": "Models go stale as data distributions shift. A data refresh strategy keeps your AI current without constant manual intervention.",
+    "steps": [
+      "Assess data freshness needs: How fast does your domain change? E-commerce trends change weekly, medical knowledge changes yearly.",
+      "Set refresh cadence: Daily (real-time personalization), weekly (content moderation), monthly (fraud detection), quarterly (general features)",
+      "Define refresh triggers: Time-based (every 30 days), performance-based (accuracy drops 5%), event-based (product launch, seasonality)",
+      "Design collection pipeline: Automated data pulls from production, scheduled labeling workflows, incremental dataset updates",
+      "Test before deployment: Always validate new data quality before retraining models. Check for distribution shifts or anomalies."
+    ],
+    "tips": [
+      "Start with monthly refreshes, then adjust based on monitoring—over-refreshing wastes resources",
+      "Keep historical data—you may need to retrain on older distributions if new data is poisoned"
+    ],
+    "relatedCards": [
+      "Previous: Training Data Quality Assurance",
+      "Next: Plan Model Development Sprint",
+      "Related: Implement Data Versioning"
+    ],
+    "icon": "🔄"
+  },
+  {
+    "id": "EXEC-017",
+    "deck": "execution",
+    "category": "Model Development",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Plan Model Development Sprint",
+    "description": "Structure two-week sprints that balance model experimentation with product progress.",
+    "whenToUse": [
+      "When starting AI development with ML engineering teams",
+      "When adapting agile processes for machine learning work",
+      "When stakeholders need visibility into AI development progress"
+    ],
+    "overview": "ML work is more exploratory than traditional development. This framework adapts agile sprints to accommodate model experimentation.",
+    "steps": [
+      "Set sprint goal: Focus on outcome, not model type. Example: 'Achieve 85% accuracy on validation set' not 'Try neural network'",
+      "Allocate experiment budget: Reserve 60% sprint capacity for model experiments, 20% for data work, 20% for infrastructure/tooling",
+      "Plan experiments: List 3-5 experiments to try. Example: 'Test XGBoost, fine-tune BERT, try ensemble'. Prioritize by expected impact.",
+      "Define success criteria: What metrics determine if an experiment worked? Be specific: 'Accuracy >85% AND latency <500ms'",
+      "Schedule demo: End each sprint with model performance demo—show metrics, example predictions, learned insights"
+    ],
+    "tips": [
+      "Don't commit to specific models—commit to achieving performance targets. ML is iterative.",
+      "Track 'negative results' as progress—knowing what doesn't work has value"
+    ],
+    "relatedCards": [
+      "Previous: Design Data Refresh Strategy",
+      "Next: Track Model Experiments",
+      "Related: Write User Stories for AI Features"
+    ],
+    "icon": "📅"
+  },
+  {
+    "id": "EXEC-018",
+    "deck": "execution",
+    "category": "Model Development",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Track Model Experiments",
+    "description": "Log and compare model experiments to identify what works and maintain reproducibility.",
+    "whenToUse": [
+      "As soon as you start training models—don't wait until you have many experiments",
+      "When comparing multiple approaches or hyperparameter configurations",
+      "When you need to reproduce results or explain model choices to stakeholders"
+    ],
+    "overview": "Model development involves dozens of experiments. Tracking systematically prevents losing track of what worked and enables collaboration.",
+    "steps": [
+      "Choose experiment tracking tool: MLflow, Weights & Biases, Neptune.ai, or simple spreadsheet for small projects",
+      "Log experiment metadata: Model type, hyperparameters, training data version, features used, training duration, cost",
+      "Track key metrics: Training accuracy, validation accuracy, test accuracy, precision, recall, F1, latency, model size",
+      "Document insights: What worked? What failed? What surprised you? Store in experiment notes or shared doc.",
+      "Compare experiments: Sort by validation accuracy. Identify best performers. Look for patterns—what do top models have in common?"
+    ],
+    "tips": [
+      "Log experiments automatically in training scripts—manual logging leads to gaps",
+      "Name experiments descriptively: 'bert-base-lr-1e-5-batch-32' not 'experiment_17'"
+    ],
+    "relatedCards": [
+      "Previous: Plan Model Development Sprint",
+      "Next: Establish Model Baselines",
+      "Related: Implement Data Versioning"
+    ],
+    "icon": "📈"
+  },
+  {
+    "id": "EXEC-019",
+    "deck": "execution",
+    "category": "Model Development",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Establish Model Baselines",
+    "description": "Create simple benchmark models to measure if sophisticated ML approaches actually add value.",
+    "whenToUse": [
+      "At the start of every AI project, before building complex models",
+      "When justifying investment in ML vs. simpler approaches",
+      "When evaluating if model improvements are meaningful"
+    ],
+    "overview": "Always start with the simplest possible baseline. If you can't beat it with ML, you probably don't need ML.",
+    "steps": [
+      "Create majority class baseline: Always predict the most common category. Example: If 80% of emails are not spam, baseline accuracy is 80%.",
+      "Build rule-based baseline: Use domain knowledge to create if-then rules. Example: Flag transaction as fraud if amount >$1,000 + new account.",
+      "Try simple ML baseline: Logistic regression or decision tree with basic features. Takes hours to implement, not weeks.",
+      "Measure baseline performance: Track same metrics you'll use for production model. Document baseline results.",
+      "Set improvement target: Production model must beat baseline by meaningful margin. Example: '>10 percentage points better accuracy'"
+    ],
+    "tips": [
+      "Many projects discover that simple baselines are 'good enough' and cancel complex ML work—that's a win",
+      "Always compare new models to baseline, not just to previous model version"
+    ],
+    "relatedCards": [
+      "Previous: Track Model Experiments",
+      "Next: Evaluate Model Performance",
+      "Related: Create Model Evaluation Rubric"
+    ],
+    "icon": "📏"
+  },
+  {
+    "id": "EXEC-020",
+    "deck": "execution",
+    "category": "Model Development",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Evaluate Model Performance",
+    "description": "Assess model quality across multiple dimensions beyond simple accuracy scores.",
+    "whenToUse": [
+      "After training models but before deployment decisions",
+      "When comparing model candidates for production",
+      "When debugging why production performance differs from development"
+    ],
+    "overview": "Accuracy alone is misleading. Comprehensive evaluation reveals if models will work in production.",
+    "steps": [
+      "Test on held-out data: Evaluate on data the model has never seen. Never use test set during training or hyperparameter tuning.",
+      "Measure comprehensive metrics: Accuracy, precision, recall, F1, AUC-ROC. Choose primary metric based on business impact (false positives vs. false negatives).",
+      "Analyze per-class performance: Confusion matrix reveals which categories model struggles with. May be acceptable if rare classes.",
+      "Test on edge cases: Create separate test set of difficult examples. Example: Ambiguous queries, adversarial inputs, edge case scenarios.",
+      "Measure latency and cost: Time each prediction. Calculate cost per 1,000 predictions. Ensure within budget.",
+      "Review error cases: Manually inspect 50 wrong predictions. Categorize errors—helps prioritize improvements."
+    ],
+    "tips": [
+      "For production decisions, p95 and p99 metrics matter more than averages",
+      "Test demographic fairness—measure model performance across user segments (gender, age, geography)"
+    ],
+    "relatedCards": [
+      "Previous: Establish Model Baselines",
+      "Next: Run Model Iteration Loops",
+      "Related: Define AI Success Metrics"
+    ],
+    "icon": "🎯"
+  },
+  {
+    "id": "EXEC-021",
+    "deck": "execution",
+    "category": "Model Development",
+    "difficulty": "advanced",
+    "companyContext": "both",
+    "title": "Run Model Iteration Loops",
+    "description": "Systematically improve model performance through structured iteration cycles.",
+    "whenToUse": [
+      "When initial model meets baseline but not production requirements",
+      "When you have time/budget for multiple improvement cycles",
+      "When deciding where to invest effort for maximum gain"
+    ],
+    "overview": "Model improvement is iterative. This framework helps you prioritize improvements with highest ROI.",
+    "steps": [
+      "Analyze failure modes: Review model errors. Group into categories—data quality issues, missing features, model limitations, edge cases.",
+      "Prioritize improvements: Estimate impact and effort for each fix. Focus on high-impact, low-effort wins first.",
+      "Run targeted experiments: Try one major change per iteration. Example: Add new feature, collect more data for weak class, try different architecture.",
+      "Measure impact: Compare new model to previous best. Did accuracy improve? By how much? On which categories?",
+      "Iterate or ship: If model meets launch criteria, ship it. If not, run another cycle. Timebox iterations—diminishing returns after 3-4 cycles."
+    ],
+    "tips": [
+      "Track marginal improvement per iteration—if gaining <2% accuracy per cycle, diminishing returns suggest moving to production",
+      "Balance model quality with time-to-market—perfect is enemy of shipped"
+    ],
+    "relatedCards": [
+      "Previous: Evaluate Model Performance",
+      "Next: Optimize Model Performance",
+      "Related: Plan Model Development Sprint"
+    ],
+    "icon": "🔄"
+  },
+  {
+    "id": "EXEC-022",
+    "deck": "execution",
+    "category": "Model Development",
+    "difficulty": "advanced",
+    "companyContext": "both",
+    "title": "Optimize Model Performance",
+    "description": "Improve model speed and reduce costs without sacrificing accuracy.",
+    "whenToUse": [
+      "When model accuracy is good but latency or cost too high",
+      "Before scaling to millions of predictions per day",
+      "When infrastructure costs are eating into product margins"
+    ],
+    "overview": "Most models can be 2-10x faster and cheaper with optimization techniques that maintain quality.",
+    "steps": [
+      "Profile bottlenecks: Measure where time is spent—data loading, preprocessing, model inference, post-processing. Optimize the slowest part first.",
+      "Optimize inference: Use smaller model variants (DistilBERT vs. BERT), quantization (FP16 or INT8), batching, caching frequent predictions.",
+      "Reduce model size: Prune unnecessary weights, knowledge distillation (train small model to mimic large one), feature selection.",
+      "Optimize deployment: Use faster hardware (GPUs for large models), serverless for variable load, edge deployment to reduce network latency.",
+      "Measure tradeoffs: Track accuracy, latency, cost after each optimization. Ensure accuracy doesn't drop >2-3 percentage points."
+    ],
+    "tips": [
+      "Quantization (FP32 to FP16) often gives 2x speedup with <1% accuracy loss—always try first",
+      "Cache predictions for repeated inputs—many applications have high overlap in queries"
+    ],
+    "relatedCards": [
+      "Previous: Run Model Iteration Loops",
+      "Next: Design AI UX Patterns",
+      "Related: Implement Cost Optimization"
+    ],
+    "icon": "⚡"
+  },
+  {
+    "id": "EXEC-023",
+    "deck": "execution",
+    "category": "Model Development",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Implement Model Versioning",
+    "description": "Track, compare, and manage different model versions across environments.",
+    "whenToUse": [
+      "When deploying models to production for the first time",
+      "When managing multiple model versions in parallel",
+      "When you need to roll back to previous model versions"
+    ],
+    "overview": "Model versioning enables safe deployments, A/B testing, and rollbacks. It's essential for production ML systems.",
+    "steps": [
+      "Choose versioning scheme: Semantic versioning (v1.0, v1.1, v2.0) or timestamp-based (2025-01-15-1530). Be consistent.",
+      "Tag model artifacts: Version model weights, preprocessing code, feature definitions, inference code. Package together.",
+      "Link to training data: Record which data version trained each model. Enables reproduction and debugging.",
+      "Track deployment: Which version is in production? Staging? Development? Use model registry (MLflow, SageMaker).",
+      "Set retention policy: Keep last 3-5 production models for quick rollback. Archive older models unless needed for compliance."
+    ],
+    "tips": [
+      "Store model metadata: Training date, performance metrics, owner, intended use. Makes it easy to compare versions.",
+      "Automate version bumping—manual versioning leads to errors and confusion"
+    ],
+    "relatedCards": [
+      "Previous: Optimize Model Performance",
+      "Next: Design AI UX Patterns",
+      "Related: Implement Data Versioning"
+    ],
+    "icon": "🏷️"
+  },
+  {
+    "id": "EXEC-024",
+    "deck": "execution",
+    "category": "UX & Product Design",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Design AI UX Patterns",
+    "description": "Apply proven UX patterns that help users understand and trust AI-powered features.",
+    "whenToUse": [
+      "When designing interfaces for AI features",
+      "When users express confusion or mistrust of AI outputs",
+      "Before conducting usability testing of AI products"
+    ],
+    "overview": "AI UX is different from traditional software UX because of uncertainty and probabilistic outputs. These patterns build user trust.",
+    "steps": [
+      "Show confidence levels: When model is uncertain (<70% confidence), communicate this to users. Example: 'I'm not sure, here are 3 options.'",
+      "Provide explanations: Show why AI made a decision. Example: 'Recommended because you viewed similar products.' Keep simple, not technical.",
+      "Enable feedback: Add thumbs up/down, 'Was this helpful?', or report buttons. Collect user corrections to improve model.",
+      "Offer alternatives: For key decisions, show top 3 predictions instead of only #1. Lets users choose if top pick is wrong.",
+      "Make AI status visible: Show when AI is thinking (loading), when it's done, when it failed. Don't hide AI delays."
+    ],
+    "tips": [
+      "Test AI explanations with users—what makes sense to you may confuse them",
+      "Balance transparency with simplicity—too much detail overwhelms, too little erodes trust"
+    ],
+    "relatedCards": [
+      "Previous: Implement Model Versioning",
+      "Next: Design Loading & Latency States",
+      "Related: Design AI Error States"
+    ],
+    "icon": "🎨"
+  },
+  {
+    "id": "EXEC-025",
+    "deck": "execution",
+    "category": "UX & Product Design",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Design Loading & Latency States",
+    "description": "Create UX patterns that keep users engaged while AI processes requests.",
+    "whenToUse": [
+      "When AI latency is unavoidably >1 second",
+      "When designing async AI features (report generation, video processing)",
+      "When users complain that AI features feel slow or unresponsive"
+    ],
+    "overview": "Even fast AI feels slow without proper loading UX. This tactic helps users tolerate latency gracefully.",
+    "steps": [
+      "Categorize by latency: Instant (<100ms), responsive (<1s), deliberate (1-5s), background (>5s). Each needs different UX.",
+      "Show immediate feedback: Display loading indicator within 100ms of user action. Proves system is working.",
+      "Use progressive disclosure: For long tasks, show interim results. Example: 'Found 20 results... still searching...' then final count.",
+      "Set expectations: Tell users how long to expect. 'This usually takes 30 seconds.' Uncertainty is worse than slow.",
+      "Make waiting engaging: Show fun loading messages, progress bars, skeleton screens. Distract from wait time.",
+      "Enable async patterns: For >10s tasks, let users do other things. Notify when done via email, notification, or dashboard."
+    ],
+    "tips": [
+      "Perceived latency matters more than actual latency—good UX makes 3s feel like 1s",
+      "Test loading states with intentionally delayed responses—reveals UX bugs"
+    ],
+    "relatedCards": [
+      "Previous: Design AI UX Patterns",
+      "Next: Design AI Error States",
+      "Related: Latency Budget Planning"
+    ],
+    "icon": "⏳"
+  },
+  {
+    "id": "EXEC-026",
+    "deck": "execution",
+    "category": "UX & Product Design",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Design AI Error States",
+    "description": "Create clear, actionable error messages when AI features fail or produce low-confidence outputs.",
+    "whenToUse": [
+      "When designing AI features that can fail or return uncertain results",
+      "When users report confusion about AI errors",
+      "When model confidence varies significantly across inputs"
+    ],
+    "overview": "AI errors are different from typical software errors—they're probabilistic, not deterministic. This framework helps users recover gracefully.",
+    "steps": [
+      "Categorize error types: Model failure (crashed), low confidence (<70%), ambiguous input, rate limiting, inappropriate request",
+      "Write user-friendly messages: Avoid technical jargon. Example: 'I couldn't understand your request' not 'Model returned null'",
+      "Provide next steps: Tell users what to do. 'Try rephrasing your question' or 'Here's a human expert who can help.'",
+      "Offer fallbacks: When AI fails, route to rules-based system, human expert, or simpler alternative.",
+      "Log error details: Capture input, model version, confidence, latency for debugging. Don't show to users but track for engineering."
+    ],
+    "tips": [
+      "Never say 'AI error' or 'Model failed'—users don't care about implementation, they want solutions",
+      "Test error states as thoroughly as success states—errors happen 5-20% of the time in production"
+    ],
+    "relatedCards": [
+      "Previous: Design Loading & Latency States",
+      "Next: Implement Confidence Score Display",
+      "Related: Document Edge Cases & Failure Modes"
+    ],
+    "icon": "⚠️"
+  },
+  {
+    "id": "EXEC-027",
+    "deck": "execution",
+    "category": "UX & Product Design",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Implement Confidence Score Display",
+    "description": "Communicate model uncertainty to users in intuitive, non-technical ways.",
+    "whenToUse": [
+      "For high-stakes AI decisions (medical, financial, legal)",
+      "When model accuracy varies significantly across inputs",
+      "When you want users to verify AI outputs before acting"
+    ],
+    "overview": "Showing confidence builds trust by making AI limitations visible. But raw probabilities confuse users—translation required.",
+    "steps": [
+      "Choose confidence threshold: Low (<70%), medium (70-85%), high (>85%). Adjust based on domain and user testing.",
+      "Design visual indicators: Stars (★★★★★), bars (▮▮▮▯▯), labels ('High confidence', 'Low confidence'), colors (green/yellow/red)",
+      "Provide context: Explain what confidence means. 'High confidence: I'm very sure' vs. 'Low confidence: Please double-check this.'",
+      "Adjust behavior by confidence: High confidence = show single answer. Low confidence = show multiple options or route to human.",
+      "Test comprehension: Ask users what different confidence levels mean. Iterate until 80%+ interpret correctly."
+    ],
+    "tips": [
+      "Avoid raw percentages—'87% confident' means different things to different users",
+      "Consider hiding confidence for consumer products but showing it for professional/enterprise tools"
+    ],
+    "relatedCards": [
+      "Previous: Design AI Error States",
+      "Next: Design Progressive Disclosure",
+      "Related: Design AI UX Patterns"
+    ],
+    "icon": "🎚️"
+  },
+  {
+    "id": "EXEC-028",
+    "deck": "execution",
+    "category": "UX & Product Design",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Design Progressive Disclosure",
+    "description": "Structure AI interfaces to show simple results first with option to drill into details.",
+    "whenToUse": [
+      "When AI produces complex outputs with multiple components",
+      "When users have varying expertise levels and information needs",
+      "When you want to reduce cognitive load while preserving access to details"
+    ],
+    "overview": "Progressive disclosure shows users what they need when they need it, preventing information overload from complex AI outputs.",
+    "steps": [
+      "Identify information layers: Core result (always shown), supporting details (click to expand), advanced info (settings/preferences)",
+      "Design default view: Show only essential information. Example: Search shows top result + 'See 10 more' vs. all 50 results.",
+      "Add expansion points: 'Show more', 'Details', 'Why this recommendation', 'Advanced options'. Make discoverable but not intrusive.",
+      "Preserve context: When user expands details, keep core result visible. Don't navigate away or replace entire screen.",
+      "Remember preferences: If user always expands details, make that their default. Learn from behavior."
+    ],
+    "tips": [
+      "80% of users need only surface-level info—optimize for them, not power users",
+      "Test with novices and experts—both should find the experience intuitive"
+    ],
+    "relatedCards": [
+      "Previous: Implement Confidence Score Display",
+      "Next: Design AI Explanation Interfaces",
+      "Related: Design AI UX Patterns"
+    ],
+    "icon": "📑"
+  },
+  {
+    "id": "EXEC-029",
+    "deck": "execution",
+    "category": "UX & Product Design",
+    "difficulty": "advanced",
+    "companyContext": "both",
+    "title": "Design AI Explanation Interfaces",
+    "description": "Create interfaces that help users understand why AI made specific decisions.",
+    "whenToUse": [
+      "For high-stakes decisions requiring user trust (loans, hiring, medical)",
+      "When regulatory requirements mandate explainability (GDPR, financial services)",
+      "When users frequently question or override AI recommendations"
+    ],
+    "overview": "Explainable AI (XAI) builds trust, but explanations must be accurate, understandable, and actionable. This framework guides design.",
+    "steps": [
+      "Choose explanation method: Feature importance ('Price and location drove this score'), example-based ('Similar to properties you viewed'), counterfactual ('If price were $50K less, recommendation would change')",
+      "Match explanation to audience: Non-technical users need simple language, experts can handle technical details. Test comprehension.",
+      "Show top factors only: Display 3-5 most important factors, not all 50 features. 'Income, credit score, and employment history were most important.'",
+      "Make explanations actionable: If user can change outcome, tell them how. 'Improve credit score by 50 points to qualify.'",
+      "Validate accuracy: Ensure explanations reflect actual model logic. Use LIME, SHAP, or other XAI tools. Test edge cases."
+    ],
+    "tips": [
+      "Simple explanations are often wrong—balance accuracy with understandability",
+      "Let users drill down: Show simple explanation by default, offer 'Technical details' for experts"
+    ],
+    "relatedCards": [
+      "Previous: Design Progressive Disclosure",
+      "Next: Design Feedback Collection Mechanisms",
+      "Related: Implement Confidence Score Display"
+    ],
+    "icon": "💡"
+  },
+  {
+    "id": "EXEC-030",
+    "deck": "execution",
+    "category": "UX & Product Design",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Design Feedback Collection Mechanisms",
+    "description": "Build interfaces that capture user feedback on AI outputs to enable continuous improvement.",
+    "whenToUse": [
+      "For all AI features in production—feedback drives improvement",
+      "When implementing active learning or human-in-the-loop systems",
+      "When model performance needs ongoing monitoring and tuning"
+    ],
+    "overview": "User feedback is gold for AI products. This tactic designs low-friction collection mechanisms that users actually use.",
+    "steps": [
+      "Choose feedback types: Implicit (clicks, time on page, conversions), explicit (thumbs up/down, ratings, corrections), detailed (text feedback, report issue)",
+      "Design for low friction: One-click feedback is used 10x more than forms. 'Was this helpful? Yes/No' beats 'Rate 1-5 stars with comment'",
+      "Capture corrections: Let users fix wrong predictions. 'This is actually spam' or 'Correct category: Electronics'. Enables retraining.",
+      "Close feedback loop: Show users that feedback matters. 'Thanks, we'll improve based on your input' or 'Your feedback improved results for everyone.'",
+      "Instrument everything: Log feedback with prediction details (input, output, confidence, model version). Enables analysis."
+    ],
+    "tips": [
+      "Aim for 5-10% feedback rate minimum—below 2% means your mechanism is too hard to use",
+      "Incentivize feedback for cold-start: 'Rate 5 results to unlock personalization' works well"
+    ],
+    "relatedCards": [
+      "Previous: Design AI Explanation Interfaces",
+      "Next: Design AI Testing Strategy",
+      "Related: Design Active Learning Workflow"
+    ],
+    "icon": "💬"
+  },
+  {
+    "id": "EXEC-031",
+    "deck": "execution",
+    "category": "UX & Product Design",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Design Onboarding for AI Features",
+    "description": "Educate users about AI capabilities, limitations, and how to get best results.",
+    "whenToUse": [
+      "When launching new AI features to existing user base",
+      "When AI behavior differs from user expectations",
+      "When users don't know AI features exist or how to use them"
+    ],
+    "overview": "AI features often fail not because of model quality but because users don't understand how to use them. Good onboarding drives adoption.",
+    "steps": [
+      "Set expectations: Tell users what AI can and cannot do. 'I can summarize documents up to 50 pages' sets clear boundaries.",
+      "Show examples: Demonstrate with real use cases. 'Try asking: Summarize this contract' or show sample outputs.",
+      "Teach best practices: Help users craft effective inputs. 'Be specific: Instead of 'cars', try 'red sedans under $30K''",
+      "Progressive disclosure: Don't dump all features at once. Introduce advanced features after user masters basics.",
+      "Offer contextual help: Provide tips in-app at point of use. Tooltip on search box: 'I understand natural language questions.'"
+    ],
+    "tips": [
+      "Test onboarding with users who have never seen your product—reveals hidden assumptions",
+      "Track feature discovery and usage—if <50% of users find AI feature, your onboarding failed"
+    ],
+    "relatedCards": [
+      "Previous: Design Feedback Collection Mechanisms",
+      "Next: Design AI Testing Strategy",
+      "Related: Design AI UX Patterns"
+    ],
+    "icon": "🎓"
+  },
+  {
+    "id": "EXEC-032",
+    "deck": "execution",
+    "category": "Testing & Validation",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Design AI Testing Strategy",
+    "description": "Create comprehensive test plans that cover model performance, system behavior, and user experience.",
+    "whenToUse": [
+      "Before AI feature development begins—testing is not an afterthought",
+      "When planning QA resources and timelines for AI projects",
+      "When deciding what testing is required before launch"
+    ],
+    "overview": "AI testing differs from traditional QA because of probabilistic behavior. This framework ensures comprehensive coverage.",
+    "steps": [
+      "Unit tests: Test data pipelines, feature engineering, pre/post-processing logic. These should be deterministic and fast.",
+      "Model tests: Evaluate accuracy on test set, measure fairness across demographics, test edge cases, validate confidence calibration",
+      "Integration tests: Test full system—user input to model prediction to UI display. Include latency, error handling, fallbacks.",
+      "User acceptance tests: Real users test with realistic tasks. Measure task success rate, user satisfaction, confusion points.",
+      "Production validation: Shadow mode, canary deployment, A/B test. Measure real-world performance before full rollout."
+    ],
+    "tips": [
+      "Allocate 30-40% of development timeline to testing—AI testing takes longer than traditional software",
+      "Create regression test suite—as you fix issues, add to automated tests to prevent reoccurrence"
+    ],
+    "relatedCards": [
+      "Previous: Design Onboarding for AI Features",
+      "Next: Implement A/B Testing for AI",
+      "Related: Write AI Acceptance Criteria"
+    ],
+    "icon": "🧪"
+  },
+  {
+    "id": "EXEC-033",
+    "deck": "execution",
+    "category": "Testing & Validation",
+    "difficulty": "advanced",
+    "companyContext": "both",
+    "title": "Implement A/B Testing for AI",
+    "description": "Design experiments to measure real-world impact of AI models and features.",
+    "whenToUse": [
+      "When comparing model versions before rolling out to all users",
+      "When measuring business impact of AI features",
+      "When deciding between different AI approaches or UX designs"
+    ],
+    "overview": "A/B testing reveals how AI performs with real users in production. This framework ensures statistically valid experiments.",
+    "steps": [
+      "Define hypothesis: Be specific. 'New model will increase click-through rate by >5%' not 'New model is better'",
+      "Choose success metrics: Primary (e.g., task success rate) and secondary (e.g., time on page, user satisfaction). Align with business goals.",
+      "Design experiment: Random user assignment (50/50 split), minimum sample size (calculate power analysis—typically need 10K+ users), duration (run 1-2 weeks minimum)",
+      "Monitor for issues: Check for errors, performance degradation, user complaints. Have kill switch ready if experiment causes problems.",
+      "Analyze results: Compare metrics with statistical significance tests. Look for segment differences (e.g., works for US but not EU users)."
+    ],
+    "tips": [
+      "Run A/A tests first (same model in both groups)—validates your experiment infrastructure",
+      "Don't stop experiments early even if winning—need full sample size for valid results"
+    ],
+    "relatedCards": [
+      "Previous: Design AI Testing Strategy",
+      "Next: Run Shadow Mode Testing",
+      "Related: Define AI Success Metrics"
+    ],
+    "icon": "🧬"
+  },
+  {
+    "id": "EXEC-034",
+    "deck": "execution",
+    "category": "Testing & Validation",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Run Shadow Mode Testing",
+    "description": "Deploy new models in production without showing outputs to users to validate real-world performance safely.",
+    "whenToUse": [
+      "Before launching new models to users for the first time",
+      "When testing major model changes or rewrites",
+      "When you want to measure production performance without user risk"
+    ],
+    "overview": "Shadow mode runs new models on production traffic in parallel with existing system, logging predictions without affecting user experience.",
+    "steps": [
+      "Set up shadow deployment: Deploy new model alongside production model. Route same inputs to both. Show only production model output to users.",
+      "Log shadow predictions: Capture new model outputs, confidence scores, latency, errors. Store for analysis.",
+      "Compare to production: Measure agreement rate between models. Analyze disagreements—is new model fixing bugs or introducing new errors?",
+      "Monitor performance: Track shadow model accuracy, latency, error rates, cost. Ensure meets production requirements.",
+      "Validate at scale: Run shadow mode for 1-2 weeks with full production traffic volume. Reveals issues that don't appear in testing."
+    ],
+    "tips": [
+      "Shadow mode is expensive (2x compute) but invaluable for risk reduction—worth it for critical features",
+      "Set success criteria before shadow mode—know what metrics determine go/no-go for promotion"
+    ],
+    "relatedCards": [
+      "Previous: Implement A/B Testing for AI",
+      "Next: Conduct AI Red Teaming",
+      "Related: Plan Phased Rollout"
+    ],
+    "icon": "👥"
+  },
+  {
+    "id": "EXEC-035",
+    "deck": "execution",
+    "category": "Testing & Validation",
+    "difficulty": "advanced",
+    "companyContext": "both",
+    "title": "Conduct AI Red Teaming",
+    "description": "Simulate adversarial attacks and edge case scenarios to find AI vulnerabilities before users do.",
+    "whenToUse": [
+      "Before launching consumer-facing AI features, especially conversational AI",
+      "For high-stakes applications (content moderation, security, financial decisions)",
+      "When testing robustness of safety guardrails"
+    ],
+    "overview": "Red teaming stress-tests AI systems by attempting to break them, elicit harmful outputs, or find exploits. Catches issues traditional testing misses.",
+    "steps": [
+      "Recruit red team: Mix of security experts, domain experts, and creative thinkers. External teams find more issues than internal.",
+      "Define attack scenarios: Prompt injection, jailbreaking, bias exploitation, misinformation generation, adversarial inputs, edge case enumeration",
+      "Run attack sprints: Give red team 3-5 days to find vulnerabilities. Document all successful attacks with reproduction steps.",
+      "Triage findings: Severity scoring (critical/high/medium/low). Must-fix before launch vs. acceptable risk vs. post-launch improvement.",
+      "Implement mitigations: Add input filters, output filters, safety layers, fallback behaviors. Re-test to verify fixes work."
+    ],
+    "tips": [
+      "Budget $10-50K for external red teaming—finding issues pre-launch is 100x cheaper than post-launch PR disasters",
+      "Run red teaming quarterly for live products—new attack techniques emerge constantly"
+    ],
+    "relatedCards": [
+      "Previous: Run Shadow Mode Testing",
+      "Next: Execute User Acceptance Testing",
+      "Related: Harmful Output Prevention"
+    ],
+    "icon": "🛡️"
+  },
+  {
+    "id": "EXEC-036",
+    "deck": "execution",
+    "category": "Testing & Validation",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Execute User Acceptance Testing",
+    "description": "Validate that AI features meet user needs through structured testing with real users.",
+    "whenToUse": [
+      "After AI features are functionally complete but before launch",
+      "When validating that AI solves the intended user problem",
+      "When gathering evidence for launch decision"
+    ],
+    "overview": "UAT answers: Does this AI feature actually help users accomplish their goals? This framework structures user testing for AI products.",
+    "steps": [
+      "Recruit representative users: 10-20 users matching target demographic. Include skeptics and early adopters. Compensate appropriately.",
+      "Design test scenarios: Create 5-10 realistic tasks users would do with AI feature. Example: 'Find red sedans under $30K in your area'",
+      "Measure task success: Can users complete tasks? How long does it take? How many attempts? What's user satisfaction score?",
+      "Capture qualitative feedback: What confused users? What delighted them? What would they change? Where did AI fail their expectations?",
+      "Test edge cases: Give users ambiguous, difficult, or unusual inputs. How does system handle? Do users understand error messages?"
+    ],
+    "tips": [
+      "Test with users who have NOT seen the product before—your internal team is blind to usability issues",
+      "Video record sessions—watching users struggle reveals insights that surveys miss"
+    ],
+    "relatedCards": [
+      "Previous: Conduct AI Red Teaming",
+      "Next: Test Model Fairness",
+      "Related: Design Onboarding for AI Features"
+    ],
+    "icon": "👥"
+  },
+  {
+    "id": "EXEC-037",
+    "deck": "execution",
+    "category": "Testing & Validation",
+    "difficulty": "advanced",
+    "companyContext": "both",
+    "title": "Test Model Fairness",
+    "description": "Measure and validate that AI models perform equitably across different user groups.",
+    "whenToUse": [
+      "Before launching AI that impacts people (hiring, lending, content recommendations)",
+      "When building AI for diverse user populations",
+      "When regulatory or ethical standards require fairness audits"
+    ],
+    "overview": "Biased AI creates legal, ethical, and reputational risks. This framework tests fairness before those risks materialize.",
+    "steps": [
+      "Identify protected groups: Demographics (age, gender, race), geography, socioeconomic status, language. Base on domain and regulations.",
+      "Measure performance by group: Calculate accuracy, precision, recall, false positive/negative rates for each group. Look for disparities.",
+      "Define fairness criteria: Demographic parity (equal outcomes)? Equalized odds (equal error rates)? Choose standard appropriate to domain.",
+      "Quantify disparities: If accuracy for Group A is 90% but Group B is 75%, that's a 15-point gap. Set acceptable threshold (e.g., <5% gap).",
+      "Mitigate bias: Collect more training data for underperforming groups, use fairness constraints during training, post-process predictions to equalize outcomes"
+    ],
+    "tips": [
+      "Fairness is multi-dimensional and contextual—no single metric captures all concerns",
+      "Document fairness analysis in launch review—shows stakeholders you took responsibility"
+    ],
+    "relatedCards": [
+      "Previous: Execute User Acceptance Testing",
+      "Next: Plan Phased Rollout",
+      "Related: Detect and Mitigate Bias"
+    ],
+    "icon": "⚖️"
+  },
+  {
+    "id": "EXEC-038",
+    "deck": "execution",
+    "category": "Testing & Validation",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Create Automated Test Suites",
+    "description": "Build automated tests for AI systems that run continuously to catch regressions and issues.",
+    "whenToUse": [
+      "After initial AI launch when entering maintenance mode",
+      "When iterating on models frequently",
+      "When you need to ensure new model versions don't break existing functionality"
+    ],
+    "overview": "Automated testing catches model degradation, data pipeline bugs, and integration issues before users experience them.",
+    "steps": [
+      "Build golden test sets: Curate 100-500 examples with known correct outputs. Cover typical cases and edge cases. Version control this dataset.",
+      "Automate accuracy tests: Run new models against golden test set. Flag if accuracy drops >3% from previous version.",
+      "Test system integration: Automate end-to-end tests—API calls, response format, latency, error handling. Run on every deploy.",
+      "Monitor data quality: Automate validation of input data—schema checks, range checks, null detection, distribution monitoring.",
+      "Run regression tests: When fixing bugs, add failing cases to automated suite. Prevents reintroduction of same bugs."
+    ],
+    "tips": [
+      "Run automated tests on every code change AND weekly even without changes—catches data drift",
+      "Integrate with CI/CD pipeline—block deployments that fail critical tests"
+    ],
+    "relatedCards": [
+      "Previous: Test Model Fairness",
+      "Next: Plan Phased Rollout",
+      "Related: Design AI Testing Strategy"
+    ],
+    "icon": "🤖"
+  },
+  {
+    "id": "EXEC-039",
+    "deck": "execution",
+    "category": "Launch & Monitoring",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Plan Phased Rollout",
+    "description": "Deploy AI features incrementally to manage risk and learn from early users before full launch.",
+    "whenToUse": [
+      "For all AI features—phased rollouts are best practice, not optional",
+      "When launching to large user bases where issues could affect millions",
+      "When uncertainty about production performance remains after testing"
+    ],
+    "overview": "Phased rollouts limit blast radius of AI failures while gathering production data to validate and improve models.",
+    "steps": [
+      "Define rollout phases: 1% (internal + beta), 5% (early adopters), 25% (broader test), 100% (full launch). Adjust percentages based on user base size.",
+      "Set phase duration: Run each phase 3-7 days minimum. Longer for complex features or when monitoring slow metrics (e.g., retention).",
+      "Define promotion criteria: What metrics must be met to move to next phase? Example: '95% task success, <2s latency p95, <0.1% error rate, NPS >40'",
+      "Plan rollback triggers: What causes immediate rollback? Example: 'Error rate >1%, latency >5s p95, user complaints spike >5x baseline'",
+      "Communicate timeline: Tell stakeholders and users the rollout plan. Manage expectations—'rolling out over 2 weeks' prevents 'why don't I have it?' questions."
+    ],
+    "tips": [
+      "Use feature flags for instant rollback without redeployment—essential for risk management",
+      "Bias initial phases toward power users or opt-in beta testers—they provide better feedback"
+    ],
+    "relatedCards": [
+      "Previous: Create Automated Test Suites",
+      "Next: Set Up Model Monitoring",
+      "Related: Run Shadow Mode Testing"
+    ],
+    "icon": "🚢"
+  },
+  {
+    "id": "EXEC-040",
+    "deck": "execution",
+    "category": "Launch & Monitoring",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Set Up Model Monitoring",
+    "description": "Instrument production AI systems to track model performance, data drift, and system health.",
+    "whenToUse": [
+      "Before launching AI features to production—monitoring is not optional",
+      "When models are live but you lack visibility into production performance",
+      "When setting up MLOps processes"
+    ],
+    "overview": "Models degrade in production due to data drift, bugs, and changing user behavior. Monitoring detects problems before users revolt.",
+    "steps": [
+      "Track model metrics: Log predictions, confidence scores, latency for every request. Calculate accuracy, precision, recall daily from user feedback.",
+      "Monitor input distribution: Track feature distributions over time. Alert if input data shifts significantly from training distribution.",
+      "Set up alerts: Define thresholds for key metrics. Example: 'Alert if accuracy drops >5%, latency p95 >1s, error rate >1%'",
+      "Create dashboards: Visualize metrics for PM, engineers, executives. Show trends over time, comparison to baselines, breakdown by user segments.",
+      "Log errors: Capture all failures—model errors, timeouts, invalid inputs. Review weekly to identify patterns."
+    ],
+    "tips": [
+      "Monitor business metrics too, not just model metrics—user satisfaction and revenue matter more than accuracy",
+      "Use existing tools (Datadog, Grafana, CloudWatch) plus ML-specific tools (Arize, Fiddler, WhyLabs)"
+    ],
+    "relatedCards": [
+      "Previous: Plan Phased Rollout",
+      "Next: Build Monitoring Dashboards",
+      "Related: Model Performance Degradation"
+    ],
+    "icon": "📊"
+  },
+  {
+    "id": "EXEC-041",
+    "deck": "execution",
+    "category": "Launch & Monitoring",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Build Monitoring Dashboards",
+    "description": "Create visual dashboards that surface AI system health and performance for different stakeholders.",
+    "whenToUse": [
+      "After instrumenting monitoring—raw logs are useless without visualization",
+      "When stakeholders ask 'How is the AI performing?' and you don't have an answer",
+      "When managing multiple AI features or models in production"
+    ],
+    "overview": "Dashboards make invisible AI performance visible, enabling data-driven decisions about model updates, feature improvements, and resource allocation.",
+    "steps": [
+      "Design for audience: PM dashboard (user metrics, business impact), engineering dashboard (system health, latency, errors), executive dashboard (high-level KPIs)",
+      "Include key metrics: Model accuracy, user satisfaction, task success rate, latency (p50/p95/p99), error rate, cost per prediction, usage volume",
+      "Show trends: Current value vs. yesterday, last week, last month. Spot degradation early. Annotate with model version deploys.",
+      "Add drill-down: Click on metric to see breakdown by user segment, geography, device, time of day. Reveals where issues are concentrated.",
+      "Make actionable: Every dashboard should answer 'What should I do?' Include alerts, thresholds, comparison to targets."
+    ],
+    "tips": [
+      "Start simple—one dashboard with 6-8 key metrics beats ten dashboards nobody looks at",
+      "Review dashboards weekly in team meetings—makes monitoring a habit, not an afterthought"
+    ],
+    "relatedCards": [
+      "Previous: Set Up Model Monitoring",
+      "Next: Design Incident Response Plan",
+      "Related: Define AI Success Metrics"
+    ],
+    "icon": "📈"
+  },
+  {
+    "id": "EXEC-042",
+    "deck": "execution",
+    "category": "Launch & Monitoring",
+    "difficulty": "advanced",
+    "companyContext": "both",
+    "title": "Design Incident Response Plan",
+    "description": "Define procedures for detecting, triaging, and resolving AI system failures in production.",
+    "whenToUse": [
+      "Before launching AI to production—hope for best, plan for worst",
+      "After experiencing AI incidents without clear response procedures",
+      "When onboarding on-call engineers for AI systems"
+    ],
+    "overview": "AI incidents are inevitable. A response plan minimizes user impact and reduces time to resolution.",
+    "steps": [
+      "Define incident types: Model performance drop, latency spike, error rate spike, cost overrun, harmful outputs, data pipeline failure",
+      "Set severity levels: P0 (user-facing complete failure), P1 (degraded performance), P2 (minor issue), P3 (monitoring alert, no user impact)",
+      "Create runbooks: Step-by-step guides for common incidents. Example: 'If accuracy drops >10%: 1) Check recent data, 2) Compare to baseline model, 3) Rollback if needed'",
+      "Assign on-call: Who responds to incidents? Rotation schedule? Escalation path if on-call can't resolve?",
+      "Define communication: Who gets notified? Users? Stakeholders? Executives? What's the message template?",
+      "Post-incident review: After major incidents, conduct blameless post-mortem. Document learnings, prevent recurrence."
+    ],
+    "tips": [
+      "Practice incident response with fire drills—uncovers gaps in procedures",
+      "Have rollback plan ready—ability to quickly revert to previous model is crucial"
+    ],
+    "relatedCards": [
+      "Previous: Build Monitoring Dashboards",
+      "Next: Implement Feedback Collection",
+      "Related: Set Up Model Monitoring"
+    ],
+    "icon": "🚨"
+  },
+  {
+    "id": "EXEC-043",
+    "deck": "execution",
+    "category": "Launch & Monitoring",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Implement Feedback Collection",
+    "description": "Deploy mechanisms to gather user feedback on AI outputs for continuous improvement.",
+    "whenToUse": [
+      "At launch—feedback collection is core feature, not add-on",
+      "When model accuracy is good but you want to make it great",
+      "When implementing active learning or continuous training"
+    ],
+    "overview": "User feedback is the best signal for model improvement. This tactic ensures you collect actionable feedback at scale.",
+    "steps": [
+      "Implement explicit feedback: Thumbs up/down, star ratings, 'Report issue' buttons. Make one-click easy.",
+      "Track implicit feedback: Click-through rate, time on page, task completion, return usage. Often more reliable than explicit feedback.",
+      "Collect corrections: Let users fix wrong predictions. 'This is actually X' or 'Correct answer: Y'. Generates training data.",
+      "Sample strategically: Don't ask for feedback on every interaction—causes fatigue. Sample 10-20% of users randomly plus 100% of uncertain predictions.",
+      "Close feedback loop: Show users their feedback improved the system. 'Thanks to feedback like yours, accuracy improved 5%'"
+    ],
+    "tips": [
+      "Aim for 5-10% feedback rate—if lower, your UI friction is too high",
+      "Incentivize feedback sparingly—intrinsic motivation (helping improve product) beats extrinsic rewards"
+    ],
+    "relatedCards": [
+      "Previous: Design Incident Response Plan",
+      "Next: Measure AI Feature Adoption",
+      "Related: Design Feedback Collection Mechanisms"
+    ],
+    "icon": "📝"
+  },
+  {
+    "id": "EXEC-044",
+    "deck": "execution",
+    "category": "Launch & Monitoring",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Measure AI Feature Adoption",
+    "description": "Track metrics that reveal whether users discover, try, and consistently use AI features.",
+    "whenToUse": [
+      "After AI feature launch to measure product-market fit",
+      "When feature usage is lower than expected",
+      "When deciding whether to invest more in AI features or pivot"
+    ],
+    "overview": "Building AI features is pointless if users don't use them. This framework measures the adoption funnel from awareness to habit.",
+    "steps": [
+      "Track awareness: What % of users know AI feature exists? Survey or measure if users saw onboarding/announcement.",
+      "Measure trial: What % of aware users tried feature at least once? Track first use within 7 days of awareness.",
+      "Calculate activation: What % of trialists had successful first experience? Define success: task completed, positive feedback, no errors.",
+      "Monitor retention: What % of activated users return? Track D1, D7, D30 retention. AI features need habit formation.",
+      "Identify power users: Who uses AI feature daily? What % of total usage do they represent? Learn from them.",
+      "Diagnose drop-off: Where do users churn? Never try? Try once and abandon? Fixes differ for each stage."
+    ],
+    "tips": [
+      "Benchmark against non-AI features—is adoption good or bad in context?",
+      "Segment by user type—enterprise users and consumers have different adoption curves"
+    ],
+    "relatedCards": [
+      "Previous: Implement Feedback Collection",
+      "Next: Analyze AI Usage Patterns",
+      "Related: Design Onboarding for AI Features"
+    ],
+    "icon": "📱"
+  },
+  {
+    "id": "EXEC-045",
+    "deck": "execution",
+    "category": "Launch & Monitoring",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Analyze AI Usage Patterns",
+    "description": "Study how users interact with AI features to identify improvements and optimization opportunities.",
+    "whenToUse": [
+      "After AI feature has been live for 2-4 weeks with meaningful usage data",
+      "When planning next iteration or improvement cycle",
+      "When usage metrics are flat and you need ideas for growth"
+    ],
+    "overview": "Usage data reveals what users actually do vs. what you designed for. This analysis uncovers improvement opportunities.",
+    "steps": [
+      "Segment users by behavior: Power users, casual users, one-time users. Analyze each segment separately.",
+      "Identify common queries: What are most frequent inputs? Are there patterns? Can you optimize for common cases?",
+      "Find failure patterns: When does AI fail? Which input types? Which user segments? Prioritize fixing most common failures.",
+      "Measure feature combinations: Do users combine AI with other features? What workflows emerge? Can you streamline?",
+      "Analyze temporal patterns: Time of day, day of week, seasonality. Usage spikes reveal unmet needs or opportunities."
+    ],
+    "tips": [
+      "Talk to 10 power users—they've figured out creative uses you never imagined",
+      "Look for 'workarounds'—users finding ways around AI limitations signal improvement opportunities"
+    ],
+    "relatedCards": [
+      "Previous: Measure AI Feature Adoption",
+      "Next: Plan Model Retraining",
+      "Related: Implement Feedback Collection"
+    ],
+    "icon": "🔍"
+  },
+  {
+    "id": "EXEC-046",
+    "deck": "execution",
+    "category": "Optimization & Iteration",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Plan Model Retraining",
+    "description": "Establish cadence and triggers for updating models with fresh data to maintain performance.",
+    "whenToUse": [
+      "After initial model deployment—retraining is not optional for production AI",
+      "When model performance degrades over time",
+      "When setting up MLOps processes for long-term maintenance"
+    ],
+    "overview": "Models go stale. Regular retraining keeps AI accurate as the world changes. This framework balances freshness with cost.",
+    "steps": [
+      "Determine retraining cadence: Daily (high-churn domains like news), weekly (e-commerce, social), monthly (stable domains like document classification), quarterly (slow-changing domains)",
+      "Set performance triggers: Retrain if accuracy drops >5%, error rate increases >2x, or user feedback negative >20%",
+      "Plan data collection: Ensure sufficient new labeled data between retraining cycles. Budget for labeling.",
+      "Automate pipeline: Scheduled retraining jobs, automated evaluation, deployment if metrics improve, rollback if metrics worsen",
+      "Version and track: Record training date, data version, performance metrics for each retrained model"
+    ],
+    "tips": [
+      "Start with monthly retraining, adjust based on monitoring—over-retraining wastes resources",
+      "Always validate retrained models before deployment—sometimes new data is worse than old"
+    ],
+    "relatedCards": [
+      "Previous: Analyze AI Usage Patterns",
+      "Next: Optimize Model Costs",
+      "Related: Design Data Refresh Strategy"
+    ],
+    "icon": "🔄"
+  },
+  {
+    "id": "EXEC-047",
+    "deck": "execution",
+    "category": "Optimization & Iteration",
+    "difficulty": "advanced",
+    "companyContext": "both",
+    "title": "Optimize Model Costs",
+    "description": "Reduce inference and training costs while maintaining model quality and user experience.",
+    "whenToUse": [
+      "When AI costs are higher than budgeted or eating into margins",
+      "When scaling to millions of predictions per day",
+      "When stakeholders question AI ROI due to cost concerns"
+    ],
+    "overview": "AI can be expensive at scale. This framework identifies cost reduction opportunities without sacrificing performance.",
+    "steps": [
+      "Measure current costs: Break down by training compute, inference compute, data storage, labeling. Identify biggest expense.",
+      "Optimize inference: Use smaller models, quantization (FP32 to FP16), batching, caching common predictions, use cheaper hardware",
+      "Reduce training costs: Use transfer learning (fine-tune instead of training from scratch), reduce experiment volume, use spot instances",
+      "Optimize data costs: Compress datasets, delete old versions, use cheaper storage tiers, reduce labeling through active learning",
+      "Right-size infrastructure: Use autoscaling, serverless for variable load, reserved instances for predictable load"
+    ],
+    "tips": [
+      "Caching can reduce costs 50-80% for applications with repeated queries—implement early",
+      "Profile costs weekly—gradual creep is harder to fix than sudden spikes"
+    ],
+    "relatedCards": [
+      "Previous: Plan Model Retraining",
+      "Next: Iterate on AI Features",
+      "Related: Optimize Model Performance"
+    ],
+    "icon": "💰"
+  },
+  {
+    "id": "EXEC-048",
+    "deck": "execution",
+    "category": "Optimization & Iteration",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Iterate on AI Features",
+    "description": "Systematically improve AI features based on user feedback, usage data, and performance metrics.",
+    "whenToUse": [
+      "After initial launch and 2-4 weeks of production data collection",
+      "When planning roadmap for next quarter of AI development",
+      "When feature adoption or satisfaction is below targets"
+    ],
+    "overview": "First version of AI features is rarely optimal. This framework prioritizes improvements for maximum impact.",
+    "steps": [
+      "Gather improvement ideas: User feedback, support tickets, usage analysis, error logs, competitive analysis, team brainstorms",
+      "Categorize improvements: Model accuracy, UX enhancements, edge case handling, performance/latency, new capabilities, cost reduction",
+      "Estimate impact: For each improvement, estimate user impact (low/medium/high) and confidence (how sure are you it will work?)",
+      "Estimate effort: T-shirt sizing (S/M/L) or story points. Include data collection, training, testing, deployment.",
+      "Prioritize by ROI: High impact + low effort = do first. Low impact + high effort = deprioritize. Build roadmap with quick wins and strategic bets."
+    ],
+    "tips": [
+      "Reserve 20% capacity for small improvements and bug fixes, 80% for planned features",
+      "Ship improvements incrementally—don't wait for perfect, ship better"
+    ],
+    "relatedCards": [
+      "Previous: Optimize Model Costs",
+      "Next: Tune Model Performance",
+      "Related: Run Model Iteration Loops"
+    ],
+    "icon": "🔧"
+  },
+  {
+    "id": "EXEC-049",
+    "deck": "execution",
+    "category": "Optimization & Iteration",
+    "difficulty": "advanced",
+    "companyContext": "both",
+    "title": "Tune Model Performance",
+    "description": "Systematically adjust model hyperparameters and architecture to improve accuracy and efficiency.",
+    "whenToUse": [
+      "When model performance is close but not quite meeting targets",
+      "After collecting more training data but before retraining",
+      "When you have time/budget for systematic optimization"
+    ],
+    "overview": "Proper tuning can improve accuracy by 5-15% without collecting more data. This framework guides efficient hyperparameter search.",
+    "steps": [
+      "Identify tunable parameters: Learning rate, batch size, model architecture, regularization, dropout, optimizer choice",
+      "Start with learning rate: Most impactful hyperparameter. Try values: 1e-5, 5e-5, 1e-4, 5e-4, 1e-3. Pick best.",
+      "Use automated search: Grid search (exhaustive but slow), random search (faster), Bayesian optimization (most efficient). Tools: Optuna, Ray Tune.",
+      "Set search budget: Define max experiments (e.g., 50) or max time (e.g., 3 days). Tuning has diminishing returns.",
+      "Validate improvements: Test tuned model on held-out test set. Ensure improvements are real, not overfitting."
+    ],
+    "tips": [
+      "Tune on validation set, evaluate on test set—using test set for tuning leads to overoptimistic results",
+      "Document tuning process—future engineers will thank you"
+    ],
+    "relatedCards": [
+      "Previous: Iterate on AI Features",
+      "Next: Evaluate Feature Sunset",
+      "Related: Optimize Model Performance"
+    ],
+    "icon": "🎛️"
+  },
+  {
+    "id": "EXEC-050",
+    "deck": "execution",
+    "category": "Optimization & Iteration",
+    "difficulty": "intermediate",
+    "companyContext": "both",
+    "title": "Evaluate Feature Sunset",
+    "description": "Decide when to deprecate or retire underperforming AI features to focus resources on higher-impact work.",
+    "whenToUse": [
+      "When AI feature has low adoption after 3-6 months in production",
+      "When maintenance costs exceed value delivered",
+      "When conducting annual portfolio reviews or roadmap planning"
+    ],
+    "overview": "Not every AI feature succeeds. Knowing when to sunset features frees resources for better opportunities.",
+    "steps": [
+      "Evaluate usage: What % of users actively use feature? Is trend increasing or declining? Compare to other features.",
+      "Measure value: Does feature drive revenue, retention, satisfaction? Quantify business impact. If negligible, candidate for sunset.",
+      "Calculate costs: Engineer time for maintenance, retraining, monitoring, support tickets, infrastructure costs. Is ROI positive?",
+      "Consider alternatives: Can feature be simplified (remove AI, use rules)? Merged with another feature? Repositioned?",
+      "Plan sunset: Announce deprecation timeline (3-6 months notice), offer alternatives, support migration, monitor impact"
+    ],
+    "tips": [
+      "Sunsets are normal—teams that never kill features accumulate technical debt and lose focus",
+      "Survey users before sunset—sometimes low usage hides high value for specific segments"
+    ],
+    "relatedCards": [
+      "Previous: Tune Model Performance",
+      "Related: Measure AI Feature Adoption",
+      "Related: Analyze AI Usage Patterns"
+    ],
+    "icon": "🌅"
+  },
+  {
+    "id": "EXEC-051",
+    "deck": "execution",
+    "category": "Primers",
+    "difficulty": "beginner",
+    "companyContext": "both",
+    "title": "AI Development Lifecycle Overview",
+    "description": "Understand the end-to-end process of taking AI features from concept to production.",
+    "whenToUse": [
+      "When planning your first AI feature",
+      "When onboarding new team members to AI product development",
+      "When explaining AI development to stakeholders"
+    ],
+    "overview": "AI development is iterative and different from traditional software. This primer maps the typical journey.",
+    "steps": [
+      "Discovery: Define problem, validate AI is right solution, assess data availability, estimate feasibility",
+      "Data preparation: Collect data, label examples, clean and validate, version and store securely",
+      "Model development: Establish baseline, train models, evaluate performance, iterate until meeting criteria",
+      "Integration & testing: Build product integration, test end-to-end, conduct UAT, run red teaming",
+      "Deployment: Phased rollout, monitoring setup, incident response prep, feedback collection",
+      "Maintenance: Monitor performance, retrain models, iterate on features, optimize costs, handle drift"
+    ],
+    "tips": [
+      "Expect 50% of time on data, 30% on modeling, 20% on deployment—adjust estimates accordingly",
+      "Build feedback loops from day 1—they enable continuous improvement"
+    ],
+    "relatedCards": [
+      "Next: MLOps Basics Primer",
+      "Next: Common AI Metrics Primer",
+      "Related: Plan Model Development Sprint"
+    ],
+    "icon": "🔄"
+  },
+  {
+    "id": "EXEC-052",
+    "deck": "execution",
+    "category": "Primers",
+    "difficulty": "beginner",
+    "companyContext": "both",
+    "title": "MLOps Basics Primer",
+    "description": "Learn the fundamentals of ML operations—deploying, monitoring, and maintaining AI systems in production.",
+    "whenToUse": [
+      "When transitioning from AI development to production operations",
+      "When setting up infrastructure for production AI systems",
+      "When hiring MLOps engineers or defining their role"
+    ],
+    "overview": "MLOps is DevOps for machine learning. It enables reliable, scalable, and maintainable AI systems.",
+    "steps": [
+      "Version control: Track code (Git), data (DVC), models (MLflow). Everything must be versioned for reproducibility.",
+      "Automation: CI/CD pipelines for model training, testing, deployment. Automate retraining and evaluation.",
+      "Monitoring: Track model performance, data drift, system health. Alert on degradation. Dashboard for visibility.",
+      "Infrastructure: Scalable compute for training and inference, model serving platforms, data pipelines, experiment tracking",
+      "Governance: Model documentation, approval processes, audit logs, rollback capabilities, security controls"
+    ],
+    "tips": [
+      "Start simple—don't build Google-scale MLOps for your first feature. Grow infrastructure as needed.",
+      "Treat models like code—they need testing, versioning, code review, deployment pipelines"
+    ],
+    "relatedCards": [
+      "Previous: AI Development Lifecycle Overview",
+      "Next: Common AI Metrics Primer",
+      "Related: Set Up Model Monitoring"
+    ],
+    "icon": "⚙️"
+  },
+  {
+    "id": "EXEC-053",
+    "deck": "execution",
+    "category": "Primers",
+    "difficulty": "beginner",
+    "companyContext": "both",
+    "title": "Common AI Metrics Primer",
+    "description": "Understand key metrics for evaluating AI models and when to use each one.",
+    "whenToUse": [
+      "When defining success criteria for AI features",
+      "When interpreting model performance reports from ML engineers",
+      "When comparing different model approaches"
+    ],
+    "overview": "Different AI tasks require different metrics. This primer helps you choose and interpret the right ones.",
+    "steps": [
+      "Accuracy: % of predictions correct. Good for balanced datasets. Misleading when classes are imbalanced (e.g., 95% negative examples).",
+      "Precision: Of positive predictions, % actually positive. High precision = few false alarms. Important when false positives are costly (e.g., spam filtering).",
+      "Recall: Of actual positives, % correctly identified. High recall = catch all positives. Important when false negatives are costly (e.g., fraud detection).",
+      "F1 Score: Harmonic mean of precision and recall. Use when you need to balance both and classes are imbalanced.",
+      "Latency: Time from input to output. P50 (median), p95 (95th percentile), p99. User experience depends on tail latency.",
+      "Cost per prediction: Infrastructure spend divided by prediction volume. Critical for unit economics at scale."
+    ],
+    "tips": [
+      "Always measure multiple metrics—accuracy alone hides problems",
+      "Ask ML engineers to explain metrics in business terms: 'Precision = how often recommendations are relevant'"
+    ],
+    "relatedCards": [
+      "Previous: MLOps Basics Primer",
+      "Related: Define AI Success Metrics",
+      "Related: Evaluate Model Performance"
+    ],
+    "icon": "📐"
+  }
+]
