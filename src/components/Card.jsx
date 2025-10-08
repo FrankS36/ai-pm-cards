@@ -1,15 +1,29 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import './Card.css';
 
 function Card({ cardData }) {
   const [isFlipped, setIsFlipped] = useState(false);
+  const cardRef = useRef(null);
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
   };
 
+  // Reset flip state when card changes
+  useEffect(() => {
+    setIsFlipped(false);
+  }, [cardData.id]);
+
+  // Scroll to top of card when flipped
+  useEffect(() => {
+    if (cardRef.current && isFlipped) {
+      const cardTop = cardRef.current.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({ top: cardTop - 100, behavior: 'smooth' });
+    }
+  }, [isFlipped]);
+
   return (
-    <div className={`card ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip}>
+    <div ref={cardRef} className={`card ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip}>
       {/* Front of Card */}
       <div className="card-front">
         <div className="card-header">

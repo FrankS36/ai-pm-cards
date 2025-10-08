@@ -60,15 +60,32 @@ function PathView() {
   useEffect(() => {
     const handleKeyPress = (e) => {
       if (e.key === 'ArrowLeft') {
-        handlePrevious();
+        setCurrentCardIndex(prev => {
+          if (prev > 0) {
+            const newIndex = prev - 1;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return newIndex;
+          }
+          return prev;
+        });
       } else if (e.key === 'ArrowRight') {
-        handleNext();
+        setCurrentCardIndex(prev => {
+          if (prev < cards.length - 1) {
+            const newIndex = prev + 1;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return newIndex;
+          } else {
+            alert('Path completed! 🎉\n\nYou\'ve explored all tactics in this path.');
+            navigate('/start/problem');
+          }
+          return prev;
+        });
       }
     };
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [currentCardIndex, cards.length]);
+  }, [cards.length, navigate]);
 
   if (!pathInfo) {
     return <div>Path not found</div>;
