@@ -10,14 +10,14 @@ function LandingPage() {
         <header className="hero">
           <h1 className="headline">Ship AI Features Without the Guesswork</h1>
           <p className="subheadline">
-            Battle-tested frameworks from a Product Manager who ships AI/ML at Dell Technologies. Free, no signup required.
+            Battle-tested frameworks from a Product Manager who ships AI/ML products. Free, no signup required.
           </p>
 
           <div className="creator-badge">
             <div className="creator-avatar">FS</div>
             <div className="creator-info">
               <div className="creator-name">Frank Sellhausen</div>
-              <div className="creator-title">Product Manager, Dell Technologies | AI/ML Products</div>
+              <div className="creator-title">AI/ML Product Manager | Certified Scrum Product Owner</div>
             </div>
           </div>
 
@@ -139,7 +139,7 @@ function LandingPage() {
         <section className="example-preview">
           <h2>See a Framework in Action</h2>
           <p className="section-intro">
-            Here's what you get: the problem, the framework, and a real example from Dell.
+            Here's what you get: the problem, the framework, and a real example from production.
           </p>
           <div className="preview-card" onClick={() => navigate('/browse?card=design-progressive-disclosure')}>
             <div className="preview-header">
@@ -159,8 +159,8 @@ function LandingPage() {
             </div>
 
             <div className="preview-section">
-              <h4>Example from Dell</h4>
-              <p>Our AI writing assistant had 15 knobs. We showed 3 by default (tone, length, audience). Click "Advanced" revealed 8 more. Click "Expert mode" unlocked the rest. Result: 90% of users never needed Layer 2.</p>
+              <h4>Real Example</h4>
+              <p>An AI writing assistant had 15 configuration options. We showed 3 by default (tone, length, audience). Click "Advanced" revealed 8 more. Click "Expert mode" unlocked the rest. Result: 90% of users never needed Layer 2.</p>
             </div>
 
             <div className="preview-footer">
@@ -170,19 +170,19 @@ function LandingPage() {
         </section>
 
         <section className="creator-section">
-          <h2>From Dell's AI/ML Team to Your Desk</h2>
+          <h2>From Real AI/ML Experience</h2>
           <div className="creator-content">
             <div className="creator-avatar-large">FS</div>
             <div className="creator-story">
               <h3>Frank Sellhausen</h3>
-              <p className="creator-subtitle">Product Manager, Dell Technologies</p>
+              <p className="creator-subtitle">AI/ML Product Manager</p>
               <p className="creator-quote">
                 "I've shipped AI features that flopped and AI features that scaled. These are the frameworks I wish I had when I started. Now you have them."
               </p>
               <div className="creator-credentials">
-                <span className="credential">🏢 Dell Technologies</span>
                 <span className="credential">🎓 Certified Scrum Product Owner</span>
-                <span className="credential">🚀 Shipped AI/ML Products</span>
+                <span className="credential">🚀 Shipped AI/ML Products at Scale</span>
+                <span className="credential">💡 150 Frameworks Documented</span>
               </div>
               <button className="btn-link" onClick={() => navigate('/about')}>
                 Read full story →
