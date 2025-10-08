@@ -10,8 +10,10 @@ import PathView from './pages/PathView';
 import BrowseView from './pages/BrowseView';
 import PathsDirectory from './pages/PathsDirectory';
 import AboutPage from './pages/AboutPage';
+import WorkWithMe from './pages/WorkWithMe';
 import NotFound from './pages/NotFound';
 import Navigation from './components/Navigation';
+import Footer from './components/Footer';
 import KeyboardHelp from './components/KeyboardHelp';
 import './App.css';
 
@@ -30,8 +32,10 @@ function App() {
           <Route path="/paths" element={<PathsDirectory />} />
           <Route path="/browse" element={<BrowseView />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/work" element={<WorkWithMe />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <Footer />
       </Router>
       <KeyboardHelp />
       <Analytics />
