@@ -1,0 +1,295 @@
+.about-page {
+  min-height: 100vh;
+  padding: 2rem 0 4rem;
+}
+
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-top: 2rem;
+}
+
+.about-header h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+}
+
+.about-tagline {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.about-story,
+.about-author,
+.about-project,
+.about-audience,
+.about-cta {
+  margin-bottom: 3rem;
+}
+
+.about-story h2,
+.about-author h2,
+.about-project h2,
+.about-audience h2,
+.about-cta h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.about-story p,
+.about-author p,
+.about-project p,
+.about-cta p {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.problem-list,
+.credentials-list {
+  margin: 1.5rem 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.problem-list li,
+.credentials-list li,
+.about-project ul li {
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+  position: relative;
+  color: var(--text-primary);
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.problem-list li::before {
+  content: "⚠️";
+  position: absolute;
+  left: 0;
+  font-size: 1rem;
+}
+
+.credentials-list li::before,
+.about-project ul li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--accent-blue);
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.author-bio {
+  background: var(--bg-secondary);
+  padding: 2rem;
+  border-radius: 16px;
+  border: 2px solid var(--border-light);
+}
+
+.philosophy {
+  font-size: 1.25rem !important;
+  font-style: italic;
+  color: var(--text-primary) !important;
+  text-align: center;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
+  border-radius: 12px;
+  border-left: 4px solid var(--accent-blue);
+  margin-top: 2rem;
+}
+
+.about-project ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 1.5rem 0;
+}
+
+.about-project a {
+  color: var(--accent-blue);
+  text-decoration: underline;
+  transition: opacity 0.2s;
+}
+
+.about-project a:hover {
+  opacity: 0.7;
+}
+
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.audience-card {
+  background: var(--bg-primary);
+  border: 2px solid var(--border-light);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.audience-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-blue);
+}
+
+.audience-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.audience-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.audience-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.about-cta {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
+  border-radius: 20px;
+  border: 2px solid var(--border-light);
+}
+
+.about-cta h2 {
+  margin-bottom: 1rem;
+}
+
+.about-cta p {
+  margin-bottom: 2rem;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-cta {
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 2px solid var(--border-light);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-cta:hover {
+  border-color: var(--accent-blue);
+  background: var(--bg-secondary);
+  transform: translateY(-2px);
+}
+
+.btn-cta-primary {
+  background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
+  color: white;
+  border: none;
+}
+
+.btn-cta-primary:hover {
+  background: linear-gradient(135deg, #1e40af 0%, #8b5cf6 100%);
+  box-shadow: 0 4px 16px rgba(30, 58, 138, 0.3);
+}
+
+.about-footer {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.about-update {
+  font-size: 0.9375rem !important;
+  color: var(--text-tertiary) !important;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .about-header h1 {
+    font-size: 2rem;
+  }
+
+  .about-tagline {
+    font-size: 1.125rem;
+  }
+
+  .about-story h2,
+  .about-author h2,
+  .about-project h2,
+  .about-audience h2,
+  .about-cta h2 {
+    font-size: 1.5rem;
+  }
+
+  .about-story p,
+  .about-author p,
+  .about-project p,
+  .about-cta p {
+    font-size: 1rem;
+  }
+
+  .problem-list li,
+  .credentials-list li,
+  .about-project ul li {
+    font-size: 1rem;
+  }
+
+  .author-bio {
+    padding: 1.5rem;
+  }
+
+  .philosophy {
+    font-size: 1.125rem !important;
+    padding: 1rem;
+  }
+
+  .audience-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .about-cta {
+    padding: 2rem 1.5rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+  }
+
+  .btn-cta {
+    width: 100%;
+  }
+}

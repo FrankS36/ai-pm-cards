@@ -39,6 +39,12 @@ function Navigation() {
             >
               Browse Paths
             </button>
+            <button
+              className={`nav-link ${isActive('/about') ? 'active' : ''}`}
+              onClick={() => navigate('/about')}
+            >
+              About
+            </button>
           </div>
 
           {/* Right side actions */}
