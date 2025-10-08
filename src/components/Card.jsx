@@ -1,11 +1,10 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import cardDataJson from '../data/cardData.json';
 import './Card.css';
 
 function Card({ cardData }) {
   const [isFlipped, setIsFlipped] = useState(false);
-  const cardRef = useRef(null);
   const navigate = useNavigate();
 
   const handleFlip = () => {
@@ -51,14 +50,6 @@ function Card({ cardData }) {
     setIsFlipped(false);
   }, [cardData.id]);
 
-  // Scroll to top of card when flipped
-  useEffect(() => {
-    if (cardRef.current && isFlipped) {
-      const cardTop = cardRef.current.getBoundingClientRect().top + window.pageYOffset;
-      window.scrollTo({ top: cardTop - 100, behavior: 'smooth' });
-    }
-  }, [isFlipped]);
-
   // Keyboard shortcut to flip card with spacebar
   useEffect(() => {
     const handleKeyPress = (e) => {
@@ -73,7 +64,7 @@ function Card({ cardData }) {
   }, []);
 
   return (
-    <div ref={cardRef} className={`card ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip}>
+    <div className={`card ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip}>
       {/* Front of Card */}
       <div className="card-front">
         <div className="card-header">
