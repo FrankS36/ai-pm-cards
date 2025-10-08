@@ -38,7 +38,8 @@ function Card({ cardData }) {
         localStorage.setItem(`path-progress-${pathWithCard.id}`, cardIndex.toString());
         navigate(`/path/${pathWithCard.id}`);
       } else {
-        alert(`Card "${foundCard.title}" found, but not in any path yet.`);
+        // Card found but not in a path - open in browse view
+        navigate('/browse', { state: { cardId: foundCard.id } });
       }
     } else {
       alert(`Could not find card: "${searchTitle}"\n\nTry browsing all cards instead.`);

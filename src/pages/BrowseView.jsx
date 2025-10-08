@@ -1,16 +1,27 @@
 import { useState, useMemo, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import cardDataJson from '../data/cardData.json';
 import './BrowseView.css';
 
 function BrowseView() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [selectedDeck, setSelectedDeck] = useState('all');
   const [selectedDifficulty, setSelectedDifficulty] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCard, setSelectedCard] = useState(null);
 
   const allCards = Object.values(cardDataJson.cards);
+
+  // Open card from navigation state (e.g., from related cards)
+  useEffect(() => {
+    if (location.state?.cardId) {
+      const card = cardDataJson.cards[location.state.cardId];
+      if (card) {
+        setSelectedCard(card);
+      }
+    }
+  }, [location.state]);
 
   // Keyboard shortcut to close modal with ESC
   useEffect(() => {
