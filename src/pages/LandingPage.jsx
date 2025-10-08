@@ -8,138 +8,199 @@ function LandingPage() {
     <div className="landing-page">
       <div className="container">
         <header className="hero">
-          <h1 className="headline">Navigate your AI product journey with confidence</h1>
+          <h1 className="headline">Ship AI Features Without the Guesswork</h1>
           <p className="subheadline">
-            150 battle-tested tactics for strategy, risk, and execution—organized to get you from problem to solution in minutes.
+            Battle-tested frameworks from a Product Manager who ships AI/ML at Dell Technologies. Free, no signup required.
           </p>
 
-          <div className="cta-group">
-            <button className="btn-primary" onClick={() => navigate('/start')}>
-              Find Your Starting Point
+          <div className="creator-badge">
+            <div className="creator-avatar">FS</div>
+            <div className="creator-info">
+              <div className="creator-name">Frank Sellhausen</div>
+              <div className="creator-title">Product Manager, Dell Technologies | AI/ML Products</div>
+            </div>
+          </div>
+
+          <div className="hero-cta">
+            <button className="btn-primary btn-large" onClick={() => navigate('/start')}>
+              Find Your Framework →
             </button>
-            <button className="btn-secondary" onClick={() => navigate('/paths')}>
-              Browse Journey Paths
-            </button>
-            <button className="btn-secondary" onClick={() => navigate('/browse')}>
-              Browse All Cards
+            <button className="btn-link" onClick={() => navigate('/browse')}>
+              or browse all 150 cards
             </button>
           </div>
 
           <div className="trust-indicators">
-            <span>150 tactics</span>
+            <span>Free</span>
             <span>•</span>
-            <span>3 decks</span>
+            <span>No signup</span>
             <span>•</span>
-            <span>For AI/ML Product Managers</span>
+            <span>150 frameworks</span>
+            <span>•</span>
+            <span>20 curated paths</span>
           </div>
         </header>
 
-        <section className="what-is-card">
-          <h2>What's an AI PM Card?</h2>
-          <p className="section-intro">
-            Each card is a 2-minute framework for one specific AI product challenge.
-            Think of it as a playbook, not a blog post—you don't read them all, you pull the card you need, right when you need it.
-          </p>
-          <div className="card-anatomy">
-            <div className="anatomy-item">
-              <div className="anatomy-icon">❓</div>
-              <h3>The Problem</h3>
-              <p>When to use this card</p>
+        <section className="problem-section">
+          <h2>Sound Familiar?</h2>
+          <div className="pain-points">
+            <div className="pain-point">
+              <span className="pain-icon">❌</span>
+              <p>Your exec said "add AI" but gave no roadmap</p>
             </div>
-            <div className="anatomy-item">
-              <div className="anatomy-icon">📋</div>
-              <h3>The Framework</h3>
-              <p>Step-by-step tactic</p>
+            <div className="pain-point">
+              <span className="pain-icon">❌</span>
+              <p>You're Googling "AI product strategy" and getting blog posts</p>
             </div>
-            <div className="anatomy-item">
-              <div className="anatomy-icon">💡</div>
-              <h3>Real Example</h3>
-              <p>How I used it at Dell</p>
+            <div className="pain-point">
+              <span className="pain-icon">❌</span>
+              <p>You have no idea if 85% accuracy is good enough</p>
             </div>
-            <div className="anatomy-item">
-              <div className="anatomy-icon">➡️</div>
-              <h3>Next Steps</h3>
-              <p>Related cards to explore</p>
+            <div className="pain-point">
+              <span className="pain-icon">❌</span>
+              <p>Your users don't trust the AI recommendations</p>
+            </div>
+            <div className="pain-point">
+              <span className="pain-icon">❌</span>
+              <p>You feel like everyone else knows something you don't</p>
             </div>
           </div>
+          <p className="problem-solution-bridge">
+            You don't need more theory. <strong>You need tactics from someone who's shipped this.</strong>
+          </p>
         </section>
 
-        <section className="use-cases">
-          <h2>When to Use AI PM Cards</h2>
-          <div className="use-cases-grid">
-            <div className="use-case">
-              <div className="use-case-icon">🚀</div>
-              <h3>Planning</h3>
-              <p className="use-case-question">"Should we even build this AI feature?"</p>
-              <p className="use-case-solution">→ Card: <strong>Identify AI Opportunities</strong></p>
+        <section className="solution-section">
+          <h2>Frameworks That Actually Ship</h2>
+          <p className="section-intro">
+            Every situation you'll face. Every decision you'll make. Frameworks from someone who's been there.
+          </p>
+          <div className="solution-grid">
+            <div className="solution-example">
+              <div className="solution-problem">
+                <span className="solution-label">The Problem</span>
+                <h3>"Users don't trust our AI"</h3>
+              </div>
+              <div className="solution-arrow">→</div>
+              <div className="solution-card">
+                <span className="solution-label">The Framework</span>
+                <div className="mini-card">
+                  <div className="mini-card-deck">Strategy & Risk</div>
+                  <h4>When Users Don't Trust Your AI</h4>
+                  <p>8-card path with tactics</p>
+                </div>
+              </div>
+              <div className="solution-arrow">→</div>
+              <div className="solution-outcome">
+                <span className="solution-label">The Outcome</span>
+                <h3>Ship with confidence</h3>
+              </div>
             </div>
-            <div className="use-case">
-              <div className="use-case-icon">⚠️</div>
-              <h3>Stuck</h3>
-              <p className="use-case-question">"Users don't trust our AI recommendations"</p>
-              <p className="use-case-solution">→ Path: <strong>When Users Don't Trust Your AI</strong> (8 cards)</p>
+          </div>
+          <div className="solution-stats">
+            <div className="stat">
+              <div className="stat-number">150</div>
+              <div className="stat-label">Frameworks</div>
             </div>
-            <div className="use-case">
-              <div className="use-case-icon">🎯</div>
-              <h3>Shipping</h3>
-              <p className="use-case-question">"How do we design AI UX that doesn't overwhelm?"</p>
-              <p className="use-case-solution">→ Card: <strong>Design Progressive Disclosure</strong></p>
+            <div className="stat">
+              <div className="stat-number">20</div>
+              <div className="stat-label">Curated Paths</div>
             </div>
-            <div className="use-case">
-              <div className="use-case-icon">🔧</div>
-              <h3>Improving</h3>
-              <p className="use-case-question">"Our AI accuracy is 85%, is that good enough?"</p>
-              <p className="use-case-solution">→ Card: <strong>Define Success Metrics</strong></p>
+            <div className="stat">
+              <div className="stat-number">Every</div>
+              <div className="stat-label">Situation Covered</div>
             </div>
           </div>
         </section>
 
         <section className="how-it-works">
-          <h2>How It Works</h2>
+          <h2>Find Your Framework in 30 Seconds</h2>
           <div className="steps">
             <div className="step">
               <div className="step-number">1</div>
-              <h3>Pick your entry point</h3>
-              <p>Start with a diagnostic quiz, browse 20 curated paths, or search all 150 cards</p>
+              <h3>Tell us where you're stuck</h3>
+              <p>Quick diagnostic or browse paths</p>
             </div>
+            <div className="step-arrow">→</div>
             <div className="step">
               <div className="step-number">2</div>
-              <h3>Read the card (2 minutes)</h3>
-              <p>Get the framework, see a real example, understand when to use it</p>
+              <h3>Get your framework</h3>
+              <p>2-minute read with real examples</p>
             </div>
+            <div className="step-arrow">→</div>
             <div className="step">
               <div className="step-number">3</div>
-              <h3>Follow related cards</h3>
-              <p>Each card links to what comes next—follow the path that matches your journey</p>
+              <h3>Ship the feature</h3>
+              <p>Follow related cards to complete</p>
             </div>
-          </div>
-          <div className="how-it-works-cta">
-            <button className="btn-primary" onClick={() => navigate('/start')}>
-              Try the 30-Second Diagnostic
-            </button>
           </div>
         </section>
 
         <section className="example-preview">
-          <h2>See a Card in Action</h2>
+          <h2>See a Framework in Action</h2>
+          <p className="section-intro">
+            Here's what you get: the problem, the framework, and a real example from Dell.
+          </p>
           <div className="preview-card" onClick={() => navigate('/browse?card=design-progressive-disclosure')}>
             <div className="preview-header">
               <span className="preview-deck">UX & Design</span>
               <span className="preview-id">Card #42</span>
             </div>
             <h3 className="preview-title">Design Progressive Disclosure</h3>
-            <p className="preview-problem">
-              <strong>The Problem:</strong> Your AI feature has 20 configuration options. If you show them all upfront, users freeze. If you hide them, power users complain.
-            </p>
-            <p className="preview-framework">
-              <strong>The Framework:</strong> Layer 1 (default): Show only what 80% of users need. Layer 2 (optional): Hide advanced controls behind "Show more." Layer 3 (expert): Technical settings behind "Advanced mode."
-            </p>
-            <p className="preview-example">
-              <strong>Example:</strong> At Dell, our AI writing assistant had 15 knobs. We showed 3 by default (tone, length, audience). Click "Advanced" revealed 8 more. Click "Expert mode" unlocked the rest. Result: 90% of users never needed Layer 2.
-            </p>
-            <div className="preview-footer">
-              <span className="preview-cta">Click to view full card →</span>
+
+            <div className="preview-section">
+              <h4>The Problem</h4>
+              <p>Your AI feature has 20 configuration options. If you show them all upfront, users freeze. If you hide them, power users complain.</p>
             </div>
+
+            <div className="preview-section">
+              <h4>The Framework</h4>
+              <p>Layer 1 (default): Show only what 80% of users need. Layer 2 (optional): Hide advanced controls behind "Show more." Layer 3 (expert): Technical settings behind "Advanced mode."</p>
+            </div>
+
+            <div className="preview-section">
+              <h4>Example from Dell</h4>
+              <p>Our AI writing assistant had 15 knobs. We showed 3 by default (tone, length, audience). Click "Advanced" revealed 8 more. Click "Expert mode" unlocked the rest. Result: 90% of users never needed Layer 2.</p>
+            </div>
+
+            <div className="preview-footer">
+              <span className="preview-cta">Click to explore full card →</span>
+            </div>
+          </div>
+        </section>
+
+        <section className="creator-section">
+          <h2>From Dell's AI/ML Team to Your Desk</h2>
+          <div className="creator-content">
+            <div className="creator-avatar-large">FS</div>
+            <div className="creator-story">
+              <h3>Frank Sellhausen</h3>
+              <p className="creator-subtitle">Product Manager, Dell Technologies</p>
+              <p className="creator-quote">
+                "I've shipped AI features that flopped and AI features that scaled. These are the frameworks I wish I had when I started. Now you have them."
+              </p>
+              <div className="creator-credentials">
+                <span className="credential">🏢 Dell Technologies</span>
+                <span className="credential">🎓 Certified Scrum Product Owner</span>
+                <span className="credential">🚀 Shipped AI/ML Products</span>
+              </div>
+              <button className="btn-link" onClick={() => navigate('/about')}>
+                Read full story →
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section className="final-cta">
+          <h2>Ready to Ship Better AI Products?</h2>
+          <p className="final-cta-subtitle">
+            Start with the 30-second diagnostic. Find your framework. Ship with confidence.
+          </p>
+          <button className="btn-primary btn-large" onClick={() => navigate('/start')}>
+            Get Started →
+          </button>
+          <div className="final-cta-trust">
+            Free • No signup • No credit card
           </div>
         </section>
       </div>
