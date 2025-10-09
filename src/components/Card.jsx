@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ShareButton from './ShareButton';
 import { shareCard } from '../utils/share';
@@ -7,6 +7,9 @@ import './Card.css';
 
 function Card({ cardData }) {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(false);
+  const cardFrontRef = useRef(null);
+  const cardBackRef = useRef(null);
   const navigate = useNavigate();
 
   const handleFlip = () => {
@@ -53,10 +56,33 @@ function Card({ cardData }) {
     return () => window.removeEventListener('keydown', handleKeyPress);
   }, []);
 
+  // Check if card content is scrollable and update indicator
+  useEffect(() => {
+    const checkScroll = (element) => {
+      if (!element) return false;
+      const isScrollable = element.scrollHeight > element.clientHeight;
+      const isAtBottom = element.scrollHeight - element.scrollTop <= element.clientHeight + 5;
+      return isScrollable && !isAtBottom;
+    };
+
+    const updateScrollIndicator = () => {
+      const currentCard = isFlipped ? cardBackRef.current : cardFrontRef.current;
+      setShowScrollIndicator(checkScroll(currentCard));
+    };
+
+    updateScrollIndicator();
+
+    const currentCard = isFlipped ? cardBackRef.current : cardFrontRef.current;
+    if (currentCard) {
+      currentCard.addEventListener('scroll', updateScrollIndicator);
+      return () => currentCard.removeEventListener('scroll', updateScrollIndicator);
+    }
+  }, [isFlipped, cardData]);
+
   return (
     <div className={`card ${isFlipped ? 'flipped' : ''}`} onClick={handleFlip}>
       {/* Front of Card */}
-      <div className="card-front">
+      <div className="card-front" ref={cardFrontRef}>
         <div className="card-header">
           <span className={`category-badge ${cardData.deck}-deck`}>{cardData.category}</span>
           <div className="metadata-icons">
@@ -85,7 +111,7 @@ function Card({ cardData }) {
       </div>
 
       {/* Back of Card */}
-      <div className="card-back">
+      <div className="card-back" ref={cardBackRef}>
         <h3 className="card-title">{cardData.title}</h3>
 
         <div className="framework-section">
@@ -132,6 +158,13 @@ function Card({ cardData }) {
 
         <div className="flip-hint">Click or press SPACE to see front →</div>
       </div>
+
+      {/* Scroll Indicator */}
+      {showScrollIndicator && (
+        <div className="scroll-indicator">
+          <span className="scroll-arrow">↓</span>
+        </div>
+      )}
     </div>
   );
 }
