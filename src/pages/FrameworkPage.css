@@ -327,7 +327,7 @@
 }
 
 .btn-secondary {
-  background: white;
+  background: var(--bg-primary);
   color: #7c3aed;
   border: 2px solid #7c3aed;
   padding: 1rem 2rem;

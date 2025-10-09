@@ -46,7 +46,7 @@
 }
 
 .option-card {
-  background: white;
+  background: var(--bg-primary);
   padding: 3rem 2rem;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -130,7 +130,7 @@
 .problem-btn {
   display: block;
   width: 100%;
-  background: white;
+  background: var(--bg-primary);
   border: 2px solid #e5e7eb;
   padding: 1rem 1.5rem;
   margin-bottom: 0.75rem;
@@ -158,7 +158,7 @@
 .problem-btn-detailed {
   display: block;
   width: 100%;
-  background: white;
+  background: var(--bg-primary);
   border: 2px solid #e5e7eb;
   padding: 1.5rem 2rem;
   border-radius: 12px;

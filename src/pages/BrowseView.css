@@ -12,13 +12,13 @@
 
 .browse-header h2 {
   font-size: 2.25rem;
-  color: #111827;
+  color: var(--text-primary);
   margin-top: 1rem;
 }
 
 .browse-subtitle {
   font-size: 1.1rem;
-  color: #6b7280;
+  color: var(--text-tertiary);
   margin-top: 0.5rem;
 }
 
@@ -28,7 +28,7 @@
   top: 0;
   background: none;
   border: none;
-  color: #6b7280;
+  color: var(--text-tertiary);
   font-size: 1rem;
   cursor: pointer;
   padding: 0.5rem 1rem;
@@ -36,12 +36,12 @@
 }
 
 .btn-back:hover {
-  color: #111827;
+  color: var(--text-primary);
 }
 
 /* Filters */
 .browse-filters {
-  background: white;
+  background: var(--bg-primary);
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -60,7 +60,7 @@
   display: block;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #111827;
+  color: var(--text-primary);
   margin-bottom: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -80,12 +80,12 @@
   font-size: 0.95rem;
   cursor: pointer;
   transition: all 0.2s;
-  color: #6b7280;
+  color: var(--text-tertiary);
 }
 
 .filter-btn:hover {
   background: #e5e7eb;
-  color: #111827;
+  color: var(--text-primary);
 }
 
 .filter-btn.active {
@@ -116,7 +116,7 @@
 /* Results */
 .results-count {
   text-align: center;
-  color: #6b7280;
+  color: var(--text-tertiary);
   margin-bottom: 2rem;
   font-size: 0.95rem;
 }
@@ -129,7 +129,7 @@
 
 /* Card Preview */
 .card-preview {
-  background: white;
+  background: var(--bg-primary);
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -165,7 +165,7 @@
 .card-id {
   font-size: 0.75rem;
   font-weight: 700;
-  color: #6b7280;
+  color: var(--text-tertiary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -200,27 +200,27 @@
 
 .card-preview h3 {
   font-size: 1.1rem;
-  color: #111827;
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
 
 .card-category {
   font-size: 0.85rem;
-  color: #6b7280;
+  color: var(--text-tertiary);
   margin-bottom: 0.75rem;
   font-weight: 600;
 }
 
 .card-description {
   font-size: 0.9rem;
-  color: #6b7280;
+  color: var(--text-tertiary);
   line-height: 1.5;
 }
 
 .no-results {
   text-align: center;
   padding: 4rem 2rem;
-  color: #6b7280;
+  color: var(--text-tertiary);
 }
 
 /* Card Modal */
@@ -239,7 +239,7 @@
 }
 
 .card-modal-content {
-  background: white;
+  background: var(--bg-primary);
   border-radius: 16px;
   padding: 2.5rem;
   max-width: 700px;
@@ -255,7 +255,7 @@
   background: none;
   border: none;
   font-size: 2rem;
-  color: #6b7280;
+  color: var(--text-tertiary);
   cursor: pointer;
   line-height: 1;
   padding: 0.5rem;
@@ -263,7 +263,7 @@
 }
 
 .modal-close:hover {
-  color: #111827;
+  color: var(--text-primary);
 }
 
 .modal-header {
@@ -281,13 +281,13 @@
 
 .card-modal-content h2 {
   font-size: 1.75rem;
-  color: #111827;
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
 
 .modal-category {
   font-size: 0.95rem;
-  color: #6b7280;
+  color: var(--text-tertiary);
   font-weight: 600;
   margin-bottom: 1rem;
 }
@@ -305,7 +305,7 @@
 
 .modal-section h4 {
   font-size: 1.1rem;
-  color: #111827;
+  color: var(--text-primary);
   margin-bottom: 0.75rem;
   font-weight: 600;
 }
