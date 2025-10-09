@@ -75,24 +75,24 @@ function LandingPage() {
             Before you build AI features, validate you're solving a problem users actually have.
           </p>
           <div className="validation-grid">
-            <div className="validation-card" onClick={() => navigate('/framework/STRAT-026')}>
+            <div className="validation-card">
               <div className="validation-icon">🎯</div>
               <h3>Write a Clear Problem Statement</h3>
               <p>Frame the user problem you're solving before jumping to AI solutions</p>
             </div>
-            <div className="validation-card" onClick={() => navigate('/framework/STRAT-027')}>
+            <div className="validation-card">
               <div className="validation-icon">🎤</div>
               <h3>Conduct Customer Discovery</h3>
               <p>Run interviews that uncover real problems, not what users think you want to hear</p>
             </div>
-            <div className="validation-card" onClick={() => navigate('/framework/STRAT-028')}>
+            <div className="validation-card">
               <div className="validation-icon">💼</div>
               <h3>Jobs to Be Done Framework</h3>
               <p>Understand what users are really hiring your product to do</p>
             </div>
           </div>
           <div className="validation-cta">
-            <button className="btn-secondary" onClick={() => navigate('/paths/problem-discovery')}>
+            <button className="btn-secondary" onClick={() => navigate('/path/problem-discovery')}>
               Explore Problem Discovery Path →
             </button>
           </div>
