@@ -31,25 +31,19 @@ function Navigation() {
               className={`nav-link ${isActive('/browse') ? 'active' : ''}`}
               onClick={() => navigate('/browse')}
             >
-              Browse Frameworks
+              Browse
             </button>
             <button
               className={`nav-link ${isActive('/paths') ? 'active' : ''}`}
               onClick={() => navigate('/paths')}
             >
-              Browse Paths
-            </button>
-            <button
-              className={`nav-link ${isActive('/lifecycle') ? 'active' : ''}`}
-              onClick={() => navigate('/lifecycle')}
-            >
-              Lifecycle
+              Paths
             </button>
             <button
               className={`nav-link ${isActive('/resources') ? 'active' : ''}`}
               onClick={() => navigate('/resources')}
             >
-              Templates
+              Resources
             </button>
             <button
               className={`nav-link ${isActive('/about') ? 'active' : ''}`}
