@@ -146,7 +146,7 @@ function PathView() {
       <div className="container">
         <div className="path-header">
           <h2>{pathInfo.title}</h2>
-          <p className="path-subtitle">{cards.length} tactics to guide you</p>
+          <p className="path-subtitle">{cards.length} frameworks in sequence for this situation. Navigate with arrows (← →) or swipe on mobile. Your progress is saved automatically.</p>
           <div className="path-header-actions">
             <ShareButton
               onShare={() => sharePath(pathId, pathInfo.title)}

@@ -42,7 +42,7 @@ function PathsDirectory() {
       <div className="container">
         <div className="paths-header">
           <h2>Journey Paths</h2>
-          <p className="paths-subtitle">20 curated paths to guide you through common AI PM scenarios</p>
+          <p className="paths-subtitle">20 curated sequences of frameworks for specific situations. Each path takes ~20 minutes and walks you through battle-tested tactics in the right order.</p>
         </div>
 
         {/* Category Filter */}

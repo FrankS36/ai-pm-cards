@@ -40,6 +40,26 @@ function LandingPage() {
           </div>
         </header>
 
+        <section className="differentiator-section">
+          <div className="differentiator-grid">
+            <div className="differentiator-card">
+              <div className="differentiator-icon">⚡</div>
+              <h3>Not Months. Minutes.</h3>
+              <p>Find the framework you need in 30 seconds. Apply it in 2 minutes. No courses, no theory—just the answer you need right now.</p>
+            </div>
+            <div className="differentiator-card">
+              <div className="differentiator-icon">🎯</div>
+              <h3>Not Theory. Battle Scars.</h3>
+              <p>These frameworks drove 8% → 47% adoption at Dell Technologies. From shipping to 100K+ users, not from textbooks.</p>
+            </div>
+            <div className="differentiator-card">
+              <div className="differentiator-icon">📖</div>
+              <h3>Not a Course. A Field Guide.</h3>
+              <p>Built for PMs in the trenches. Keep it on your desk. Return to it every time you hit a wall. No sequential lessons required.</p>
+            </div>
+          </div>
+        </section>
+
         <section className="problem-section">
           <h2>Sound Familiar?</h2>
           <div className="pain-points">
@@ -99,9 +119,9 @@ function LandingPage() {
         </section>
 
         <section className="solution-section">
-          <h2>Frameworks That Actually Ship</h2>
+          <h2>Battle-Tested in Production, Not Theory</h2>
           <p className="section-intro">
-            Real outcomes from applying these frameworks at Dell Technologies. Same models, better product thinking.
+            Real outcomes from shipping AI features at Dell Technologies to 100K+ users. Same models, better product thinking.
           </p>
           <div className="solution-grid">
             <div className="solution-example">
@@ -167,7 +187,7 @@ function LandingPage() {
         <section className="example-preview">
           <h2>See a Framework in Action</h2>
           <p className="section-intro">
-            Here's what you get: the problem, the framework, and a real example from production.
+            No theory. No fluff. Every framework shows the problem, the tactical solution, and a real example from production.
           </p>
           <div className="preview-card" onClick={() => navigate('/framework/EXEC-025')}>
             <div className="preview-header">
@@ -205,7 +225,7 @@ function LandingPage() {
               <h3>Frank Sellhausen</h3>
               <p className="creator-subtitle">AI/ML Product Manager at Dell Technologies</p>
               <p className="creator-quote">
-                "I've shipped AI features that users hated and ones they loved. The difference wasn't the algorithm—it was the product thinking. These frameworks capture what actually works when shipping AI products to real users."
+                "I've shipped AI features that flopped and ones that scaled. These aren't theories from blog posts—they're battle-tested patterns from shipping AI products to 100K+ users. The stuff that actually worked in production."
               </p>
               <div className="creator-credentials">
                 <span className="credential">📈 Increased AI adoption by 40%+ avg</span>

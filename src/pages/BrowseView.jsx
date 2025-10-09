@@ -55,7 +55,7 @@ function BrowseView() {
       <div className="container">
         <div className="browse-header">
           <h2>Browse All Frameworks</h2>
-          <p className="browse-subtitle">{cardCounts.all} frameworks across 3 decks</p>
+          <p className="browse-subtitle">All {cardCounts.all} frameworks at your fingertips. Filter by deck or search for what you need. Each framework is 2 minutes to read, battle-tested in production.</p>
         </div>
 
         {/* Filters */}

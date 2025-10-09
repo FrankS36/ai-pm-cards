@@ -40,6 +40,12 @@ function Navigation() {
               Browse Paths
             </button>
             <button
+              className={`nav-link ${isActive('/lifecycle') ? 'active' : ''}`}
+              onClick={() => navigate('/lifecycle')}
+            >
+              Lifecycle
+            </button>
+            <button
               className={`nav-link ${isActive('/resources') ? 'active' : ''}`}
               onClick={() => navigate('/resources')}
             >

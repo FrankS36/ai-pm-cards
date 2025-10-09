@@ -73,8 +73,8 @@ function ResourcesPage() {
         <div className="resources-header">
           <h1>Free AI PM Templates</h1>
           <p className="resources-intro">
-            Practical templates to apply the frameworks from AI PM Cards.
-            Just enter your email to download all three templates instantly.
+            Battle-tested templates to apply these frameworks to your AI products.
+            Enter your email to download all three templates instantly.
           </p>
         </div>
 

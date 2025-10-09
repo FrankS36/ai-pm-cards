@@ -128,6 +128,55 @@
   flex-wrap: wrap;
 }
 
+/* ===== DIFFERENTIATOR SECTION ===== */
+.differentiator-section {
+  margin-top: 4rem;
+  padding: 0 2rem;
+}
+
+.differentiator-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.differentiator-card {
+  background: var(--bg-primary);
+  border: 2px solid var(--border-light);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.differentiator-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-blue);
+}
+
+.differentiator-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.differentiator-card h3 {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.differentiator-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
 /* ===== PROBLEM SECTION ===== */
 .problem-section {
   margin-top: 4rem;

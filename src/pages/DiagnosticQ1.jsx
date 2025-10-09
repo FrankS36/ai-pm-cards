@@ -11,8 +11,8 @@ function DiagnosticQ1() {
           <button className="btn-back" onClick={() => navigate('/')}>
             ← Back
           </button>
-          <h2>What's your current situation?</h2>
-          <p className="diagnostic-subtitle">Choose what best describes where you are</p>
+          <h2>Find Your Framework in 30 Seconds</h2>
+          <p className="diagnostic-subtitle">Tell us where you're stuck and we'll match you to the right tactical frameworks. No theory, just what worked in production.</p>
         </div>
 
         <div className="option-cards">
