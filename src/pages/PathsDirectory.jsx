@@ -5,7 +5,7 @@ import './PathsDirectory.css';
 
 function PathsDirectory() {
   const navigate = useNavigate();
-  const [viewMode, setViewMode] = useState('topic'); // 'topic' or 'lifecycle'
+  const [viewMode, setViewMode] = useState('lifecycle'); // 'topic' or 'lifecycle'
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [expandedStage, setExpandedStage] = useState('discovery');
 
