@@ -8,12 +8,12 @@
       "difficulty": "beginner",
       "targetAudience": "PMs exploring if AI is the right solution",
       "cardIds": [
-        "STRAT-008",
-        "STRAT-001",
-        "STRAT-012",
-        "STRAT-015",
-        "STRAT-007",
-        "STRAT-011"
+        "STRAT-026",
+        "STRAT-027",
+        "STRAT-028",
+        "STRAT-029",
+        "STRAT-030",
+        "STRAT-031"
       ]
     },
     "concept-to-strategy": {
@@ -1217,6 +1217,198 @@
         "Related: Build vs. Buy vs. API Decision"
       ],
       "icon": "🏗️"
+    },
+    "STRAT-026": {
+      "id": "STRAT-026",
+      "deck": "strategy",
+      "category": "Problem Discovery",
+      "difficulty": "beginner",
+      "companyContext": "both",
+      "title": "Write a Clear Problem Statement",
+      "description": "Frame the user problem you're solving before jumping to AI solutions.",
+      "whenToUse": [
+        "At the very start of any AI initiative—before technical feasibility",
+        "When stakeholders ask 'Can we use AI for X?'",
+        "When your team is solution-focused instead of problem-focused"
+      ],
+      "overview": "Most AI projects fail because they solve the wrong problem. A clear problem statement forces you to articulate who has the problem, what the problem is, and why it matters—before you design any solution.",
+      "steps": [
+        "Identify the user: Who specifically experiences this problem? Be specific (e.g., 'sales reps at mid-market SaaS companies' not 'users')",
+        "Describe the problem: What job are they trying to do? What's blocking them? What workarounds exist today?",
+        "Quantify the pain: How often does this happen? How much time/money does it cost? How many users affected?",
+        "Articulate why now: Why hasn't this been solved yet? What's changed that makes solving it possible or urgent now?",
+        "Write the one-sentence problem statement: '[User] struggles to [job/goal] because [obstacle], which causes [negative outcome]'"
+      ],
+      "tips": [
+        "If you can't write the problem statement without mentioning AI, you're solution-shopping—start over",
+        "Test your problem statement with 3-5 potential users. If they don't immediately relate, it's too vague"
+      ],
+      "relatedCards": [
+        "Next: Conduct Customer Discovery Interviews",
+        "Also: Validate Problem Severity",
+        "Related: Define AI Value Proposition"
+      ],
+      "icon": "🎯"
+    },
+    "STRAT-027": {
+      "id": "STRAT-027",
+      "deck": "strategy",
+      "category": "Problem Discovery",
+      "difficulty": "beginner",
+      "companyContext": "both",
+      "title": "Conduct Customer Discovery Interviews",
+      "description": "Run interviews that uncover real problems, not what users think you want to hear.",
+      "whenToUse": [
+        "Before building any AI feature—validate the problem exists",
+        "When usage data doesn't explain why users behave a certain way",
+        "When stakeholders disagree about what problem to solve"
+      ],
+      "overview": "Users are terrible at telling you what features to build but excellent at describing their problems. Customer discovery interviews help you understand the problem deeply before you design solutions.",
+      "steps": [
+        "Recruit the right users: Talk to people who have the problem NOW, not people who might someday. Aim for 8-12 interviews",
+        "Ask about past behavior, not future intent: 'Tell me about the last time you tried to do X' beats 'Would you use a feature that does X?'",
+        "Dig into workarounds: 'How do you handle this today?' reveals pain severity. Complex workarounds = high pain worth solving",
+        "Follow the 5 Whys: When they mention a problem, ask 'Why is that a problem?' 5 times to get to root cause",
+        "Listen for emotion and specifics: 'That's so frustrating' or detailed stories signal real pain. Vague answers signal low priority"
+      ],
+      "tips": [
+        "Never pitch your solution during discovery—you're there to learn, not to sell",
+        "Record and transcribe interviews. Patterns across 5+ interviews are more reliable than your memory"
+      ],
+      "relatedCards": [
+        "Previous: Write a Clear Problem Statement",
+        "Next: Apply Jobs to Be Done Framework",
+        "Related: Validate Problem Severity"
+      ],
+      "icon": "🎤"
+    },
+    "STRAT-028": {
+      "id": "STRAT-028",
+      "deck": "strategy",
+      "category": "Problem Discovery",
+      "difficulty": "intermediate",
+      "companyContext": "both",
+      "title": "Apply Jobs to Be Done Framework",
+      "description": "Understand what users are really hiring your product to do.",
+      "whenToUse": [
+        "When users request features but you suspect they have a deeper need",
+        "When trying to understand why users choose your product over alternatives",
+        "Before designing AI features—understand the job first"
+      ],
+      "overview": "Users don't want your product—they want progress in their life. Jobs to Be Done (JTBD) helps you understand the job users are hiring your product for, which reveals better solutions than feature requests.",
+      "steps": [
+        "Identify the job: What progress is the user trying to make? What outcome do they want? (Not tasks, but end states)",
+        "Map the job timeline: When do they realize they have this job? What triggers them to look for a solution? What happens after?",
+        "Identify forces at play:\n- Push forces (problems with current solution)\n- Pull forces (attraction to new solution)\n- Anxiety (fear new solution won't work)\n- Habits (comfort with current solution)",
+        "Find underserved needs: Which parts of the job are poorly served today? Where do users overcompensate or accept trade-offs?",
+        "Frame AI solutions around the job: How can AI help users make progress faster, cheaper, or with less risk?"
+      ],
+      "tips": [
+        "The job is rarely what users say it is—'I need a faster horse' means 'I need to get somewhere faster'",
+        "Look for jobs with high anxiety or strong habits—these are hard to solve but create switching costs once you do"
+      ],
+      "relatedCards": [
+        "Previous: Conduct Customer Discovery Interviews",
+        "Next: Validate Problem Severity",
+        "Related: Define AI Value Proposition"
+      ],
+      "icon": "💼"
+    },
+    "STRAT-029": {
+      "id": "STRAT-029",
+      "deck": "strategy",
+      "category": "Problem Discovery",
+      "difficulty": "intermediate",
+      "companyContext": "both",
+      "title": "Validate Problem Severity",
+      "description": "Confirm the problem is painful enough that users will actually use your solution.",
+      "whenToUse": [
+        "After identifying a potential problem but before building anything",
+        "When stakeholders claim 'everyone has this problem' but you have no evidence",
+        "Before prioritizing which of several problems to solve first"
+      ],
+      "overview": "Not all problems are worth solving. This framework helps you assess whether a problem is severe enough that users will change behavior to adopt your AI solution.",
+      "steps": [
+        "Measure frequency: How often do users encounter this problem? Daily = high severity. Monthly = low. One-off = don't solve",
+        "Assess impact: What's the cost when this problem occurs? Time lost? Money lost? Emotional toll? Quantify it",
+        "Check current solutions: What do users do today? If workarounds are cheap/easy, your solution needs to be 10× better to win",
+        "Test willingness to change: Ask 'If I could solve this perfectly, would you switch from your current solution?' Hesitation = low severity",
+        "Validate with multiple signals:\n- Users complain about it unprompted\n- Users pay for bad workarounds\n- Users abandon tasks because it's too hard"
+      ],
+      "tips": [
+        "If users say it's a problem but won't schedule a follow-up call, it's not painful enough",
+        "Problems you discover in interviews > problems users report in surveys. Actions > words"
+      ],
+      "relatedCards": [
+        "Previous: Apply Jobs to Be Done Framework",
+        "Next: Size the Opportunity",
+        "Related: Write a Clear Problem Statement"
+      ],
+      "icon": "🔥"
+    },
+    "STRAT-030": {
+      "id": "STRAT-030",
+      "deck": "strategy",
+      "category": "Problem Discovery",
+      "difficulty": "intermediate",
+      "companyContext": "both",
+      "title": "Size the Opportunity",
+      "description": "Estimate if solving this problem is big enough to justify AI investment.",
+      "whenToUse": [
+        "After validating problem severity, before building business case",
+        "When choosing between multiple validated problems to solve",
+        "When executives ask 'How big is this opportunity?'"
+      ],
+      "overview": "A real problem isn't enough—you need a big enough market to justify the cost of building AI. This framework helps you size total addressable market (TAM) and revenue potential.",
+      "steps": [
+        "Count affected users: How many people/companies have this problem? Use customer data, market research, or proxy metrics",
+        "Estimate willingness to pay: Survey 20+ users. Ask 'What would you pay to solve this?' Use median, not mean (outliers skew)",
+        "Calculate TAM: Affected users × willingness to pay × purchase frequency. This is your ceiling",
+        "Estimate SAM (serviceable market): Of TAM, how many can you realistically reach with your sales/distribution? Usually 10-30% of TAM",
+        "Project SOM (share of market): What % of SAM can you capture in 3 years? Realistic first-mover = 5-15%, fast follower = 2-8%"
+      ],
+      "tips": [
+        "TAM > $100M justifies significant AI investment. TAM < $10M rarely justifies custom ML—use APIs instead",
+        "Don't confuse market size with your opportunity. $1B TAM × 1% share = $10M business, not $1B business"
+      ],
+      "relatedCards": [
+        "Previous: Validate Problem Severity",
+        "Next: Get Your AI Budget Approved (Path)",
+        "Related: Define AI Value Proposition"
+      ],
+      "icon": "📊"
+    },
+    "STRAT-031": {
+      "id": "STRAT-031",
+      "deck": "strategy",
+      "category": "Problem Discovery",
+      "difficulty": "intermediate",
+      "companyContext": "both",
+      "title": "Run a Design Sprint",
+      "description": "Quickly prototype and validate AI solutions with users in 5 days.",
+      "whenToUse": [
+        "After validating the problem, before committing to full development",
+        "When stakeholders want proof the solution will work",
+        "When choosing between multiple AI approaches"
+      ],
+      "overview": "Design sprints compress months of debate into 5 days: define the problem, sketch solutions, prototype, and test with real users. Perfect for validating AI concepts before expensive development.",
+      "steps": [
+        "Monday - Map the problem: Define the long-term goal, map the user journey, pick a target moment to focus the sprint",
+        "Tuesday - Sketch solutions: Each person sketches how AI could solve the problem. Vote on strongest ideas. No coding yet",
+        "Wednesday - Decide: Critique sketches, vote on one solution to prototype. Storyboard the user experience step-by-step",
+        "Thursday - Prototype: Build a realistic fake (Wizard of Oz). Use mockups + humans behind the scenes to simulate AI. No real ML",
+        "Friday - Test with 5 users: Watch them use the prototype. Look for confusion, delight, and whether they'd use it. Decide: build it or pivot"
+      ],
+      "tips": [
+        "Don't build real AI during the sprint—use fake data or humans pretending to be AI. You're testing UX, not models",
+        "5 user tests reveal 85% of usability issues. More tests = diminishing returns"
+      ],
+      "relatedCards": [
+        "Previous: Size the Opportunity",
+        "Next: Map Model Capabilities",
+        "Related: Design AI UX Users Actually Understand (Path)"
+      ],
+      "icon": "⚡"
     },
     "RISK-001": {
       "id": "RISK-001",

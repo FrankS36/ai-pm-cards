@@ -76,20 +76,20 @@ function LandingPage() {
             Before you build AI features, validate you're solving a problem users actually have.
           </p>
           <div className="validation-grid">
-            <div className="validation-card" onClick={() => navigate('/browse?card=STRAT-008')}>
-              <div className="validation-icon">💎</div>
-              <h3>Define AI Value Proposition</h3>
-              <p>Articulate the specific value AI delivers beyond what non-AI solutions can provide</p>
+            <div className="validation-card" onClick={() => navigate('/browse?card=STRAT-026')}>
+              <div className="validation-icon">🎯</div>
+              <h3>Write a Clear Problem Statement</h3>
+              <p>Frame the user problem you're solving before jumping to AI solutions</p>
             </div>
-            <div className="validation-card" onClick={() => navigate('/browse?card=STRAT-001')}>
-              <div className="validation-icon">🗺️</div>
-              <h3>Map Model Capabilities</h3>
-              <p>Evaluate which AI capabilities you need and assess technical feasibility</p>
+            <div className="validation-card" onClick={() => navigate('/browse?card=STRAT-027')}>
+              <div className="validation-icon">🎤</div>
+              <h3>Conduct Customer Discovery</h3>
+              <p>Run interviews that uncover real problems, not what users think you want to hear</p>
             </div>
-            <div className="validation-card" onClick={() => navigate('/browse?card=STRAT-012')}>
-              <div className="validation-icon">🚀</div>
-              <h3>Run a Feasibility Spike</h3>
-              <p>Test if your AI idea is technically possible with a quick prototype</p>
+            <div className="validation-card" onClick={() => navigate('/browse?card=STRAT-028')}>
+              <div className="validation-icon">💼</div>
+              <h3>Jobs to Be Done Framework</h3>
+              <p>Understand what users are really hiring your product to do</p>
             </div>
           </div>
           <div className="validation-cta">
