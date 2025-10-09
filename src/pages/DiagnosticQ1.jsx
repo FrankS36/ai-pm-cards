@@ -16,10 +16,10 @@ function DiagnosticQ1() {
         </div>
 
         <div className="option-cards">
-          <div className="option-card" onClick={() => navigate('/path/ai-pm-fundamentals')}>
-            <div className="option-icon">🌱</div>
-            <h3>New to AI Product Management</h3>
-            <p>I'm learning the fundamentals or just getting started</p>
+          <div className="option-card option-card-featured" onClick={() => navigate('/path/problem-discovery')}>
+            <div className="option-icon">🎯</div>
+            <h3>Is AI Even the Right Solution?</h3>
+            <p>Validate you're solving a real problem before building anything</p>
           </div>
 
           <div className="option-card" onClick={() => navigate('/start/planning')}>
@@ -38,6 +38,12 @@ function DiagnosticQ1() {
             <div className="option-icon">🚨</div>
             <h3>Solving a specific problem</h3>
             <p>Performance issues, risks, trust, compliance, or fixing what's broken</p>
+          </div>
+
+          <div className="option-card" onClick={() => navigate('/path/ai-pm-fundamentals')}>
+            <div className="option-icon">🌱</div>
+            <h3>New to AI Product Management</h3>
+            <p>I'm learning the fundamentals or just getting started</p>
           </div>
         </div>
 

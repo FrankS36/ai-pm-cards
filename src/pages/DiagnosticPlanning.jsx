@@ -16,9 +16,9 @@ function DiagnosticPlanning() {
         </div>
 
         <div className="problem-list">
-          <button className="problem-btn-detailed" onClick={() => navigate('/path/concept-to-strategy')}>
-            <h3>"I need to figure out if AI is even the right solution"</h3>
-            <p>Exploring whether AI fits your product or user need</p>
+          <button className="problem-btn-detailed" onClick={() => navigate('/path/problem-discovery')}>
+            <h3>"I need to validate I'm solving the right problem"</h3>
+            <p>Problem statements, customer discovery, JTBD, validation before building</p>
           </button>
 
           <button className="problem-btn-detailed" onClick={() => navigate('/path/first-business-case')}>
