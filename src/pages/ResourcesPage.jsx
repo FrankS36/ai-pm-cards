@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './ResourcesPage.css';
 
 function ResourcesPage() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -121,12 +123,12 @@ function ResourcesPage() {
                   </div>
                   <p className="template-description">{template.description}</p>
                   <div className="template-actions">
-                    <a
-                      href={`/browse?card=${template.relatedCard}`}
+                    <button
+                      onClick={() => navigate(`/framework/${template.relatedCard}`)}
                       className="view-card-link"
                     >
                       View Related Framework →
-                    </a>
+                    </button>
                   </div>
                 </div>
               ))}

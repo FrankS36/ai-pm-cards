@@ -13,12 +13,12 @@ function Card({ cardData }) {
     setIsFlipped(!isFlipped);
   };
 
-  // Try to find and navigate to a related card
+  // Navigate to related framework page
   const handleRelatedCardClick = (e, relatedText) => {
     e.stopPropagation(); // Prevent card flip
 
     // Extract card title from text like "Next: Run a Model Feasibility Spike"
-    const titleMatch = relatedText.match(/(?:Next|Previous|Also):\s*(.+)/);
+    const titleMatch = relatedText.match(/(?:Next|Previous|Also|Related):\s*(.+)/);
     const searchTitle = titleMatch ? titleMatch[1].trim() : relatedText;
 
     // Search for card by title
@@ -29,21 +29,9 @@ function Card({ cardData }) {
     );
 
     if (foundCard) {
-      // Find a path that contains this card
-      const paths = Object.values(cardDataJson.paths);
-      const pathWithCard = paths.find(path => path.cardIds.includes(foundCard.id));
-
-      if (pathWithCard) {
-        const cardIndex = pathWithCard.cardIds.indexOf(foundCard.id);
-        // Save the card index to localStorage so PathView loads it
-        localStorage.setItem(`path-progress-${pathWithCard.id}`, cardIndex.toString());
-        navigate(`/path/${pathWithCard.id}`);
-      } else {
-        // Card found but not in a path - open in browse view
-        navigate('/browse', { state: { cardId: foundCard.id } });
-      }
+      navigate(`/framework/${foundCard.id}`);
     } else {
-      alert(`Could not find card: "${searchTitle}"\n\nTry browsing all cards instead.`);
+      alert(`Could not find framework: "${searchTitle}"\n\nTry browsing all frameworks instead.`);
     }
   };
 

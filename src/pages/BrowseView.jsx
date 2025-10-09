@@ -9,43 +9,17 @@ function BrowseView() {
   const [selectedDeck, setSelectedDeck] = useState('all');
   const [selectedDifficulty, setSelectedDifficulty] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCard, setSelectedCard] = useState(null);
-
   const allCards = Object.values(cardDataJson.cards);
 
-  // Open card from navigation state (e.g., from related cards) or URL query parameter (e.g., from share link)
+  // Redirect to framework page if card ID is in URL
   useEffect(() => {
-    // Check for card ID in location state first
-    if (location.state?.cardId) {
-      const card = cardDataJson.cards[location.state.cardId];
-      if (card) {
-        setSelectedCard(card);
-      }
-      return;
-    }
-
-    // Check for card ID in URL query parameter
+    // Check for card ID in URL query parameter and redirect to framework page
     const params = new URLSearchParams(location.search);
     const cardId = params.get('card');
-    if (cardId) {
-      const card = cardDataJson.cards[cardId];
-      if (card) {
-        setSelectedCard(card);
-      }
+    if (cardId && cardDataJson.cards[cardId]) {
+      navigate(`/framework/${cardId}`);
     }
-  }, [location.state, location.search]);
-
-  // Keyboard shortcut to close modal with ESC
-  useEffect(() => {
-    const handleKeyPress = (e) => {
-      if (e.key === 'Escape' && selectedCard) {
-        setSelectedCard(null);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyPress);
-    return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [selectedCard]);
+  }, [location.search, navigate]);
 
   const filteredCards = useMemo(() => {
     return allCards.filter(card => {
@@ -169,7 +143,7 @@ function BrowseView() {
             <div
               key={card.id}
               className={`card-preview ${card.deck}`}
-              onClick={() => setSelectedCard(card)}
+              onClick={() => navigate(`/framework/${card.id}`)}
             >
               <div className="card-preview-header">
                 <span className="card-id">{card.id}</span>
@@ -188,61 +162,6 @@ function BrowseView() {
         {filteredCards.length === 0 && (
           <div className="no-results">
             <p>No cards match your filters. Try adjusting your search.</p>
-          </div>
-        )}
-
-        {/* Card Detail Modal */}
-        {selectedCard && (
-          <div className="card-modal" onClick={() => setSelectedCard(null)}>
-            <div className="card-modal-content" onClick={(e) => e.stopPropagation()}>
-              <button className="modal-close" onClick={() => setSelectedCard(null)}>×</button>
-
-              <div className="modal-header">
-                <span className="card-id">{selectedCard.id}</span>
-                <span className={`card-difficulty ${selectedCard.difficulty}`}>
-                  {selectedCard.difficulty}
-                </span>
-              </div>
-
-              <div className="modal-icon">{selectedCard.icon}</div>
-              <h2>{selectedCard.title}</h2>
-              <p className="modal-category">{selectedCard.category}</p>
-              <p className="modal-description">{selectedCard.description}</p>
-
-              <div className="modal-section">
-                <h4>When to use</h4>
-                <ul>
-                  {selectedCard.whenToUse.map((item, i) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="modal-section">
-                <h4>Overview</h4>
-                <p>{selectedCard.overview}</p>
-              </div>
-
-              <div className="modal-section">
-                <h4>Steps</h4>
-                <ol>
-                  {selectedCard.steps.map((step, i) => (
-                    <li key={i}>{step}</li>
-                  ))}
-                </ol>
-              </div>
-
-              {selectedCard.tips && selectedCard.tips.length > 0 && (
-                <div className="modal-section">
-                  <h4>Tips</h4>
-                  <ul>
-                    {selectedCard.tips.map((tip, i) => (
-                      <li key={i}>{tip}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
           </div>
         )}
       </div>

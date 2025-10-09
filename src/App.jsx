@@ -9,6 +9,7 @@ import DiagnosticBuilding from './pages/DiagnosticBuilding';
 import PathView from './pages/PathView';
 import BrowseView from './pages/BrowseView';
 import PathsDirectory from './pages/PathsDirectory';
+import FrameworkPage from './pages/FrameworkPage';
 import AboutPage from './pages/AboutPage';
 import WorkWithMe from './pages/WorkWithMe';
 import ResourcesPage from './pages/ResourcesPage';
@@ -32,6 +33,7 @@ function App() {
           <Route path="/path/:pathId" element={<PathView />} />
           <Route path="/paths" element={<PathsDirectory />} />
           <Route path="/browse" element={<BrowseView />} />
+          <Route path="/framework/:cardId" element={<FrameworkPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/resources" element={<ResourcesPage />} />
           <Route path="/collaborate" element={<WorkWithMe />} />

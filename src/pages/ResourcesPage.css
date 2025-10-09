@@ -182,11 +182,15 @@
 }
 
 .view-card-link {
+  background: none;
+  border: none;
   color: var(--accent-blue);
-  text-decoration: none;
   font-size: 0.9375rem;
   font-weight: 500;
+  cursor: pointer;
   transition: opacity 0.2s;
+  padding: 0;
+  text-align: left;
 }
 
 .view-card-link:hover {

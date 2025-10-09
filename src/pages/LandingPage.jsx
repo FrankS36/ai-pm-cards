@@ -76,17 +76,17 @@ function LandingPage() {
             Before you build AI features, validate you're solving a problem users actually have.
           </p>
           <div className="validation-grid">
-            <div className="validation-card" onClick={() => navigate('/browse?card=STRAT-026')}>
+            <div className="validation-card" onClick={() => navigate('/framework/STRAT-026')}>
               <div className="validation-icon">🎯</div>
               <h3>Write a Clear Problem Statement</h3>
               <p>Frame the user problem you're solving before jumping to AI solutions</p>
             </div>
-            <div className="validation-card" onClick={() => navigate('/browse?card=STRAT-027')}>
+            <div className="validation-card" onClick={() => navigate('/framework/STRAT-027')}>
               <div className="validation-icon">🎤</div>
               <h3>Conduct Customer Discovery</h3>
               <p>Run interviews that uncover real problems, not what users think you want to hear</p>
             </div>
-            <div className="validation-card" onClick={() => navigate('/browse?card=STRAT-028')}>
+            <div className="validation-card" onClick={() => navigate('/framework/STRAT-028')}>
               <div className="validation-icon">💼</div>
               <h3>Jobs to Be Done Framework</h3>
               <p>Understand what users are really hiring your product to do</p>
@@ -170,10 +170,10 @@ function LandingPage() {
           <p className="section-intro">
             Here's what you get: the problem, the framework, and a real example from production.
           </p>
-          <div className="preview-card" onClick={() => navigate('/browse?card=design-progressive-disclosure')}>
+          <div className="preview-card" onClick={() => navigate('/framework/EXEC-025')}>
             <div className="preview-header">
               <span className="preview-deck">UX & Design</span>
-              <span className="preview-id">Card #42</span>
+              <span className="preview-id">EXEC-025</span>
             </div>
             <h3 className="preview-title">Design Progressive Disclosure</h3>
 
