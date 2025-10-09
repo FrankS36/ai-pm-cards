@@ -94,6 +94,11 @@
   border-color: #1e3a8a;
 }
 
+.category-buttons .filter-btn {
+  font-size: 0.875rem;
+  padding: 0.5rem 0.875rem;
+}
+
 .search-input {
   width: 100%;
   padding: 0.75rem 1rem;
