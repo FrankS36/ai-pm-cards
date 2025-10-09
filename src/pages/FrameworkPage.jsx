@@ -1,8 +1,10 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { Lightbulb } from 'lucide-react';
 import ShareButton from '../components/ShareButton';
 import { shareCard } from '../utils/share';
 import cardDataJson from '../data/cardData.json';
+import { getCardIcon } from '../utils/iconMapping';
 
 function FrameworkPage() {
   const { cardId } = useParams();
@@ -86,7 +88,12 @@ function FrameworkPage() {
             </span>
           </div>
 
-          <div className="text-[5rem] my-6">{framework.icon}</div>
+          <div className="flex justify-center my-6">
+            {(() => {
+              const Icon = getCardIcon(framework);
+              return <Icon className="w-20 h-20 text-gray-900 dark:text-white" strokeWidth={1.5} />;
+            })()}
+          </div>
 
           <h1 className="text-[2.5rem] font-extrabold text-gray-900 dark:text-gray-100 mb-4 leading-tight">
             {framework.title}
@@ -147,16 +154,18 @@ function FrameworkPage() {
         {/* Tips */}
         {framework.tips && framework.tips.length > 0 && (
           <section className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-5 pb-2 border-b-2 border-gray-200 dark:border-gray-700">
-              💡 Pro Tips
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-5 pb-2 border-b-2 border-gray-200 dark:border-gray-700 flex items-center gap-2">
+              <Lightbulb className="w-6 h-6" />
+              <span>Pro Tips</span>
             </h2>
             <ul className="list-none p-0">
               {framework.tips.map((tip, index) => (
                 <li
                   key={index}
-                  className="py-3 pl-8 relative text-gray-900 dark:text-gray-100 leading-relaxed bg-gray-50 dark:bg-gray-800 mb-3 rounded-lg p-4 pl-10 before:content-['💡'] before:absolute before:left-3 before:top-4"
+                  className="py-3 pl-8 relative text-gray-900 dark:text-gray-100 leading-relaxed bg-gray-50 dark:bg-gray-800 mb-3 rounded-lg p-4 flex gap-3"
                 >
-                  {tip}
+                  <Lightbulb className="w-5 h-5 flex-shrink-0 text-gray-600 dark:text-gray-400 mt-0.5" />
+                  <span>{tip}</span>
                 </li>
               ))}
             </ul>

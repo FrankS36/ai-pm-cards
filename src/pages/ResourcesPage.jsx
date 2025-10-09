@@ -3,180 +3,537 @@ import { useNavigate } from 'react-router-dom';
 
 function ResourcesPage() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [error, setError] = useState('');
+  const [activeTab, setActiveTab] = useState('checklist');
+  const [checklistProgress, setChecklistProgress] = useState({});
+  const [decisionTreeStep, setDecisionTreeStep] = useState(0);
+  const [decisionTreeResult, setDecisionTreeResult] = useState(null);
+  const [copiedTemplate, setCopiedTemplate] = useState(null);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setError('');
-
-    // TODO: Replace with actual ConvertKit/Beehiiv API integration
-    // For now, trigger downloads immediately
-    setTimeout(() => {
-      // Trigger download of all templates
-      templates.forEach((template) => {
-        const link = document.createElement('a');
-        link.href = template.downloadUrl;
-        link.download = template.downloadUrl.split('/').pop();
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      });
-
-      setIsSubmitted(true);
-      setIsSubmitting(false);
-
-      // TODO: When API is integrated:
-      // 1. Call email service API
-      // 2. Send email with download links
-      // 3. Show success message
-    }, 500);
-  };
-
-  const templates = [
+  // Launch Readiness Checklist Items
+  const checklistItems = [
     {
-      id: 'progressive-disclosure',
-      title: 'Progressive Disclosure Design Worksheet',
-      description: 'Step-by-step guide to designing AI features that don\'t overwhelm users. Includes wireframe templates and user testing questions.',
-      pages: '2 pages',
-      format: 'PDF',
-      relatedCard: 'design-progressive-disclosure',
-      downloadUrl: '/templates/progressive-disclosure-worksheet.pdf', // TODO: Add actual file
+      category: 'Pre-Launch Risk Assessment',
+      items: [
+        { id: 'risk-categories', text: 'Reviewed all 7 AI risk categories (model, data, UX, ops, legal, security, business)', framework: 'RISK-001' },
+        { id: 'bias-testing', text: 'Completed bias testing across key demographic groups', framework: 'RISK-007' },
+        { id: 'performance-thresholds', text: 'Defined minimum acceptable performance thresholds', framework: 'RISK-011' },
+        { id: 'failure-modes', text: 'Documented all failure modes and mitigation plans', framework: 'RISK-019' },
+      ]
     },
     {
-      id: 'risk-scorecard',
-      title: 'AI Risk Assessment Scorecard',
-      description: 'Evaluate and score risks before building. Covers bias, privacy, performance, and UX risks with mitigation planning.',
-      pages: '1 page',
-      format: 'PDF',
-      relatedCard: 'plan-model-risk-mitigation',
-      downloadUrl: '/templates/risk-assessment-scorecard.pdf', // TODO: Add actual file
+      category: 'Production Readiness',
+      items: [
+        { id: 'phased-rollout', text: 'Planned phased rollout strategy (1% → 5% → 25% → 100%)', framework: 'EXEC-039' },
+        { id: 'monitoring', text: 'Set up real-time monitoring and alerting', framework: 'EXEC-040' },
+        { id: 'rollback-plan', text: 'Created rollback plan for critical failures', framework: 'EXEC-041' },
+        { id: 'load-testing', text: 'Completed load testing at 3x expected traffic', framework: 'EXEC-044' },
+      ]
     },
     {
-      id: 'opportunity-canvas',
-      title: 'AI Opportunity Canvas',
-      description: 'One-page template for assessing whether an AI feature is worth building. Includes go/no-go decision framework.',
-      pages: '1 page',
-      format: 'PDF',
-      relatedCard: 'identify-ai-opportunities',
-      downloadUrl: '/templates/ai-opportunity-canvas.pdf', // TODO: Add actual file
+      category: 'User Experience',
+      items: [
+        { id: 'trust-design', text: 'Designed trust indicators and transparency features', framework: 'EXEC-024' },
+        { id: 'error-states', text: 'Designed all error states and fallback UX', framework: 'EXEC-017' },
+        { id: 'user-testing', text: 'Completed user testing with diverse user groups', framework: 'EXEC-006' },
+      ]
+    },
+    {
+      category: 'Stakeholder Alignment',
+      items: [
+        { id: 'exec-signoff', text: 'Obtained executive sign-off on launch plan and risk assessment', framework: 'STRAT-008' },
+        { id: 'legal-review', text: 'Completed legal and compliance review', framework: 'RISK-023' },
+        { id: 'support-trained', text: 'Trained support team on common issues and escalation paths', framework: 'EXEC-045' },
+        { id: 'comms-plan', text: 'Finalized launch communication plan', framework: 'STRAT-017' },
+      ]
     },
   ];
 
+  // Decision Tree Data
+  const decisionTree = [
+    {
+      question: "Can you clearly articulate the user problem you're solving?",
+      yes: 1,
+      no: 'stop',
+      noMessage: "Stop. Go back to user research. AI won't save a poorly understood problem.",
+      noFramework: 'STRAT-026'
+    },
+    {
+      question: "Can this problem be solved WITHOUT AI?",
+      yes: 'stop',
+      no: 2,
+      yesMessage: "Consider the simpler solution first. AI adds complexity, cost, and risk. Only use it when necessary.",
+      yesFramework: 'STRAT-027'
+    },
+    {
+      question: "Is your success metric clear and measurable?",
+      yes: 3,
+      no: 'stop',
+      noMessage: "Define your metric first. Without it, you can't validate if the AI is working.",
+      noFramework: 'STRAT-008'
+    },
+    {
+      question: "Do you have (or can you get) the training data you need?",
+      yes: 4,
+      no: 'stop',
+      noMessage: "Data is the foundation. Without quality training data, your model will fail. Explore data acquisition options first.",
+      noFramework: 'STRAT-015'
+    },
+    {
+      question: "Can you tolerate occasional errors? (Even 95% accuracy means 1 in 20 failures)",
+      yes: 5,
+      no: 'stop',
+      noMessage: "AI is probabilistic, not deterministic. If your use case requires 100% accuracy, AI isn't the right tool.",
+      noFramework: 'RISK-001'
+    },
+    {
+      question: "Do you have budget and resources for ongoing monitoring and maintenance?",
+      yes: 'build',
+      no: 'stop',
+      buildMessage: "✅ You're ready to build! Start with STRAT-001 (Map Model Capabilities) to scope your feature.",
+      buildFramework: 'STRAT-001',
+      noMessage: "AI products require continuous monitoring, retraining, and maintenance. Budget for 20-30% of development cost annually.",
+      noFramework: 'EXEC-040'
+    },
+  ];
+
+  // Communication Templates
+  const communicationTemplates = [
+    {
+      id: 'delay-launch',
+      title: 'Delaying Launch Due to Quality Issues',
+      subject: 'AI Feature Launch Timeline Update',
+      body: `Hi [Name],
+
+I wanted to update you on the [Feature Name] launch timeline.
+
+During our final testing phase, we discovered [specific issue: model accuracy below threshold / bias in edge cases / performance degradation under load]. Our current metrics show [specific numbers/data].
+
+Given our commitment to launching a high-quality experience, we're pushing the launch date from [original date] to [new date]. This gives us time to:
+
+1. [Specific fix needed]
+2. [Specific fix needed]
+3. Complete additional testing
+
+While this is disappointing, launching with known issues would risk [user impact / brand damage / regulatory issues].
+
+I'll send weekly updates on our progress. Happy to discuss in more detail.
+
+[Your Name]`,
+      frameworks: ['RISK-019', 'EXEC-041'],
+      context: 'When quality metrics don\'t meet launch thresholds'
+    },
+    {
+      id: 'explain-accuracy',
+      title: 'Explaining Why 85% Accuracy Is/Isn\'t Good Enough',
+      subject: '[Feature Name] Performance Expectations',
+      body: `Hi [Name],
+
+I wanted to provide context on the [Feature Name] model performance numbers we discussed.
+
+Our model is currently achieving [X]% accuracy. Here's what that means in practice:
+
+✅ Good news: This meets/exceeds industry benchmarks for [use case type]
+✅ For users, this means [positive outcome X out of Y times]
+
+⚠️ Important context:
+- [X]% accuracy means [Y] incorrect predictions per [Z] users
+- For our use case, this is [acceptable/concerning] because [specific reason]
+- We're mitigating errors by [specific UX strategy]
+
+Comparable products: [Competitor A] at [X]%, [Competitor B] at [Y]%
+
+For our launch criteria, we set the bar at [threshold]% because [reasoning based on user impact].
+
+Let me know if you'd like to discuss trade-offs between accuracy and [speed/cost/coverage].
+
+[Your Name]`,
+      frameworks: ['RISK-011', 'EXEC-004'],
+      context: 'When stakeholders question model performance'
+    },
+    {
+      id: 'budget-request',
+      title: 'Requesting Additional Budget for AI Infrastructure',
+      subject: 'Additional Budget Request: [Feature Name] Infrastructure',
+      body: `Hi [Name],
+
+I'm requesting an additional [$X] for [Feature Name] infrastructure to ensure we can scale reliably.
+
+What changed:
+Our initial estimates assumed [original assumption]. In production testing, we learned [new information about traffic/latency/costs].
+
+Breakdown:
+- API costs: [$X] (increased due to [reason])
+- Infrastructure: [$X] (needed for [specific capability])
+- Monitoring tools: [$X] (critical for catching issues before users)
+
+Without this budget:
+❌ Performance will degrade at [X] concurrent users
+❌ Response time will exceed [X]s (vs. target of [Y]s)
+❌ We risk [specific failure mode]
+
+Timeline: Need decision by [date] to avoid launch delays.
+
+I've explored cost optimization options ([specific strategies tried]) but these are the minimums for our target performance.
+
+Happy to walk through the numbers in detail.
+
+[Your Name]`,
+      frameworks: ['STRAT-007', 'STRAT-016'],
+      context: 'When actual AI costs exceed initial estimates'
+    },
+    {
+      id: 'bias-found',
+      title: 'Reporting Bias Discovered in Testing',
+      subject: 'URGENT: Bias Issue Found in [Feature Name]',
+      body: `Hi [Name],
+
+We discovered a bias issue in [Feature Name] that requires immediate attention.
+
+What we found:
+The model performs significantly worse for [demographic group / edge case]. Specifically:
+- [Group A]: [X]% accuracy
+- [Group B]: [Y]% accuracy (target: [Z]%)
+
+Impact:
+- Affects approximately [X]% of users
+- Could result in [specific unfair outcome]
+- Regulatory risk: [relevant regulations if applicable]
+
+Root cause:
+[Training data imbalance / feature engineering issue / other]
+
+Our plan:
+1. Pause rollout immediately ✅ (done)
+2. [Specific remediation action] (ETA: [date])
+3. Re-test across all groups (ETA: [date])
+4. Resume phased launch (ETA: [date])
+
+I take full responsibility for this escaping into testing. We're implementing [process change] to prevent this going forward.
+
+Let's discuss next steps [today/this week].
+
+[Your Name]`,
+      frameworks: ['RISK-007', 'RISK-042'],
+      context: 'When bias testing reveals fairness issues'
+    },
+    {
+      id: 'pivot-from-ai',
+      title: 'Recommending Non-AI Solution After Investigation',
+      subject: 'Alternative Approach for [Feature Name]',
+      body: `Hi [Name],
+
+After investigating the AI approach for [Feature Name], I'm recommending we pursue a [non-AI alternative] instead.
+
+Why the pivot:
+Through our feasibility work, we learned:
+- [Specific technical limitation / data constraint / accuracy ceiling]
+- Cost would be [$X] vs. [$Y] for non-AI approach
+- Time to acceptable quality: [X months] vs. [Y weeks]
+
+What we'd lose:
+- [AI capability that won't be possible]
+
+What we'd gain:
+✅ Launch [X weeks/months] sooner
+✅ Predictable performance (no probabilistic errors)
+✅ [X]% lower operating costs
+✅ Simpler to maintain and troubleshoot
+
+The non-AI approach will solve [X]% of the original problem, which covers the highest-value use cases.
+
+I know this is different from our original plan, but I believe it's the right call for users and the business. Happy to walk through the analysis in detail.
+
+[Your Name]`,
+      frameworks: ['STRAT-027', 'STRAT-028'],
+      context: 'When investigation reveals AI isn\'t the right solution'
+    },
+  ];
+
+  const toggleChecklistItem = (id) => {
+    setChecklistProgress(prev => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
+
+  const getTotalProgress = () => {
+    const totalItems = checklistItems.reduce((acc, cat) => acc + cat.items.length, 0);
+    const completedItems = Object.values(checklistProgress).filter(Boolean).length;
+    return Math.round((completedItems / totalItems) * 100);
+  };
+
+  const handleDecisionTreeAnswer = (answer) => {
+    const currentNode = decisionTree[decisionTreeStep];
+    const next = currentNode[answer];
+
+    if (typeof next === 'number') {
+      setDecisionTreeStep(next);
+      setDecisionTreeResult(null);
+    } else {
+      // Reached an endpoint ('stop' or 'build')
+      setDecisionTreeResult({
+        type: next,
+        message: next === 'build'
+          ? currentNode.buildMessage
+          : (answer === 'yes' ? currentNode.yesMessage : currentNode.noMessage),
+        framework: next === 'build'
+          ? currentNode.buildFramework
+          : (answer === 'yes' ? currentNode.yesFramework : currentNode.noFramework)
+      });
+    }
+  };
+
+  const resetDecisionTree = () => {
+    setDecisionTreeStep(0);
+    setDecisionTreeResult(null);
+  };
+
+  const copyTemplate = (templateId, text) => {
+    navigator.clipboard.writeText(text);
+    setCopiedTemplate(templateId);
+    setTimeout(() => setCopiedTemplate(null), 2000);
+  };
+
   return (
-    <div className="min-h-screen py-8 pb-16">
-      <div className="max-w-[900px] mx-auto px-6">
-        <div className="text-center mb-12 pt-8">
-          <h1 className="text-5xl max-md:text-[2rem] font-extrabold bg-gradient-to-br from-primary to-purple bg-clip-text text-transparent mb-4">Free AI PM Templates</h1>
-          <p className="text-xl max-md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-            Battle-tested templates to apply these frameworks to your AI products.
-            Enter your email to download all three templates instantly.
+    <div className="min-h-screen pb-12 bg-white dark:bg-black">
+      <div className="max-w-[1400px] mx-auto px-20 max-md:px-6">
+        {/* Header */}
+        <div className="text-center mt-4 mb-8 md:mt-4 md:mb-8">
+          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Tactical Tools
+          </h1>
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+            Interactive tools to apply the 156 frameworks to your actual work. No signup required.
           </p>
         </div>
 
-        {!isSubmitted ? (
-          <>
-            <div className="mb-12">
-              <div className="bg-gradient-to-br from-primary/[0.05] to-purple/[0.05] border-2 border-gray-200 dark:border-gray-700 rounded-2xl p-10 text-center max-md:p-6">
-                <h2 className="text-[2rem] max-md:text-2xl font-bold text-gray-900 dark:text-white mb-4">Download All Templates</h2>
-                <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 max-md:text-base">
-                  Enter your email to instantly download all 3 templates.
-                  I'll also send you one AI PM framework per week (unsubscribe anytime).
-                </p>
-                <form onSubmit={handleSubmit} className="flex gap-3 max-w-[500px] mx-auto mb-4 max-md:flex-col">
-                  <input
-                    type="email"
-                    placeholder="your.email@company.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="flex-1 px-4 py-3 border-2 border-gray-200 dark:border-gray-700 rounded-lg text-base bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400 transition-colors focus:outline-none focus:border-primary"
-                  />
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="px-8 py-3 rounded-lg text-base font-semibold bg-gradient-to-br from-primary to-purple text-white border-none cursor-pointer transition-all duration-200 whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed hover:from-primary-light hover:to-purple-light max-md:w-full"
-                  >
-                    {isSubmitting ? 'Sending...' : 'Get Templates'}
-                  </button>
-                </form>
-                {error && <p className="text-red-600 dark:text-red-400 text-sm mb-2">{error}</p>}
-                <p className="text-sm text-gray-600 dark:text-gray-400 italic">
-                  No spam. Unsubscribe anytime. Your email stays private.
-                </p>
+        {/* Tab Navigation */}
+        <div className="flex gap-3 justify-center mb-12 flex-wrap">
+          <button
+            className={`px-5 py-3 rounded-lg text-base font-semibold cursor-pointer transition-all border-2 ${
+              activeTab === 'checklist'
+                ? 'bg-gray-900 dark:bg-white text-white dark:text-black border-gray-900 dark:border-white'
+                : 'bg-white dark:bg-black text-gray-600 dark:text-gray-400 border-gray-300 dark:border-gray-700 hover:border-gray-900 dark:hover:border-white hover:text-gray-900 dark:hover:text-white'
+            }`}
+            onClick={() => setActiveTab('checklist')}
+          >
+            Launch Readiness Checklist
+          </button>
+          <button
+            className={`px-5 py-3 rounded-lg text-base font-semibold cursor-pointer transition-all border-2 ${
+              activeTab === 'decision-tree'
+                ? 'bg-gray-900 dark:bg-white text-white dark:text-black border-gray-900 dark:border-white'
+                : 'bg-white dark:bg-black text-gray-600 dark:text-gray-400 border-gray-300 dark:border-gray-700 hover:border-gray-900 dark:hover:border-white hover:text-gray-900 dark:hover:text-white'
+            }`}
+            onClick={() => setActiveTab('decision-tree')}
+          >
+            Should You Build This?
+          </button>
+          <button
+            className={`px-5 py-3 rounded-lg text-base font-semibold cursor-pointer transition-all border-2 ${
+              activeTab === 'templates'
+                ? 'bg-gray-900 dark:bg-white text-white dark:text-black border-gray-900 dark:border-white'
+                : 'bg-white dark:bg-black text-gray-600 dark:text-gray-400 border-gray-300 dark:border-gray-700 hover:border-gray-900 dark:hover:border-white hover:text-gray-900 dark:hover:text-white'
+            }`}
+            onClick={() => setActiveTab('templates')}
+          >
+            Communication Templates
+          </button>
+        </div>
+
+        {/* Launch Readiness Checklist */}
+        {activeTab === 'checklist' && (
+          <div>
+            <div className="mb-8">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                  Launch Readiness Checklist
+                </h2>
+                <div className="text-right">
+                  <div className="text-3xl font-bold text-gray-900 dark:text-white">
+                    {getTotalProgress()}%
+                  </div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Complete</div>
+                </div>
+              </div>
+              <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
+                Use this checklist before launching any AI feature. Each item links to the relevant framework for details.
+              </p>
+              <div className="h-3 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-gray-900 dark:bg-white transition-all duration-500"
+                  style={{ width: `${getTotalProgress()}%` }}
+                />
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-6 mb-12">
-              {templates.map((template) => (
-                <div key={template.id} className="bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-2xl p-8 transition-all duration-300 hover:border-primary hover:-translate-y-0.5 hover:shadow-md max-md:p-6">
-                  <div className="mb-4">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{template.title}</h3>
-                    <div className="flex gap-3 text-sm">
-                      <span className="px-3 py-1 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light rounded-md font-semibold">{template.format}</span>
-                      <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md font-medium">{template.pages}</span>
-                    </div>
+            <div className="space-y-8">
+              {checklistItems.map((category, catIndex) => (
+                <div key={catIndex}>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                    {category.category}
+                  </h3>
+                  <div className="space-y-3">
+                    {category.items.map((item) => (
+                      <div
+                        key={item.id}
+                        className="bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-800 rounded-lg p-4 transition-all hover:border-gray-900 dark:hover:border-white"
+                      >
+                        <div className="flex items-start gap-4">
+                          <input
+                            type="checkbox"
+                            checked={checklistProgress[item.id] || false}
+                            onChange={() => toggleChecklistItem(item.id)}
+                            className="mt-1 w-5 h-5 cursor-pointer"
+                          />
+                          <div className="flex-1">
+                            <p className={`text-base leading-relaxed ${
+                              checklistProgress[item.id]
+                                ? 'text-gray-500 dark:text-gray-500 line-through'
+                                : 'text-gray-900 dark:text-white'
+                            }`}>
+                              {item.text}
+                            </p>
+                            <button
+                              onClick={() => navigate(`/framework/${item.framework}`)}
+                              className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white underline mt-2"
+                            >
+                              View {item.framework} →
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                  <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-4">{template.description}</p>
-                  <button
-                    onClick={() => navigate(`/framework/${template.relatedCard}`)}
-                    className="text-primary dark:text-primary-light font-medium text-base bg-transparent border-none cursor-pointer p-0 transition-opacity duration-200 hover:opacity-70 hover:underline"
-                  >
-                    View Related Framework →
-                  </button>
                 </div>
               ))}
             </div>
+          </div>
+        )}
 
-            <div className="text-center">
-              <h2 className="text-[2rem] max-md:text-2xl font-bold text-gray-900 dark:text-white mb-8">Why These Templates?</h2>
-              <div className="grid grid-cols-3 gap-6 max-md:grid-cols-1 max-md:gap-4">
-                <div className="text-center">
-                  <div className="text-5xl mb-4">⚡</div>
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Immediately Actionable</h3>
-                  <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">Don't just read about frameworks—apply them today with fill-in-the-blank templates.</p>
-                </div>
-                <div className="text-center">
-                  <div className="text-5xl mb-4">✅</div>
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Battle-Tested</h3>
-                  <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">Used at Dell Technologies to ship AI/ML products. Real-world proven, not theoretical.</p>
-                </div>
-                <div className="text-center">
-                  <div className="text-5xl mb-4">🎯</div>
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Team-Ready</h3>
-                  <p className="text-base text-gray-700 dark:text-gray-300 leading-relaxed">Share with your team, use in workshops, adapt to your needs. No attribution required.</p>
-                </div>
-              </div>
+        {/* Decision Tree */}
+        {activeTab === 'decision-tree' && (
+          <div>
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                Should You Build This AI Feature?
+              </h2>
+              <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                Answer 6 questions to find out if AI is the right solution. Based on the "Is AI Even the Right Solution?" learning path.
+              </p>
             </div>
-          </>
-        ) : (
-          <div className="max-w-[600px] mx-auto">
-            <div className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border-2 border-emerald-200 dark:border-emerald-700 rounded-2xl p-10 text-center max-md:p-6">
-              <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-emerald-600 text-white rounded-full text-4xl font-bold">✓</div>
-              <h2 className="text-[2rem] max-md:text-2xl font-bold text-gray-900 dark:text-white mb-4">Templates Downloaded!</h2>
-              <p className="text-lg text-gray-700 dark:text-gray-300 mb-4 max-md:text-base">
-                Your 3 templates should be downloading now. Check your downloads folder!
+
+            <div className="bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-800 rounded-lg p-8">
+              {!decisionTreeResult ? (
+                <div>
+                  <div className="mb-6">
+                    <div className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                      Question {decisionTreeStep + 1} of {decisionTree.length}
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                      {decisionTree[decisionTreeStep].question}
+                    </h3>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <button
+                      onClick={() => handleDecisionTreeAnswer('yes')}
+                      className="flex-1 px-6 py-4 bg-gray-900 dark:bg-white text-white dark:text-black border-2 border-gray-900 dark:border-white rounded-lg text-lg font-semibold hover:bg-gray-800 dark:hover:bg-gray-100 transition-all"
+                    >
+                      Yes
+                    </button>
+                    <button
+                      onClick={() => handleDecisionTreeAnswer('no')}
+                      className="flex-1 px-6 py-4 bg-white dark:bg-black text-gray-900 dark:text-white border-2 border-gray-900 dark:border-white rounded-lg text-lg font-semibold hover:bg-gray-50 dark:hover:bg-gray-900 transition-all"
+                    >
+                      No
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="text-center">
+                  <div className="text-6xl mb-6">
+                    {decisionTreeResult.type === 'build' ? '✅' : '⚠️'}
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                    {decisionTreeResult.message}
+                  </h3>
+                  <button
+                    onClick={() => navigate(`/framework/${decisionTreeResult.framework}`)}
+                    className="text-lg text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white underline mb-6 inline-block"
+                  >
+                    View {decisionTreeResult.framework} →
+                  </button>
+                  <div>
+                    <button
+                      onClick={resetDecisionTree}
+                      className="px-6 py-3 bg-white dark:bg-black text-gray-900 dark:text-white border-2 border-gray-900 dark:border-white rounded-lg text-base font-semibold hover:bg-gray-50 dark:hover:bg-gray-900 transition-all"
+                    >
+                      Start Over
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Communication Templates */}
+        {activeTab === 'templates' && (
+          <div>
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                Stakeholder Communication Templates
+              </h2>
+              <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                Copy-paste email templates for the toughest PM conversations. Customize with your specifics.
               </p>
-              <p className="text-base text-gray-600 dark:text-gray-400 mb-8">
-                Didn't download?{' '}
-                <button
-                  onClick={() => setIsSubmitted(false)}
-                  className="text-primary dark:text-primary-light underline bg-transparent border-none cursor-pointer font-medium transition-opacity duration-200 hover:opacity-70"
+            </div>
+
+            <div className="space-y-6">
+              {communicationTemplates.map((template) => (
+                <div
+                  key={template.id}
+                  className="bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-800 rounded-lg p-6"
                 >
-                  try again
-                </button>
-              </p>
-              <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl p-6 text-left">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 text-center">What You're Getting:</h3>
-                <ul className="list-none pl-0 space-y-2">
-                  {templates.map((template) => (
-                    <li key={template.id} className="pl-6 relative text-gray-900 dark:text-white before:content-['✓'] before:absolute before:left-0 before:text-emerald-600 before:font-bold">{template.title}</li>
-                  ))}
-                </ul>
-              </div>
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                        {template.title}
+                      </h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                        {template.context}
+                      </p>
+                      <div className="flex gap-2 flex-wrap">
+                        {template.frameworks.map((fw) => (
+                          <button
+                            key={fw}
+                            onClick={() => navigate(`/framework/${fw}`)}
+                            className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded hover:bg-gray-200 dark:hover:bg-gray-700"
+                          >
+                            {fw}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => copyTemplate(template.id, `Subject: ${template.subject}\n\n${template.body}`)}
+                      className="ml-4 px-4 py-2 bg-gray-900 dark:bg-white text-white dark:text-black border-2 border-gray-900 dark:border-white rounded-lg text-sm font-semibold hover:bg-gray-800 dark:hover:bg-gray-100 transition-all whitespace-nowrap"
+                    >
+                      {copiedTemplate === template.id ? '✓ Copied!' : 'Copy Template'}
+                    </button>
+                  </div>
+
+                  <div className="bg-gray-50 dark:bg-black border border-gray-200 dark:border-gray-800 rounded p-4">
+                    <div className="text-sm font-semibold text-gray-900 dark:text-white mb-2">
+                      Subject: {template.subject}
+                    </div>
+                    <div className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap font-mono">
+                      {template.body}
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         )}

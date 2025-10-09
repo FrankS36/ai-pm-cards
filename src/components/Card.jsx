@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Lightbulb } from 'lucide-react';
 import ShareButton from './ShareButton';
 import { shareCard } from '../utils/share';
 import cardDataJson from '../data/cardData.json';
+import { getCardIcon } from '../utils/iconMapping';
 
 function Card({ cardData }) {
   const [isFlipped, setIsFlipped] = useState(false);
@@ -106,7 +108,12 @@ function Card({ cardData }) {
           </div>
         </div>
 
-        <div className="text-[5rem] text-center my-8">{cardData.icon}</div>
+        <div className="flex justify-center my-8">
+          {(() => {
+            const Icon = getCardIcon(cardData);
+            return <Icon className="w-20 h-20 text-gray-900 dark:text-white" strokeWidth={1.5} />;
+          })()}
+        </div>
 
         <h3 className="text-[2rem] font-bold text-center mb-6 text-gray-900 dark:text-white">{cardData.title}</h3>
 
@@ -151,7 +158,10 @@ function Card({ cardData }) {
         </div>
 
         <div className="mb-8">
-          <h4 className="text-base font-bold mb-4 text-gray-900 dark:text-white">💡 Pro Tips</h4>
+          <h4 className="text-base font-bold mb-4 text-gray-900 dark:text-white flex items-center gap-2">
+            <Lightbulb className="w-5 h-5" />
+            <span>Pro Tips</span>
+          </h4>
           <ul className="list-none pl-0">
             {cardData.tips.map((tip, index) => (
               <li key={index} className="pl-6 mb-3 relative text-gray-900 dark:text-white leading-[1.6] before:content-['→'] before:absolute before:left-0 before:text-primary before:font-bold">
