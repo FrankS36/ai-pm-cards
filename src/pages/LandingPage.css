@@ -184,6 +184,88 @@
   font-weight: 700;
 }
 
+/* ===== VALIDATION SECTION ===== */
+.validation-section {
+  margin-top: 4rem;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.03) 0%, rgba(30, 58, 138, 0.03) 100%);
+  border-radius: 20px;
+  text-align: center;
+}
+
+.validation-section h2 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.validation-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 3rem auto;
+}
+
+.validation-card {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.validation-card:hover {
+  border-color: #7c3aed;
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.12);
+  transform: translateY(-4px);
+}
+
+.validation-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.validation-card h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.75rem;
+}
+
+.validation-card p {
+  font-size: 0.9375rem;
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.validation-cta {
+  margin-top: 2rem;
+}
+
+.btn-secondary {
+  background: white;
+  color: #7c3aed;
+  border: 2px solid #7c3aed;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #7c3aed;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
 /* ===== SOLUTION SECTION ===== */
 .solution-section {
   margin-top: 4rem;
@@ -602,11 +684,17 @@
   }
 
   .problem-section h2,
+  .validation-section h2,
   .solution-section h2,
   .how-it-works h2,
   .example-preview h2,
   .creator-section h2 {
     font-size: 1.75rem;
+  }
+
+  .validation-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
   .pain-points {

@@ -70,6 +70,35 @@ function LandingPage() {
           </p>
         </section>
 
+        <section className="validation-section">
+          <h2>Wait. Are You Solving the Right Problem?</h2>
+          <p className="section-intro">
+            Before you build AI features, validate you're solving a problem users actually have.
+          </p>
+          <div className="validation-grid">
+            <div className="validation-card" onClick={() => navigate('/browse?card=STRAT-008')}>
+              <div className="validation-icon">💎</div>
+              <h3>Define AI Value Proposition</h3>
+              <p>Articulate the specific value AI delivers beyond what non-AI solutions can provide</p>
+            </div>
+            <div className="validation-card" onClick={() => navigate('/browse?card=STRAT-001')}>
+              <div className="validation-icon">🗺️</div>
+              <h3>Map Model Capabilities</h3>
+              <p>Evaluate which AI capabilities you need and assess technical feasibility</p>
+            </div>
+            <div className="validation-card" onClick={() => navigate('/browse?card=STRAT-012')}>
+              <div className="validation-icon">🚀</div>
+              <h3>Run a Feasibility Spike</h3>
+              <p>Test if your AI idea is technically possible with a quick prototype</p>
+            </div>
+          </div>
+          <div className="validation-cta">
+            <button className="btn-secondary" onClick={() => navigate('/paths/problem-discovery')}>
+              Explore Problem Discovery Path →
+            </button>
+          </div>
+        </section>
+
         <section className="solution-section">
           <h2>Frameworks That Actually Ship</h2>
           <p className="section-intro">

@@ -1,5 +1,21 @@
 {
   "paths": {
+    "problem-discovery": {
+      "id": "problem-discovery",
+      "title": "Problem Discovery & Validation",
+      "description": "Validate you're solving the right problem before building AI features",
+      "duration": "1-2 weeks",
+      "difficulty": "beginner",
+      "targetAudience": "PMs exploring if AI is the right solution",
+      "cardIds": [
+        "STRAT-008",
+        "STRAT-001",
+        "STRAT-012",
+        "STRAT-015",
+        "STRAT-007",
+        "STRAT-011"
+      ]
+    },
     "concept-to-strategy": {
       "id": "concept-to-strategy",
       "title": "From Concept to Validated Strategy",
@@ -739,7 +755,7 @@
       "steps": [
         "Assess AI value perception: Does AI unlock new use cases or just improve existing workflows? New capabilities justify premium pricing",
         "Benchmark competitive pricing: Survey 5-10 competitors. Are they charging for AI separately or bundling? What's the price premium?",
-        "Model pricing options: (1) Bundled free (2) Add-on flat fee (3) Usage-based (4) Higher tier only. Calculate revenue and adoption for each",
+        "Model pricing options:\n- Bundled free\n- Add-on flat fee\n- Usage-based\n- Higher tier only\nCalculate revenue and adoption for each",
         "Test willingness to pay: Run pricing surveys or A/B tests with beta users. What % would pay $X for AI features?",
         "Choose initial strategy: Start conservative (bundle free or low add-on), then raise prices as value is proven. Easier to decrease later than increase"
       ],
@@ -4075,7 +4091,7 @@
       "steps": [
         "Define incident types: Model performance drop, latency spike, error rate spike, cost overrun, harmful outputs, data pipeline failure",
         "Set severity levels: P0 (user-facing complete failure), P1 (degraded performance), P2 (minor issue), P3 (monitoring alert, no user impact)",
-        "Create runbooks: Step-by-step guides for common incidents. Example: 'If accuracy drops >10%: 1) Check recent data, 2) Compare to baseline model, 3) Rollback if needed'",
+        "Create runbooks: Step-by-step guides for common incidents. Example - If accuracy drops >10%:\n- Check recent data\n- Compare to baseline model\n- Rollback if needed",
         "Assign on-call: Who responds to incidents? Rotation schedule? Escalation path if on-call can't resolve?",
         "Define communication: Who gets notified? Users? Stakeholders? Executives? What's the message template?",
         "Post-incident review: After major incidents, conduct blameless post-mortem. Document learnings, prevent recurrence."
