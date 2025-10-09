@@ -55,7 +55,7 @@ function Navigation() {
               className={`nav-link ${isActive('/collaborate') ? 'active' : ''}`}
               onClick={() => navigate('/collaborate')}
             >
-              Hire Me
+              Collaborate
             </button>
           </div>
 
