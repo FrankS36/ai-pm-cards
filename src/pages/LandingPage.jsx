@@ -8,16 +8,17 @@ function LandingPage() {
     <div className="landing-page">
       <div className="container">
         <header className="hero">
-          <h1 className="headline">Ship AI Features Without the Guesswork</h1>
+          <h1 className="headline">156 Battle-Tested Frameworks for Shipping AI Products Users Actually Adopt</h1>
           <p className="subheadline">
-            Battle-tested frameworks from a Product Manager who ships AI/ML products. Free, no signup required.
+            The tactical frameworks I used at Dell Technologies to increase AI feature adoption from 8% to 47% in 6 weeks.
+            Built for Product Managers shipping their first AI features.
           </p>
 
           <div className="creator-badge">
             <div className="creator-avatar">FS</div>
             <div className="creator-info">
               <div className="creator-name">Frank Sellhausen</div>
-              <div className="creator-title">AI/ML Product Manager | Certified Scrum Product Owner</div>
+              <div className="creator-title">AI/ML Product Manager at Dell Technologies</div>
             </div>
           </div>
 
@@ -26,18 +27,16 @@ function LandingPage() {
               Find Your Framework →
             </button>
             <button className="btn-link" onClick={() => navigate('/browse')}>
-              or browse all 150 frameworks
+              or browse all 156 frameworks
             </button>
           </div>
 
           <div className="trust-indicators">
-            <span>Free</span>
-            <span>•</span>
-            <span>No signup</span>
-            <span>•</span>
-            <span>150 frameworks</span>
+            <span>156 frameworks</span>
             <span>•</span>
             <span>20 curated paths</span>
+            <span>•</span>
+            <span>Free forever</span>
           </div>
         </header>
 
@@ -102,33 +101,33 @@ function LandingPage() {
         <section className="solution-section">
           <h2>Frameworks That Actually Ship</h2>
           <p className="section-intro">
-            Every situation you'll face. Every decision you'll make. Frameworks from someone who's been there.
+            Real outcomes from applying these frameworks at Dell Technologies. Same models, better product thinking.
           </p>
           <div className="solution-grid">
             <div className="solution-example">
               <div className="solution-problem">
                 <span className="solution-label">The Problem</span>
-                <h3>"Users don't trust our AI"</h3>
+                <h3>8% adoption - users ignored our AI recommendations</h3>
               </div>
               <div className="solution-arrow">→</div>
               <div className="solution-card">
                 <span className="solution-label">The Framework</span>
                 <div className="mini-card">
-                  <div className="mini-card-deck">Strategy & Risk</div>
-                  <h4>When Users Don't Trust Your AI</h4>
-                  <p>8 frameworks with tactics</p>
+                  <div className="mini-card-deck">UX & Design</div>
+                  <h4>Progressive Disclosure + Explainability</h4>
+                  <p>Applied 3 trust-building patterns</p>
                 </div>
               </div>
               <div className="solution-arrow">→</div>
               <div className="solution-outcome">
                 <span className="solution-label">The Outcome</span>
-                <h3>Ship with confidence</h3>
+                <h3>47% adoption in 6 weeks</h3>
               </div>
             </div>
           </div>
           <div className="solution-stats">
             <div className="stat">
-              <div className="stat-number">150</div>
+              <div className="stat-number">156</div>
               <div className="stat-label">Frameworks</div>
             </div>
             <div className="stat">
@@ -136,8 +135,8 @@ function LandingPage() {
               <div className="stat-label">Curated Paths</div>
             </div>
             <div className="stat">
-              <div className="stat-number">Every</div>
-              <div className="stat-label">Situation Covered</div>
+              <div className="stat-number">3</div>
+              <div className="stat-label">Specialized Decks</div>
             </div>
           </div>
         </section>
@@ -199,19 +198,19 @@ function LandingPage() {
         </section>
 
         <section className="creator-section">
-          <h2>From Real AI/ML Experience</h2>
+          <h2>The Frameworks I Wish I Had When I Started</h2>
           <div className="creator-content">
             <div className="creator-avatar-large">FS</div>
             <div className="creator-story">
               <h3>Frank Sellhausen</h3>
-              <p className="creator-subtitle">AI/ML Product Manager</p>
+              <p className="creator-subtitle">AI/ML Product Manager at Dell Technologies</p>
               <p className="creator-quote">
-                "I've shipped AI features that flopped and AI features that scaled. These are the frameworks I wish I had when I started. Now you have them."
+                "I've shipped AI features that users hated and ones they loved. The difference wasn't the algorithm—it was the product thinking. These frameworks capture what actually works when shipping AI products to real users."
               </p>
               <div className="creator-credentials">
-                <span className="credential">🎓 Certified Scrum Product Owner</span>
-                <span className="credential">🚀 Shipped AI/ML Products at Scale</span>
-                <span className="credential">💡 150 Frameworks Documented</span>
+                <span className="credential">📈 Increased AI adoption by 40%+ avg</span>
+                <span className="credential">🏢 Leading AI initiatives at Fortune 50</span>
+                <span className="credential">📚 156 frameworks from 5+ years shipping</span>
               </div>
               <button className="btn-link" onClick={() => navigate('/about')}>
                 Read full story →
@@ -221,15 +220,15 @@ function LandingPage() {
         </section>
 
         <section className="final-cta">
-          <h2>Ready to Ship Better AI Products?</h2>
+          <h2>Start Shipping AI Products Users Actually Adopt</h2>
           <p className="final-cta-subtitle">
-            Start with the 30-second diagnostic. Find your framework. Ship with confidence.
+            Take the 30-second diagnostic and get matched to the frameworks you need right now.
           </p>
           <button className="btn-primary btn-large" onClick={() => navigate('/start')}>
-            Get Started →
+            Find Your Framework →
           </button>
           <div className="final-cta-trust">
-            Free • No signup • No credit card
+            156 frameworks • 20 paths • Free forever
           </div>
         </section>
       </div>
