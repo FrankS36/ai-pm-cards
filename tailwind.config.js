@@ -9,13 +9,24 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#1e3a8a',
+          DEFAULT: '#1e40af',
           light: '#3b82f6',
+          dark: '#1e3a8a',
         },
         purple: {
           DEFAULT: '#7c3aed',
-          light: '#8b5cf6',
+          light: '#a78bfa',
+          dark: '#6d28d9',
         },
+        accent: {
+          orange: '#f97316',
+          emerald: '#10b981',
+          rose: '#f43f5e',
+        },
+      },
+      fontSize: {
+        'display': ['4.5rem', { lineHeight: '1', letterSpacing: '-0.02em' }],
+        'display-sm': ['3.5rem', { lineHeight: '1.1', letterSpacing: '-0.01em' }],
       },
       borderRadius: {
         DEFAULT: '8px',

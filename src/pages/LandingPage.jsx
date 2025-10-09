@@ -4,126 +4,133 @@ function LandingPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-8">
-        <header className="text-center pt-16 pb-12 px-8">
-          <h1 className="text-[3.5rem] font-extrabold text-gray-900 dark:text-white mb-6 leading-[1.1] tracking-tight">
-            156 Battle-Tested Frameworks for Shipping AI Products Users Actually Adopt
-          </h1>
-          <p className="text-[1.375rem] text-gray-600 dark:text-gray-400 max-w-[700px] mx-auto mb-10 leading-relaxed">
-            The tactical frameworks I used at Dell Technologies to increase AI feature adoption from 8% to 47% in 6 weeks.
-            Built for Product Managers shipping their first AI features.
-          </p>
+    <div className="min-h-screen bg-white dark:bg-black">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+        <header className="text-center pt-24 pb-20">
+          <div className="inline-block px-4 py-1 mb-8 border-2 border-black dark:border-white bg-yellow-300 dark:bg-yellow-400 -rotate-1 transform">
+            <span className="text-sm font-mono uppercase tracking-widest text-black font-bold">156 Frameworks • 20 Paths • Free</span>
+          </div>
 
-          <div className="flex items-center justify-center gap-4 mx-auto mb-10 max-w-[500px]">
-            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-purple text-white flex items-center justify-center text-xl font-bold flex-shrink-0">
-              FS
-            </div>
-            <div className="text-left">
-              <div className="text-base font-bold text-gray-900 dark:text-white leading-tight">
-                Frank Sellhausen
+          <h1 className="text-[2.75rem] sm:text-6xl lg:text-7xl font-black mb-10 leading-[0.95] tracking-tighter uppercase">
+            <span className="block text-black dark:text-white">156 Battle-Tested</span>
+            <span className="block text-black dark:text-white">Frameworks for</span>
+            <span className="block text-black dark:text-white">Shipping AI Products</span>
+            <span className="block mt-4 text-5xl sm:text-6xl lg:text-7xl bg-black dark:bg-white text-white dark:text-black px-4 py-2 inline-block -rotate-1 transform">
+              Users Actually Adopt
+            </span>
+          </h1>
+
+          <div className="max-w-4xl mx-auto mb-12">
+            <p className="text-xl sm:text-2xl text-gray-900 dark:text-gray-100 mb-6 leading-tight font-semibold">
+              The tactical frameworks I used at Dell Technologies to increase AI feature adoption from{' '}
+              <mark className="bg-red-500 text-white px-2 py-1 font-black">8%</mark> to{' '}
+              <mark className="bg-emerald-500 text-white px-2 py-1 font-black">47%</mark> in 6 weeks.
+            </p>
+
+            <div className="flex items-center justify-center gap-4 mx-auto mb-12">
+              <div className="w-16 h-16 border-4 border-black dark:border-white bg-white dark:bg-black flex items-center justify-center rotate-3 transform">
+                <span className="text-2xl font-black text-black dark:text-white -rotate-3 transform">FS</span>
               </div>
-              <div className="text-sm text-gray-500 dark:text-gray-400 leading-snug">
-                AI/ML Product Manager at Dell Technologies
+              <div className="text-left">
+                <div className="text-lg font-black text-black dark:text-white uppercase tracking-tight">
+                  Frank Sellhausen
+                </div>
+                <div className="text-sm font-mono text-gray-700 dark:text-gray-300">
+                  AI/ML PM at Dell Technologies
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="flex flex-col items-center gap-4 mb-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
             <button
-              className="bg-gradient-to-br from-primary to-purple text-white border-none py-5 px-12 text-xl font-semibold rounded-xl cursor-pointer transition-all duration-200 shadow-[0_4px_12px_rgba(30,58,138,0.3)] hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(30,58,138,0.4)]"
+              className="group bg-black dark:bg-white text-white dark:text-black border-4 border-black dark:border-white py-5 px-12 text-xl font-black uppercase cursor-pointer transition-all duration-150 hover:bg-white hover:text-black dark:hover:bg-black dark:hover:text-white hover:-translate-y-1 active:translate-y-0 shadow-[8px_8px_0_0_#000] dark:shadow-[8px_8px_0_0_#fff] hover:shadow-[12px_12px_0_0_#000] dark:hover:shadow-[12px_12px_0_0_#fff]"
               onClick={() => navigate('/start')}
             >
               Find Your Framework →
             </button>
-            <button
-              className="bg-transparent border-none text-gray-500 dark:text-gray-400 text-[0.9375rem] cursor-pointer underline transition-colors duration-200 hover:text-primary dark:hover:text-primary-light"
-              onClick={() => navigate('/browse')}
-            >
-              or browse all 156 frameworks
-            </button>
           </div>
-
-          <div className="text-gray-400 dark:text-gray-500 text-sm flex gap-2 justify-center items-center flex-wrap">
-            <span>156 frameworks</span>
-            <span>•</span>
-            <span>20 curated paths</span>
-            <span>•</span>
-            <span>Free forever</span>
-          </div>
+          <button
+            className="text-black dark:text-white text-base font-mono underline decoration-2 underline-offset-4 hover:bg-yellow-300 dark:hover:bg-yellow-400 px-3 py-1 transition-colors"
+            onClick={() => navigate('/browse')}
+          >
+            or browse all 156 frameworks
+          </button>
         </header>
 
-        <section className="mt-16 px-8">
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-8 max-w-[1000px] mx-auto">
-            <div className="bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 rounded-xl p-8 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:border-primary dark:hover:border-primary-light">
-              <div className="text-5xl mb-4">⚡</div>
-              <h3 className="text-[1.375rem] font-bold text-gray-900 dark:text-white mb-3 leading-tight">
-                Not Months. Minutes.
+        <section className="mt-20 px-4 sm:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            <div className="border-4 border-black dark:border-white p-8 bg-yellow-100 dark:bg-yellow-900 hover:rotate-1 transition-transform duration-200">
+              <div className="text-6xl mb-4">⚡</div>
+              <h3 className="text-2xl font-black text-black dark:text-white mb-4 uppercase tracking-tight leading-tight">
+                Not Months.<br />Minutes.
               </h3>
-              <p className="text-base leading-relaxed text-gray-600 dark:text-gray-400 m-0">
+              <p className="text-base font-medium text-black dark:text-white leading-snug">
                 Find the framework you need in 30 seconds. Apply it in 2 minutes. No courses, no theory—just the answer you need right now.
               </p>
             </div>
-            <div className="bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 rounded-xl p-8 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:border-primary dark:hover:border-primary-light">
-              <div className="text-5xl mb-4">🎯</div>
-              <h3 className="text-[1.375rem] font-bold text-gray-900 dark:text-white mb-3 leading-tight">
-                Not Theory. Battle Scars.
+
+            <div className="border-4 border-black dark:border-white p-8 bg-blue-100 dark:bg-blue-900 hover:-rotate-1 transition-transform duration-200">
+              <div className="text-6xl mb-4">🎯</div>
+              <h3 className="text-2xl font-black text-black dark:text-white mb-4 uppercase tracking-tight leading-tight">
+                Not Theory.<br />Battle Scars.
               </h3>
-              <p className="text-base leading-relaxed text-gray-600 dark:text-gray-400 m-0">
+              <p className="text-base font-medium text-black dark:text-white leading-snug">
                 These frameworks drove 8% → 47% adoption at Dell Technologies. From shipping to 100K+ users, not from textbooks.
               </p>
             </div>
-            <div className="bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 rounded-xl p-8 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.3)] hover:border-primary dark:hover:border-primary-light">
-              <div className="text-5xl mb-4">📖</div>
-              <h3 className="text-[1.375rem] font-bold text-gray-900 dark:text-white mb-3 leading-tight">
-                Not a Course. A Field Guide.
+
+            <div className="border-4 border-black dark:border-white p-8 bg-pink-100 dark:bg-pink-900 hover:rotate-1 transition-transform duration-200">
+              <div className="text-6xl mb-4">📖</div>
+              <h3 className="text-2xl font-black text-black dark:text-white mb-4 uppercase tracking-tight leading-tight">
+                Not a Course.<br />A Field Guide.
               </h3>
-              <p className="text-base leading-relaxed text-gray-600 dark:text-gray-400 m-0">
+              <p className="text-base font-medium text-black dark:text-white leading-snug">
                 Built for PMs in the trenches. Keep it on your desk. Return to it every time you hit a wall. No sequential lessons required.
               </p>
             </div>
           </div>
         </section>
 
-        <section className="mt-16 py-12 px-8 bg-gradient-to-br from-[rgba(220,38,38,0.03)] to-[rgba(239,68,68,0.03)] dark:from-[rgba(220,38,38,0.08)] dark:to-[rgba(239,68,68,0.08)] rounded-2xl text-center">
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-10">
+        <section className="mt-24 py-16 px-8 border-8 border-black dark:border-white bg-red-50 dark:bg-red-950">
+          <h2 className="text-5xl font-black text-black dark:text-white mb-12 uppercase text-center">
             Sound Familiar?
           </h2>
-          <div className="max-w-[700px] mx-auto mb-8 flex flex-col gap-5">
-            <div className="flex items-start gap-4 text-left">
-              <span className="text-2xl flex-shrink-0">❌</span>
-              <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed m-0">
-                Your exec said "add AI" but gave no roadmap
+          <div className="max-w-3xl mx-auto mb-10 space-y-4">
+            <div className="bg-white dark:bg-black border-4 border-black dark:border-white p-5 text-left">
+              <p className="text-lg font-bold text-black dark:text-white m-0">
+                ❌ Your exec said "add AI" but gave no roadmap
               </p>
             </div>
-            <div className="flex items-start gap-4 text-left">
-              <span className="text-2xl flex-shrink-0">❌</span>
-              <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed m-0">
-                You're Googling "AI product strategy" and getting blog posts
+            <div className="bg-white dark:bg-black border-4 border-black dark:border-white p-5 text-left">
+              <p className="text-lg font-bold text-black dark:text-white m-0">
+                ❌ You're Googling "AI product strategy" and getting blog posts
               </p>
             </div>
-            <div className="flex items-start gap-4 text-left">
-              <span className="text-2xl flex-shrink-0">❌</span>
-              <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed m-0">
-                You have no idea if 85% accuracy is good enough
+            <div className="bg-white dark:bg-black border-4 border-black dark:border-white p-5 text-left">
+              <p className="text-lg font-bold text-black dark:text-white m-0">
+                ❌ You have no idea if 85% accuracy is good enough
               </p>
             </div>
-            <div className="flex items-start gap-4 text-left">
-              <span className="text-2xl flex-shrink-0">❌</span>
-              <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed m-0">
-                Your users don't trust the AI recommendations
+            <div className="bg-white dark:bg-black border-4 border-black dark:border-white p-5 text-left">
+              <p className="text-lg font-bold text-black dark:text-white m-0">
+                ❌ Your users don't trust the AI recommendations
               </p>
             </div>
-            <div className="flex items-start gap-4 text-left">
-              <span className="text-2xl flex-shrink-0">❌</span>
-              <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed m-0">
-                You feel like everyone else knows something you don't
+            <div className="bg-white dark:bg-black border-4 border-black dark:border-white p-5 text-left">
+              <p className="text-lg font-bold text-black dark:text-white m-0">
+                ❌ You feel like everyone else knows something you don't
               </p>
             </div>
           </div>
-          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-[600px] mx-auto mt-10 leading-relaxed">
-            You don't need more theory. <strong className="text-primary dark:text-primary-light font-bold">You need tactics from someone who's shipped this.</strong>
-          </p>
+          <div className="max-w-2xl mx-auto text-center">
+            <p className="text-2xl font-black text-black dark:text-white leading-tight">
+              You don't need more theory.
+            </p>
+            <p className="text-3xl font-black text-black dark:text-white mt-4 p-6 bg-yellow-300 dark:bg-yellow-400 border-4 border-black dark:border-white inline-block -rotate-1 transform">
+              You need tactics from someone who's shipped this.
+            </p>
+          </div>
         </section>
 
         <section className="mt-16 py-12 px-8 bg-gradient-to-br from-[rgba(124,58,237,0.03)] to-[rgba(30,58,138,0.03)] dark:from-[rgba(124,58,237,0.08)] dark:to-[rgba(30,58,138,0.08)] rounded-2xl text-center">
