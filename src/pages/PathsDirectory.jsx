@@ -297,23 +297,6 @@ function PathsDirectory() {
                       <p className="stage-description">{stage.description}</p>
 
                       <div className="stage-section">
-                        <h4>Key Frameworks ({stage.frameworks.length})</h4>
-                        <div className="framework-list">
-                          {stage.frameworks.map((framework) => (
-                            <button
-                              key={framework.id}
-                              className="framework-item"
-                              onClick={() => navigate(`/framework/${framework.id}`)}
-                            >
-                              <span className="framework-id">{framework.id}</span>
-                              <span className="framework-title">{framework.title}</span>
-                              <span className="framework-arrow">→</span>
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="stage-section">
                         <h4>Recommended Paths ({stage.paths.length})</h4>
                         <div className="path-list-lifecycle">
                           {stage.paths.map((path) => (
@@ -325,6 +308,23 @@ function PathsDirectory() {
                               <span className="path-icon-lifecycle">🗺️</span>
                               <span className="path-title-lifecycle">{path.title}</span>
                               <span className="path-arrow-lifecycle">→</span>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="stage-section">
+                        <h4>Key Frameworks ({stage.frameworks.length})</h4>
+                        <div className="framework-list">
+                          {stage.frameworks.map((framework) => (
+                            <button
+                              key={framework.id}
+                              className="framework-item"
+                              onClick={() => navigate(`/framework/${framework.id}`)}
+                            >
+                              <span className="framework-id">{framework.id}</span>
+                              <span className="framework-title">{framework.title}</span>
+                              <span className="framework-arrow">→</span>
                             </button>
                           ))}
                         </div>
