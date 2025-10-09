@@ -20,6 +20,46 @@ function PathView() {
   const pathInfo = cardDataJson.paths[pathId];
   const cards = pathInfo?.cardIds.map(id => cardDataJson.cards[id]) || [];
 
+  // Path categorization for recommendations
+  const pathCategories = {
+    strategy: ['concept-to-strategy', 'first-business-case', 'roadmap-planning', 'choosing-ai-approach', 'pricing-ai-product'],
+    risk: ['prevent-failures', 'building-trust', 'compliance-ethics', 'fixing-underperforming'],
+    execution: ['scoping-first-feature', 'model-to-production', 'launching-safely', 'data-pipelines', 'ai-ux-design', 'testing-qa'],
+    crosscutting: ['end-to-end-launch', 'enterprise-guide', 'cost-performance', 'ai-pm-fundamentals']
+  };
+
+  const getPathCategory = (pid) => {
+    for (const [category, paths] of Object.entries(pathCategories)) {
+      if (paths.includes(pid)) return category;
+    }
+    return null;
+  };
+
+  const getRecommendedPaths = () => {
+    const currentCategory = getPathCategory(pathId);
+    const allPathIds = Object.keys(cardDataJson.paths);
+
+    // Get paths from same category first, excluding current path
+    const sameCategoryPaths = allPathIds.filter(pid =>
+      getPathCategory(pid) === currentCategory && pid !== pathId
+    );
+
+    // Get cross-cutting paths as they're comprehensive
+    const crossCuttingPaths = pathCategories.crosscutting.filter(pid => pid !== pathId);
+
+    // Combine and take first 2 recommendations
+    const recommendations = [...sameCategoryPaths, ...crossCuttingPaths]
+      .slice(0, 2)
+      .map(pid => ({
+        id: pid,
+        ...cardDataJson.paths[pid]
+      }));
+
+    return recommendations;
+  };
+
+  const recommendedPaths = getRecommendedPaths();
+
   // Minimum swipe distance (in px) to trigger navigation
   const minSwipeDistance = 50;
 
@@ -265,6 +305,32 @@ function PathView() {
               <p className="completion-message">
                 You've explored all {cards.length} tactics in <strong>{pathInfo.title}</strong>
               </p>
+
+              {/* Recommended Next Paths */}
+              {recommendedPaths.length > 0 && (
+                <div className="recommended-paths">
+                  <h3>Continue Your Journey</h3>
+                  {recommendedPaths.map(path => (
+                    <button
+                      key={path.id}
+                      className="recommended-path-card"
+                      onClick={() => {
+                        setShowCompletionModal(false);
+                        navigate(`/path/${path.id}`);
+                      }}
+                    >
+                      <div className="recommended-path-header">
+                        <span className="recommended-path-title">{path.title}</span>
+                        <span className="recommended-path-arrow">→</span>
+                      </div>
+                      <p className="recommended-path-description">{path.description}</p>
+                      <div className="recommended-path-meta">
+                        📚 {path.cardIds.length} cards • ⏱️ {path.duration || '~20 min'}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              )}
 
               <div className="completion-actions">
                 <button
