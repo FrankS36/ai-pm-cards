@@ -18,7 +18,6 @@ import NotFound from './pages/NotFound';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import KeyboardHelp from './components/KeyboardHelp';
-import './App.css';
 
 function App() {
   return (

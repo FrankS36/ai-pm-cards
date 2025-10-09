@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import ShareButton from '../components/ShareButton';
 import { shareCard } from '../utils/share';
 import cardDataJson from '../data/cardData.json';
-import './FrameworkPage.css';
 
 function FrameworkPage() {
   const { cardId } = useParams();
@@ -52,32 +51,51 @@ function FrameworkPage() {
   }
 
   return (
-    <div className="framework-page">
-      <div className="framework-container">
+    <div className="min-h-screen py-8">
+      <div className="max-w-[800px] mx-auto px-8">
         {/* Header */}
-        <div className="framework-header">
-          <button className="btn-back" onClick={() => navigate('/browse')}>
+        <div className="text-center mb-12 relative">
+          <button
+            className="text-gray-900 dark:text-gray-100 hover:text-primary dark:hover:text-primary-light transition-colors cursor-pointer bg-transparent border-none text-base font-medium"
+            onClick={() => navigate('/browse')}
+          >
             ← Back to Browse
           </button>
 
-          <div className="framework-meta">
-            <span className={`framework-deck ${framework.deck}-deck`}>
+          <div className="flex items-center justify-center gap-2 mb-6 flex-wrap">
+            <span className={`text-white px-3 py-1 rounded-lg text-xs font-semibold uppercase tracking-wide ${
+              framework.deck === 'strategy'
+                ? 'bg-gradient-to-br from-primary to-purple'
+                : framework.deck === 'risk'
+                ? 'bg-gradient-to-br from-amber-600 to-red-600'
+                : 'bg-gradient-to-br from-emerald-600 to-teal-600'
+            }`}>
               {framework.deck.charAt(0).toUpperCase() + framework.deck.slice(1)}
             </span>
-            <span className="framework-divider">•</span>
-            <span className="framework-category">{framework.category}</span>
-            <span className="framework-divider">•</span>
-            <span className={`framework-difficulty ${framework.difficulty}`}>
+            <span className="text-gray-500 dark:text-gray-400">•</span>
+            <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">{framework.category}</span>
+            <span className="text-gray-500 dark:text-gray-400">•</span>
+            <span className={`text-xs px-3 py-1 rounded-lg font-semibold capitalize ${
+              framework.difficulty === 'beginner'
+                ? 'bg-green-500/10 text-green-700 dark:bg-green-500/20 dark:text-green-400'
+                : framework.difficulty === 'intermediate'
+                ? 'bg-orange-500/10 text-orange-700 dark:bg-orange-500/20 dark:text-orange-400'
+                : 'bg-red-500/10 text-red-700 dark:bg-red-500/20 dark:text-red-400'
+            }`}>
               {framework.difficulty.charAt(0).toUpperCase() + framework.difficulty.slice(1)}
             </span>
           </div>
 
-          <div className="framework-icon-large">{framework.icon}</div>
+          <div className="text-[5rem] my-6">{framework.icon}</div>
 
-          <h1 className="framework-title">{framework.title}</h1>
-          <p className="framework-description">{framework.description}</p>
+          <h1 className="text-[2.5rem] font-extrabold text-gray-900 dark:text-gray-100 mb-4 leading-tight">
+            {framework.title}
+          </h1>
+          <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+            {framework.description}
+          </p>
 
-          <div className="framework-actions">
+          <div className="flex justify-center mt-6">
             <ShareButton
               onShare={() => shareCard(framework)}
               label="Share Framework"
@@ -86,38 +104,60 @@ function FrameworkPage() {
         </div>
 
         {/* When to Use */}
-        <section className="framework-section">
-          <h2>When to Use This Framework</h2>
-          <ul className="when-to-use-list">
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-5 pb-2 border-b-2 border-gray-200 dark:border-gray-700">
+            When to Use This Framework
+          </h2>
+          <ul className="list-none p-0">
             {framework.whenToUse.map((item, index) => (
-              <li key={index}>{item}</li>
+              <li key={index} className="py-3 pl-6 relative text-gray-900 dark:text-gray-100 leading-relaxed before:content-['→'] before:absolute before:left-0 before:text-primary dark:before:text-primary-light before:font-bold">
+                {item}
+              </li>
             ))}
           </ul>
         </section>
 
         {/* Overview */}
-        <section className="framework-section">
-          <h2>Overview</h2>
-          <p className="framework-overview">{framework.overview}</p>
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-5 pb-2 border-b-2 border-gray-200 dark:border-gray-700">
+            Overview
+          </h2>
+          <p className="text-lg leading-[1.7] text-gray-900 dark:text-gray-100">
+            {framework.overview}
+          </p>
         </section>
 
         {/* Steps */}
-        <section className="framework-section">
-          <h2>How to Apply It</h2>
-          <ol className="framework-steps">
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-5 pb-2 border-b-2 border-gray-200 dark:border-gray-700">
+            How to Apply It
+          </h2>
+          <ol className="list-none p-0 [counter-reset:step-counter]">
             {framework.steps.map((step, index) => (
-              <li key={index}>{step}</li>
+              <li
+                key={index}
+                className="[counter-increment:step-counter] mb-6 pl-12 relative text-gray-900 dark:text-gray-100 leading-[1.7] text-[1.0625rem] before:content-[counter(step-counter)] before:absolute before:left-0 before:top-0 before:bg-primary dark:before:bg-primary-light before:text-white before:w-8 before:h-8 before:rounded-full before:flex before:items-center before:justify-center before:text-base before:font-bold"
+              >
+                {step}
+              </li>
             ))}
           </ol>
         </section>
 
         {/* Tips */}
         {framework.tips && framework.tips.length > 0 && (
-          <section className="framework-section">
-            <h2>💡 Pro Tips</h2>
-            <ul className="framework-tips">
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-5 pb-2 border-b-2 border-gray-200 dark:border-gray-700">
+              💡 Pro Tips
+            </h2>
+            <ul className="list-none p-0">
               {framework.tips.map((tip, index) => (
-                <li key={index}>{tip}</li>
+                <li
+                  key={index}
+                  className="py-3 pl-8 relative text-gray-900 dark:text-gray-100 leading-relaxed bg-gray-50 dark:bg-gray-800 mb-3 rounded-lg p-4 pl-10 before:content-['💡'] before:absolute before:left-3 before:top-4"
+                >
+                  {tip}
+                </li>
               ))}
             </ul>
           </section>
@@ -125,13 +165,15 @@ function FrameworkPage() {
 
         {/* Related Frameworks */}
         {framework.relatedCards && framework.relatedCards.length > 0 && (
-          <section className="framework-section">
-            <h2>Related Frameworks</h2>
-            <div className="related-frameworks">
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-5 pb-2 border-b-2 border-gray-200 dark:border-gray-700">
+              Related Frameworks
+            </h2>
+            <div className="flex flex-col gap-3">
               {framework.relatedCards.map((related, index) => (
                 <button
                   key={index}
-                  className="related-framework-btn"
+                  className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-4 px-6 rounded-lg text-left cursor-pointer transition-all text-base text-gray-900 dark:text-gray-100 font-medium hover:bg-gray-100 dark:hover:bg-gray-700 hover:border-primary dark:hover:border-primary-light hover:translate-x-1 after:content-['_→'] after:text-primary dark:after:text-primary-light after:opacity-50 after:transition-all hover:after:opacity-100 hover:after:translate-x-1"
                   onClick={() => handleRelatedClick(related)}
                 >
                   {related}
@@ -143,14 +185,18 @@ function FrameworkPage() {
 
         {/* Paths containing this framework */}
         {relatedFrameworks.length > 0 && (
-          <section className="framework-section">
-            <h2>Learning Paths</h2>
-            <p className="paths-intro">This framework is part of these curated learning paths:</p>
-            <div className="framework-paths">
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-5 pb-2 border-b-2 border-gray-200 dark:border-gray-700">
+              Learning Paths
+            </h2>
+            <p className="text-gray-700 dark:text-gray-300 mb-4 text-base">
+              This framework is part of these curated learning paths:
+            </p>
+            <div className="flex flex-col gap-4">
               {relatedFrameworks.map((path) => (
                 <button
                   key={path.id}
-                  className="path-card"
+                  className="bg-gray-50 dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 p-6 rounded-lg text-left cursor-pointer transition-all hover:border-primary dark:hover:border-primary-light hover:bg-gray-100 dark:hover:bg-gray-700 hover:-translate-y-0.5 hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_4px_12px_rgba(0,0,0,0.3)]"
                   onClick={() => {
                     // Set progress to this card's index in the path
                     const cardIndex = path.cardIds.indexOf(cardId);
@@ -158,8 +204,12 @@ function FrameworkPage() {
                     navigate(`/path/${path.id}`);
                   }}
                 >
-                  <h3>{path.title}</h3>
-                  <p>{path.description}</p>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
+                    {path.title}
+                  </h3>
+                  <p className="text-[0.9375rem] text-gray-700 dark:text-gray-300 m-0 leading-normal">
+                    {path.description}
+                  </p>
                 </button>
               ))}
             </div>
@@ -167,13 +217,21 @@ function FrameworkPage() {
         )}
 
         {/* CTA */}
-        <section className="framework-cta">
-          <h2>Ready to explore more frameworks?</h2>
-          <div className="cta-buttons">
-            <button className="btn-primary" onClick={() => navigate('/browse')}>
+        <section className="text-center mt-16 py-12 px-8 bg-gradient-to-br from-primary/[0.03] to-purple/[0.03] dark:from-primary/[0.05] dark:to-purple/[0.05] rounded-xl">
+          <h2 className="text-[1.75rem] font-bold text-gray-900 dark:text-gray-100 mb-6 border-none p-0">
+            Ready to explore more frameworks?
+          </h2>
+          <div className="flex gap-4 justify-center flex-wrap">
+            <button
+              className="bg-gradient-to-br from-primary to-purple text-white border-none py-4 px-8 text-base font-semibold rounded-lg cursor-pointer transition-all hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(30,58,138,0.3)] dark:hover:shadow-[0_6px_20px_rgba(30,58,138,0.5)]"
+              onClick={() => navigate('/browse')}
+            >
               Browse All Frameworks
             </button>
-            <button className="btn-secondary" onClick={() => navigate('/paths')}>
+            <button
+              className="bg-white dark:bg-gray-900 text-purple border-2 border-purple py-4 px-8 text-base font-semibold rounded-lg cursor-pointer transition-all hover:bg-purple hover:text-white hover:-translate-y-0.5"
+              onClick={() => navigate('/paths')}
+            >
               View Learning Paths
             </button>
           </div>
