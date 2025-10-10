@@ -120,7 +120,7 @@ function Card({ cardData }) {
         <p className="text-lg text-center text-gray-700 dark:text-gray-300 mb-8 leading-[1.7]">{cardData.description}</p>
 
         <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl mb-8 transition-colors duration-300">
-          <h4 className="text-sm uppercase tracking-wide text-gray-600 dark:text-gray-400 mb-3">When to Use:</h4>
+          <h4 className="text-sm uppercase tracking-wide text-gray-600 dark:text-gray-300 mb-3">When to Use:</h4>
           <ul className="list-none pl-0">
             {cardData.whenToUse.map((item, index) => (
               <li key={index} className="pl-6 mb-2 relative text-gray-900 dark:text-white before:content-['•'] before:text-primary before:font-bold before:absolute before:left-0">
@@ -130,8 +130,8 @@ function Card({ cardData }) {
           </ul>
         </div>
 
-        <div className="text-center text-gray-400 dark:text-gray-500 text-sm mt-auto">{cardData.id}</div>
-        <div className="text-center text-gray-400 dark:text-gray-500 text-sm mt-4">Click or press SPACE to see framework →</div>
+        <div className="text-center text-gray-600 dark:text-gray-400 text-sm mt-auto">{cardData.id}</div>
+        <div className="text-center text-gray-600 dark:text-gray-400 text-sm mt-4">Click or press SPACE to see framework →</div>
       </div>
 
       {/* Back of Card */}
@@ -171,6 +171,28 @@ function Card({ cardData }) {
           </ul>
         </div>
 
+        {cardData.realWorldApplications && cardData.realWorldApplications.length > 0 && (
+          <div className="mb-8">
+            <h4 className="text-base font-bold mb-4 text-gray-900 dark:text-white">💼 Real-World Applications</h4>
+            <div className="flex flex-col gap-4">
+              {cardData.realWorldApplications.map((application, index) => (
+                <div key={index} className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 border border-blue-200 dark:border-blue-900 rounded-lg p-5">
+                  <h5 className="text-sm font-bold text-gray-900 dark:text-white mb-2">{application.title}</h5>
+                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-2 leading-relaxed">
+                    <strong>Context:</strong> {application.context}
+                  </p>
+                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-2 leading-relaxed">
+                    <strong>Application:</strong> {application.application}
+                  </p>
+                  <p className="text-sm text-emerald-700 dark:text-emerald-400 leading-relaxed">
+                    <strong>Outcome:</strong> {application.outcome}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="mb-8">
           <h4 className="text-base font-bold mb-4 text-gray-900 dark:text-white">→ Related Cards</h4>
           <div className="flex flex-col gap-2">
@@ -193,7 +215,7 @@ function Card({ cardData }) {
           />
         </div>
 
-        <div className="text-center text-gray-400 dark:text-gray-500 text-sm mt-4">Click or press SPACE to see front →</div>
+        <div className="text-center text-gray-600 dark:text-gray-400 text-sm mt-4">Click or press SPACE to see front →</div>
       </div>
 
       {/* Scroll Indicator */}

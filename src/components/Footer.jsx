@@ -5,7 +5,7 @@ function Footer() {
         <p className="text-base text-gray-900 dark:text-gray-100 mb-2 max-md:text-[0.9375rem]">
           Created by <strong className="font-semibold">Frank Sellhausen</strong>
         </p>
-        <p className="text-[0.9375rem] text-gray-600 dark:text-gray-400 mb-4 max-md:text-sm">
+        <p className="text-[0.9375rem] text-gray-600 dark:text-gray-300 mb-4 max-md:text-sm">
           Product Manager, Dell Technologies | AI/ML Products
         </p>
         <div className="flex items-center justify-center gap-3 text-sm max-md:text-sm">

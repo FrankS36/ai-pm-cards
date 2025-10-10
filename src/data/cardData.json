@@ -18,7 +18,7 @@
     },
     "concept-to-strategy": {
       "id": "concept-to-strategy",
-      "title": "Turn Your AI Idea Into a Real Plan",
+      "title": "Stop Stalling on Your AI Idea",
       "description": "Go from vague concept to validated strategy that actually ships",
       "cardIds": [
         "STRAT-001",
@@ -49,7 +49,7 @@
     },
     "model-to-production": {
       "id": "model-to-production",
-      "title": "Take Your Model Live",
+      "title": "Get Your Model Into Production (Without the Chaos)",
       "description": "Go from Jupyter notebook to production without breaking everything",
       "duration": "4-6 weeks",
       "difficulty": "advanced",
@@ -104,8 +104,8 @@
     },
     "roadmap-planning": {
       "id": "roadmap-planning",
-      "title": "Plan Your Next 6 Months of AI",
-      "description": "Build a roadmap that's ambitious but not delusional",
+      "title": "Build a Roadmap That Won't Get Derailed",
+      "description": "Plan your next 6 months of AI without setting yourself up for failure",
       "duration": "2-3 weeks",
       "difficulty": "intermediate",
       "targetAudience": "PMs planning 6-12 month AI roadmap",
@@ -282,8 +282,8 @@
     },
     "end-to-end-launch": {
       "id": "end-to-end-launch",
-      "title": "0 to Launch: Ship Your First AI Product",
-      "description": "The complete playbook from idea to production",
+      "title": "Ship Your First AI Product (End-to-End)",
+      "description": "The complete playbook from idea to production without screwing up",
       "duration": "8-12 weeks",
       "difficulty": "advanced",
       "targetAudience": "PMs launching new AI product from scratch",
@@ -342,8 +342,8 @@
     },
     "ai-pm-fundamentals": {
       "id": "ai-pm-fundamentals",
-      "title": "AI PM Crash Course: Start Here",
-      "description": "Everything you need to know to get started as an AI PM",
+      "title": "New to AI PM? Start Here",
+      "description": "Everything you need to know to get started as an AI Product Manager",
       "duration": "1 week",
       "difficulty": "beginner",
       "targetAudience": "New AI PMs learning the basics",
@@ -385,6 +385,26 @@
       "tips": [
         "Add a column for 'Required by Launch' vs. 'Nice to Have'—prevents scope creep",
         "Update this map every 6 months; AI capabilities improve rapidly"
+      ],
+      "realWorldApplications": [
+        {
+          "title": "The Build vs. Buy Decision Paralysis",
+          "context": "Teams waste months debating whether to build custom AI, use APIs, or buy solutions—without understanding what capabilities they actually need. Decision-making stalls because no one mapped requirements to available technology.",
+          "application": "Create the capability map before any build/buy discussions. List each required task (classify support tickets, predict churn, personalize recommendations), research current SOTA accuracy/cost, then assess gaps. This makes build vs. buy obvious—if OpenAI API achieves 92% and you need 90%, buy it. If you need 98%, you're building custom.",
+          "outcome": "Weeks of debate compress into data-driven decisions. Teams stop bikeshedding and start building. Engineering knows exactly what they're committing to before writing code."
+        },
+        {
+          "title": "Preventing Scope Creep Pattern",
+          "context": "AI projects balloon from 'classify these 5 categories' to 'also predict sentiment, extract entities, and summarize.' Six months later, nothing ships because the scope is impossible.",
+          "application": "Use the 'Required by Launch' vs. 'Nice to Have' column from this framework. Force stakeholders to prioritize. Maybe entity extraction is v2. Ship classification first, prove value, then iterate. Update the map as capabilities improve—what's impossible today might be trivial in 6 months.",
+          "outcome": "Teams ship MVPs in weeks instead of pursuing perfect solutions for years. Users get value faster. Product learns what actually matters through usage, not speculation."
+        },
+        {
+          "title": "Dell Technologies Scoping Example",
+          "context": "When evaluating AI features for 100K+ users, needed to assess feasibility across multiple use cases without over-committing engineering resources or infrastructure costs.",
+          "application": "Built capability map showing required tasks, current SOTA performance, data requirements, and operational costs. Prioritized based on user value + technical feasibility matrix. Identified that 3 of 8 proposed features were achievable with existing technology and data, while 5 required research investment.",
+          "outcome": "Focused on the 3 feasible features first. Achieved 8% → 47% adoption by shipping proven capabilities quickly rather than attempting everything simultaneously. Saved months of wasted development on technically infeasible ideas."
+        }
       ],
       "relatedCards": [
         "Next: Run a Model Feasibility Spike",
@@ -478,6 +498,26 @@
         "Focus on outcomes, not technology: \"Get instant answers\" not \"Powered by GPT-4\"",
         "Avoid \"AI for AI's sake\"—if a simpler solution works, use it"
       ],
+      "realWorldApplications": [
+        {
+          "title": "The 'AI for AI's Sake' Trap",
+          "context": "Teams build AI features because it's trendy, then struggle to explain why users should care. Marketing says 'AI-powered' but users ask 'so what?'",
+          "application": "Use this framework to shift from technology-first to outcome-first messaging. Instead of 'powered by machine learning,' articulate what users can now do that was impossible before—instant personalization, predictions they can trust, or automation that saves hours.",
+          "outcome": "Value prop resonates with users who don't care about the technology stack. Adoption increases because the benefit is clear, not because you used AI."
+        },
+        {
+          "title": "Enterprise Differentiation Challenge",
+          "context": "Competing products all claim 'AI-powered' features. Buyers can't distinguish between legitimate AI capabilities and marketing buzzwords. Sales conversations stall on 'how is your AI different?'",
+          "application": "Map specific user jobs to unique AI advantages. For recommendation engines: not 'uses AI' but 'adapts to behavior in real-time, improving accuracy by 30% compared to rule-based systems.' Quantify what AI enables that competitors can't match.",
+          "outcome": "Sales has specific talking points beyond 'we use AI too.' Prospects understand tangible differentiation and can justify choosing your solution over alternatives."
+        },
+        {
+          "title": "Stakeholder Buy-In Pattern",
+          "context": "Engineering teams want to experiment with AI, but executives question the investment. 'Why do we need AI when our current system works?' Without clear value articulation, AI projects don't get funding.",
+          "application": "Before writing specs, complete this framework with real user research. Show executives: users spend 5 hours/week on manual task X, AI can reduce it to 30 minutes, enabling them to focus on higher-value work. Quantify the opportunity cost.",
+          "outcome": "Executives understand ROI before development starts. AI projects get approved because value is proven, not assumed. Engineering builds with clear success criteria."
+        }
+      ],
       "relatedCards": [
         "Previous: Build vs. Buy vs. API Decision",
         "Next: AI Feature Prioritization"
@@ -508,6 +548,36 @@
       "tips": [
         "Always include latency—a slow model frustrates users even if accurate",
         "Get ML engineers to validate that metrics are achievable"
+      ],
+      "prompts": [
+        {
+          "id": "exec-002-define-metrics",
+          "title": "Define AI Success Metrics",
+          "description": "Establish multi-dimensional success criteria with minimum bars and weighted priorities",
+          "prompt": "Act as an AI Product Manager defining success metrics for an AI feature.\\n\\nAI Feature: [YOUR FEATURE]\\nUser Task: [WHAT USERS ACCOMPLISH]\\nCurrent Baseline: [EXISTING METRICS IF ANY]\\n\\nDefine comprehensive success metrics across three dimensions:\\n\\n## 1. User-Facing Metrics\\n- Task completion rate (% of users who complete their goal)\\n- User satisfaction score (target rating)\\n- Time saved per task (vs. current alternative)\\n- Adoption rate (% of eligible users who try it)\\n- Retention rate (% who use it again after first try)\\n\\n## 2. Model Performance Metrics\\nBased on your use case, define:\\n- Accuracy / Precision / Recall / F1 score\\n- What metric matters most for your use case?\\n- Minimum acceptable level to ship\\n- Target level for good experience\\n- Stretch goal level\\n\\n## 3. System Performance Metrics\\n- Latency (p50, p95, p99)\\n- Cost per prediction\\n- Uptime / availability\\n- Throughput (predictions per second)\\n\\n## 4. Minimum Bars\\nFor each metric, specify:\\n- Minimum acceptable (below this, don't ship)\\n- Target (this is success)\\n- Stretch (this is exceptional)\\n\\n## 5. Weighted Priorities\\nAllocate 100 points across all metrics based on importance:\\nExample: Accuracy 40%, Latency 30%, Cost 20%, Uptime 10%\\n\\n## 6. Trade-off Decisions\\nIf you had to choose:\\n- 90% accuracy in 3 seconds OR 85% accuracy in 0.5 seconds?\\n- 95% accuracy at $0.50/prediction OR 88% accuracy at $0.05/prediction?\\n- Document your prioritization rationale",
+          "category": "Execution",
+          "tags": ["metrics", "success criteria", "KPIs"]
+        }
+      ],
+      "realWorldApplications": [
+        {
+          "title": "The Accuracy Trap",
+          "context": "ML teams often chase 99% accuracy benchmarks while shipping nothing. The perfect becomes the enemy of the good, with AI projects stuck in development for months chasing diminishing returns on model performance.",
+          "application": "Defined weighted metrics: 85% accuracy (minimum bar), <2 second latency (must-have), and >70% user task completion (success criterion). Set a \"good enough to ship\" threshold rather than \"perfect.\" This created clear launch criteria instead of endless tuning.",
+          "outcome": "Shipped at 87% accuracy in 3 months instead of waiting 6+ months for 95%. User satisfaction was 4.2/5 because fast response mattered more than perfect answers. Avoided the trap of over-optimizing model metrics while ignoring user needs."
+        },
+        {
+          "title": "Dell AI Feature Metrics Balance",
+          "context": "When shipping AI features to 100K+ enterprise users, needed to balance model accuracy, system latency, and operational costs while ensuring user adoption and satisfaction.",
+          "application": "Established tiered metrics: Accuracy >80% (acceptable), >85% (target), >90% (stretch). Latency <3 seconds (must-have), <1 second (ideal). Cost <$0.10/request (sustainable). User satisfaction >3.5/5 (minimum). Weighted user metrics 50%, model metrics 30%, system metrics 20%.",
+          "outcome": "Launched at 84% accuracy with <1.5 second latency. User satisfaction hit 4.1/5. The fast response time drove adoption from 8% to 47% in 6 weeks. Users valued speed over perfection—would have failed if we waited for 90% accuracy."
+        },
+        {
+          "title": "The Missing User Metric Pattern",
+          "context": "AI teams frequently track model performance (accuracy, F1 score) and system metrics (latency, throughput) but ignore user-facing outcomes. This leads to \"successful\" models that users don't adopt.",
+          "application": "Added user-facing success metrics alongside model metrics: % of users who retry after first result (indicates satisfaction), % who complete their task without human fallback, average session length (engagement). These became leading indicators of real-world value.",
+          "outcome": "Discovered model was 88% accurate but users abandoned it 40% of the time due to confusing outputs. Fixed UX and messaging instead of improving model. User completion rate jumped from 60% to 85% without changing model performance."
+        }
       ],
       "relatedCards": [
         "Previous: Define AI Value Proposition",
@@ -571,6 +641,36 @@
         "Start with data audit before pitching AI features—60% of AI projects fail due to data issues",
         "Budget 30-50% of AI development time for data collection and labeling, not just model work"
       ],
+      "prompts": [
+        {
+          "id": "strat-002-data-audit",
+          "title": "Conduct Data Availability Audit",
+          "description": "Assess whether you have sufficient quality data before committing to AI development",
+          "prompt": "Act as an AI Product Manager auditing data availability for an AI feature.\\n\\nAI Feature: [YOUR FEATURE]\\nML Task: [CLASSIFICATION / GENERATION / PREDICTION / ETC]\\nData Sources: [WHERE DATA LIVES]\\n\\nConduct comprehensive data audit:\\n\\n## 1. Quantify Data Volume\\n- Count labeled examples per category\\n- Minimum needed: 1,000+ examples for supervised tasks\\n- Production quality: 10,000+ examples\\n- Current status:\\n  - Category A: [NUMBER] examples\\n  - Category B: [NUMBER] examples\\n  - Category C: [NUMBER] examples\\n- VERDICT: Sufficient / Insufficient / Borderline?\\n\\n## 2. Assess Data Quality\\n- Label accuracy: What % of labels are correct? (Need >95%)\\n- Check 100 random examples manually\\n- Class balance: Any category <5% of total? (Problematic)\\n- Representative coverage: Do examples cover all edge cases?\\n- Data freshness: How old is the data? Still relevant?\\n- VERDICT: High / Medium / Low quality?\\n\\n## 3. Evaluate Data Accessibility\\n- Where does data currently live?\\n- Can you legally use it for ML? (Privacy, ToS, licensing)\\n- What's the pipeline to access it?\\n- How often can you refresh/update?\\n- Who owns the data infrastructure?\\n- VERDICT: Easy / Medium / Hard to access?\\n\\n## 4. Identify Data Gaps\\n- What user scenarios are missing from dataset?\\n- What edge cases have zero examples?\\n- What would it cost to collect missing data?\\n  - Manual labeling: [COST]\\n  - User research: [COST]\\n  - Synthetic data: [COST]\\n- Time to collect missing data: [WEEKS/MONTHS]\\n\\n## 5. Create Data Roadmap\\n- Can you launch with existing data? YES / NO\\n- If yes: What's the minimum viable dataset?\\n- If no: What data must you collect first?\\n- V2 improvements: When will you have enough data for better accuracy?\\n\\n## 6. Go/No-Go Recommendation\\nBased on audit:\\n- GO: Sufficient high-quality data, can start development\\n- NO-GO: Insufficient data, would fail in production\\n- CONDITIONAL GO: Can launch with limited scope, must collect more data for full feature\\n\\nJustify your recommendation with data volume and quality metrics.",
+          "category": "Strategy",
+          "tags": ["data", "feasibility", "assessment"]
+        }
+      ],
+      "realWorldApplications": [
+        {
+          "title": "The 'We Have Data' Illusion",
+          "context": "Product team assumed 5 years of customer support tickets (500K+ records) meant they had enough data to build a ticket classification model. Stakeholders green-lit the project based on this assumption without validating data quality or usability.",
+          "application": "Ran data availability assessment before development. Discovered: Only 12% had accurate labels, 40% of categories had <100 examples, and 8 edge case scenarios (critical for user trust) had zero examples. Data volume looked good but quality/coverage was insufficient.",
+          "outcome": "Pivoted from custom model to fine-tuning a pre-trained classifier with focused labeling. Budgeted 3 months for data labeling of 2K high-quality examples instead of 6 months trying to build from scratch with bad data. Avoided a complete project failure."
+        },
+        {
+          "title": "Dell Data Audit Before Development",
+          "context": "When scoping AI features for 100K+ users, leadership wanted to move fast on multiple AI use cases. Pressure to skip data assessment and start building immediately based on confidence that 'we have years of user data.'",
+          "application": "Forced a 2-week data availability assessment across 8 proposed features. Quantified volume, quality, accessibility, and gaps for each. Found 3 features had 10K+ labeled examples with >90% accuracy. 5 features had insufficient or inaccessible data that would require 6+ months of collection.",
+          "outcome": "Focused on the 3 data-ready features first. Achieved 8% → 47% adoption by shipping proven use cases quickly. The 5 data-poor features went into a data collection roadmap instead of becoming failed projects. Saved 12+ months of wasted development."
+        },
+        {
+          "title": "The 80/20 Coverage Problem",
+          "context": "Teams often have abundant data for common scenarios but completely lack data for the edge cases that users actually care about. An 80% coverage dataset fails in production when the missing 20% represents critical user journeys.",
+          "application": "During data gap analysis, identified that 80% of scenarios had 5K+ examples each, but 20% of scenarios (account deletions, refunds, complaints) had <50 examples. These rare scenarios drove 60% of user frustration. Created targeted data collection for the gaps.",
+          "outcome": "Collected 500 examples for each edge case scenario through user research and synthetic data generation. Model handled edge cases well at launch instead of failing on the moments that mattered most. User satisfaction 4.2/5 vs. projected 2.8/5 without edge case coverage."
+        }
+      ],
       "relatedCards": [
         "Previous: Map Model Capabilities",
         "Next: Establish Data Labeling Pipeline",
@@ -603,6 +703,26 @@
         "Rule of thumb: AI operational costs are 3-5× the initial development cost over 3 years",
         "For low-stakes features, simple heuristics often beat ML when total cost of ownership is considered"
       ],
+      "realWorldApplications": [
+        {
+          "title": "The Hidden Operational Costs Shock",
+          "context": "Leadership approved a $200K AI project based on 6-month development estimate (2 ML engineers × $100K × 0.5 years). Project launched successfully but operational costs spiraled to $150K/year—triple the initial investment—due to model retraining, infrastructure, monitoring, and data pipeline maintenance.",
+          "application": "Used technical debt calculator to forecast 3-year total cost of ownership: Year 1 = $200K dev + $80K ops = $280K. Year 2-3 = $150K ops/year. Total 3-year cost: $580K (2.9× development cost). Compared to rule-based alternative: $100K dev + $20K/year ops = $140K total. ML provided 15% better accuracy but 4× higher cost.",
+          "outcome": "Leadership chose ML for high-value features (personalization, fraud detection) but rule-based systems for low-stakes features (basic categorization, formatting). Saved $300K over 3 years by matching solution complexity to business value. Avoided technical debt on features that didn't justify ongoing investment."
+        },
+        {
+          "title": "Dell 3-Year TCO Analysis for AI Features",
+          "context": "When building business case for AI features serving 100K+ users, finance demanded full 3-year total cost of ownership projection, not just development costs. Needed to justify ongoing operational investment vs. non-AI alternatives.",
+          "application": "Calculated AI technical debt: Model retraining quarterly (4× $20K engineer time = $80K/year), inference infrastructure ($120K/year for API costs at scale), data pipeline maintenance (2 engineers × 25% time = $50K/year), monitoring and on-call ($30K/year). Year 1: $400K dev + $280K ops. Year 2-3: $280K ops each. Total 3-year TCO: $1.04M.",
+          "outcome": "Compared to manual process cost ($500K/year × 3 = $1.5M) and rule-based automation ($200K dev + $50K/year ops = $300K total). ML justified for 5 hours/week × $50 × 100K users = $1.3M annual value. But for lower-value features, switched to rules-based to avoid technical debt. Operational costs ended up 4× development costs, exactly as projected."
+        },
+        {
+          "title": "Rule-Based Wins on Total Cost Pattern",
+          "context": "Team built an ML-based content moderation system with 92% accuracy (vs. 85% for rule-based). Development cost was similar ($150K vs. $80K), so ML seemed like the obvious choice. But 2-year TCO told a different story.",
+          "application": "Calculated full technical debt: ML system required monthly retraining ($15K/year), labeled training data collection ($40K/year), dedicated ML engineer for maintenance ($120K/year), inference infrastructure ($60K/year). Total 2-year cost: $150K + $470K = $620K. Rule-based: $80K + $40K/year ops = $160K total.",
+          "outcome": "Realized the 7% accuracy improvement wasn't worth 4× higher cost for this low-stakes use case (flagging content for human review, not auto-removing). Chose rule-based system, invested savings into higher-value ML features (personalization, recommendations). Avoided accumulating technical debt on a feature that didn't justify ongoing ML investment."
+        }
+      ],
       "relatedCards": [
         "Previous: Build vs. Buy vs. API Decision",
         "Next: AI ROI Projection Model",
@@ -634,6 +754,26 @@
       "tips": [
         "Aim for <1 second for most user-facing AI features—users perceive longer waits as broken",
         "Test latency at p95 and p99, not just average—tail latency kills UX for real users"
+      ],
+      "realWorldApplications": [
+        {
+          "title": "The Accurate But Slow Failure",
+          "context": "Team built an AI-powered search feature with 92% relevance (vs. 78% for keyword search). Celebrated the accuracy win in demos. Launched to production and saw 15% adoption vs. 60% for old search. User feedback: 'It's too slow, I gave up waiting.'",
+          "application": "Measured latency: average 3.2 seconds (model inference 2.8s + other 0.4s). User research showed <1 second was expected for search (competitive benchmark: Google <300ms). Set latency budget: 800ms total = 150ms network + 500ms inference + 150ms other. Required switching from large transformer to smaller distilled model.",
+          "outcome": "Traded accuracy for speed: 87% relevance (down from 92%) but 650ms p50 latency (down from 3.2s). Adoption jumped from 15% to 58%. User satisfaction 4.3/5 vs. 2.1/5 for slow version. Learned that users value speed over 5% better accuracy—fast beats perfect."
+        },
+        {
+          "title": "Dell Latency Budget Breakdown for AI Features",
+          "context": "When deploying AI features to 100K+ enterprise users, needed to ensure <1 second response time for interactive workflows while balancing model accuracy and infrastructure costs. Initial prototype had 2.5 second average latency—unacceptable for user adoption.",
+          "application": "Broke down latency sources: network roundtrip (300ms across regions), model inference (1.8s for GPT-3.5-turbo), database queries (200ms), post-processing (200ms). Total: 2.5s. Set budget: <1s total = 200ms network (CDN edge nodes), 600ms inference (smaller model or caching), 100ms DB (query optimization), 100ms other.",
+          "outcome": "Optimized to 850ms p50, 1.2s p95: Switched to distilled model (600ms inference), added result caching for common queries (40% cache hit rate), moved compute to regional edge. User adoption 8% → 47% in 6 weeks because features felt fast and responsive. Learned to budget latency across entire pipeline, not just model."
+        },
+        {
+          "title": "The P95 Latency Trap Pattern",
+          "context": "AI feature had 800ms average latency—seemed acceptable based on <1s guideline. But user complaints poured in about 'slow and unreliable' experience. Confusion between average metrics and real user experience.",
+          "application": "Analyzed latency distribution: p50=750ms (median, acceptable), p95=3.2s (95th percentile, terrible), p99=8.5s (worst 1%). Realized 1 in 20 users waited 3+ seconds, creating perception that feature was broken. Investigated: p95 spikes caused by cold starts, large inputs, concurrent requests overwhelming GPU.",
+          "outcome": "Set latency budgets for tail performance: p50 <800ms, p95 <1.5s, p99 <3s. Added: model warm pools (eliminated cold starts), input size limits (reject huge inputs gracefully), auto-scaling (handle traffic bursts), timeout + fallback (show cached result after 2s). P95 improved from 3.2s to 1.3s. User satisfaction jumped from 2.8/5 to 4.1/5 because consistent speed mattered more than average speed."
+        }
       ],
       "relatedCards": [
         "Previous: Run a Model Feasibility Spike",
@@ -890,6 +1030,52 @@
       "tips": [
         "Aim for <6 month payback period for SMB, <12 months for enterprise—longer periods face budget scrutiny",
         "Include implementation costs in ROI model—honest projections build trust and set realistic expectations"
+      ],
+      "realWorldApplications": [
+        {
+          "title": "The Budget Approval Deadlock",
+          "context": "Without quantified ROI, AI proposals stall in finance review regardless of technical merit. CFOs need payback periods, not feature lists.",
+          "application": "Use the 3-scenario model (conservative/expected/optimistic) to show ROI under different assumptions. Include implementation costs to build trust. Present the conservative scenario first—if that shows positive ROI, approval becomes straightforward.",
+          "outcome": "Transforms 'we should build AI' conversations into 'here's why this pays back in 8 months' with executive-ready numbers."
+        },
+        {
+          "title": "Dell Technologies Implementation",
+          "context": "Shipping AI features to 100K+ enterprise users required justifying ongoing infrastructure costs and development investment to finance and executive teams.",
+          "application": "Built ROI models showing time saved per user (5 hours/week) × hourly rate ($50) × user base (100K) = quantifiable annual savings. Included operational costs to show honest projections.",
+          "outcome": "Secured continued investment by demonstrating clear payback period and scaling the initial 8% adoption to 47% in 6 weeks with measurable business impact."
+        },
+        {
+          "title": "Sales Enablement Pattern",
+          "context": "Enterprise sales teams lose deals because they can't articulate AI value in CFO language. Generic 'efficiency gains' don't close deals.",
+          "application": "Create a calculator tool (see Interactive ROI Calculator) where prospects input their metrics. Auto-calculate conservative estimates. Sales uses this in discovery calls to show customized ROI before proposal stage.",
+          "outcome": "Shortens sales cycles by addressing budget concerns early. Buyers champion the solution internally with data they trust because they input their own numbers."
+        }
+      ],
+      "prompts": [
+        {
+          "id": "strat-014-roi-model",
+          "title": "Build AI ROI Model",
+          "description": "Generate a complete ROI projection with cost savings, revenue impact, and 3-scenario analysis",
+          "prompt": "Act as an AI Product Manager building an ROI model to justify an AI investment.\\n\\nAI Feature: [DESCRIBE YOUR AI FEATURE]\\nTarget Users: [NUMBER OF USERS, THEIR ROLE]\\nCurrent Process: [HOW USERS DO THIS TODAY]\\n\\nUsing this framework:\\n1. Cost Savings = Time saved per user × Hourly cost × Number of users × 52 weeks\\n2. Revenue Impact = (Projected conversion - Current conversion) × Monthly leads × 12 × Avg deal size\\n3. Total Annual Benefit = Cost Savings + Revenue Impact\\n4. Implementation Cost = Development cost + (Operational cost × 12 months)\\n5. ROI = (Total Annual Benefit - Implementation Cost) / Implementation Cost × 100%\\n6. Payback Period = Implementation Cost / (Total Annual Benefit / 12) months\\n\\nCreate three scenarios:\\n- Conservative (10th percentile assumptions)\\n- Expected (median assumptions)\\n- Optimistic (90th percentile assumptions)\\n\\nProvide:\\n- Full calculations with assumptions stated\\n- Payback period for each scenario\\n- What would need to be true for conservative scenario\\n- Risks that could impact projections",
+          "category": "Strategy",
+          "tags": ["ROI", "business case", "budget approval"]
+        },
+        {
+          "id": "strat-014-executive-summary",
+          "title": "Write Executive ROI Summary",
+          "description": "Draft a 1-page executive summary with ROI highlights for leadership approval",
+          "prompt": "Act as an AI Product Manager writing an executive summary for an AI investment decision.\\n\\nContext:\\n- AI Feature: [YOUR FEATURE]\\n- Investment Required: [DEVELOPMENT + OPERATIONAL COSTS]\\n- Projected ROI: [YOUR CALCULATED ROI]\\n- Payback Period: [YOUR CALCULATED PAYBACK]\\n\\nWrite a 1-page executive summary that includes:\\n\\n1. Problem Statement (2-3 sentences): What business problem does this solve? What's the current cost of the problem?\\n\\n2. Solution Overview (2-3 sentences): High-level description of the AI feature. What does it enable?\\n\\n3. Financial Impact (bullet format):\\n   - Total Investment Required (Year 1)\\n   - Annual Cost Savings\\n   - Annual Revenue Impact\\n   - 3-Year Net Benefit\\n   - ROI Percentage\\n   - Payback Period\\n\\n4. Risk Mitigation (3 bullets): Top risks and how you'll address them\\n\\n5. Success Metrics (3 bullets): How we'll measure if this worked\\n\\n6. Recommendation: Clear ask (approve $X for Y-month project starting Z date)\\n\\nUse conservative assumptions throughout. Lead with payback period—executives care about this most.",
+          "category": "Strategy",
+          "tags": ["executive summary", "business case", "leadership"]
+        },
+        {
+          "id": "strat-014-calculator-spec",
+          "title": "Design ROI Calculator Tool",
+          "description": "Spec out an interactive ROI calculator for prospects to input their own numbers",
+          "prompt": "Act as an AI Product Manager designing an ROI calculator tool for sales enablement.\\n\\nAI Product: [YOUR PRODUCT]\\nTarget Buyers: [BUYER PERSONA + ROLE]\\nKey Value Drivers: [TIME SAVED, REVENUE IMPACT, COST REDUCTION]\\n\\nCreate specifications for an ROI calculator that includes:\\n\\n1. User Inputs (prospect fills these in):\\n   - Number of users who would use this feature\\n   - Average hourly cost per user (loaded salary)\\n   - Hours spent on [TASK] per week currently\\n   - Current [METRIC] rate (e.g., conversion rate, error rate)\\n   - Target [METRIC] rate with AI\\n   - [OTHER RELEVANT METRICS]\\n\\n2. Cost Inputs (we pre-fill these):\\n   - Implementation cost range\\n   - Monthly operational cost per user\\n   - Average time to value (weeks)\\n\\n3. Calculated Outputs:\\n   - Annual cost savings\\n   - Annual revenue impact\\n   - Total annual benefit\\n   - Payback period in months\\n   - 3-year ROI percentage\\n   - Break-even point\\n\\n4. Display Logic:\\n   - Show conservative estimate by default (use 10th percentile multipliers)\\n   - Allow toggle between conservative/expected/optimistic\\n   - Highlight payback period prominently\\n   - Show visual progress bar for payback timeline\\n\\n5. Export Options:\\n   - Download as PDF for internal presentation\\n   - Export to CSV for finance review\\n   - Share link with stakeholders\\n\\nFormat as a product spec with user stories and acceptance criteria.",
+          "category": "Strategy",
+          "tags": ["ROI calculator", "sales enablement", "tool spec"]
+        }
       ],
       "relatedCards": [
         "Previous: Enterprise AI Packaging",
@@ -1436,6 +1622,36 @@
         "Start with User Safety & Trust for consumer products; Legal & Compliance for enterprise",
         "Revisit this map quarterly—new AI risks emerge as your product matures"
       ],
+      "prompts": [
+        {
+          "id": "risk-001-risk-audit",
+          "title": "Conduct AI Risk Audit",
+          "description": "Systematically identify risks across all 7 categories for your AI product",
+          "prompt": "Act as an AI Product Manager conducting a comprehensive risk audit.\\n\\nAI Product/Feature: [YOUR PRODUCT]\\nUser Context: [WHO USES IT, HOW, WHY]\\nIndustry: [YOUR INDUSTRY + REGULATIONS]\\n\\nAudit risks across all 7 categories:\\n\\n## 1. Model Risks\\n- Performance degradation over time?\\n- Bias in training data or outputs?\\n- Model drift as user behavior changes?\\n- Adversarial attacks or manipulation?\\n- List all risks, score likelihood (1-5) and impact (1-5)\\n\\n## 2. Data Risks\\n- Data quality issues (missing, inaccurate, imbalanced)?\\n- Privacy violations (PII, GDPR, CCPA)?\\n- Data poisoning attacks?\\n- Insufficient training data?\\n- List all risks, score each\\n\\n## 3. User Safety & Trust\\n- Harmful outputs (offensive, dangerous, misleading)?\\n- Misaligned user expectations?\\n- Lack of transparency (black box decisions)?\\n- Over-reliance on AI recommendations?\\n- List all risks, score each\\n\\n## 4. Ethical Considerations\\n- Fairness issues across demographics?\\n- Discrimination against protected classes?\\n- Unintended consequences at scale?\\n- Dual-use concerns?\\n- List all risks, score each\\n\\n## 5. Legal & Compliance\\n- Regulatory requirements (FDA, FTC, etc.)?\\n- IP infringement (training data, model outputs)?\\n- Liability for AI decisions?\\n- Audit trail requirements?\\n- List all risks, score each\\n\\n## 6. Operational Risks\\n- Deployment failures?\\n- Scaling issues under load?\\n- Cost overruns?\\n- Vendor lock-in?\\n- List all risks, score each\\n\\n## 7. Business Risks\\n- User adoption lower than expected?\\n- Competitive threats?\\n- Reputational damage from AI failures?\\n- List all risks, score each\\n\\n## Risk Prioritization\\nFor consumer products, focus first on: User Safety & Trust, Ethical\\nFor enterprise products, focus first on: Legal & Compliance, Operational\\n\\nCreate mitigation plan for top 5 risks.",
+          "category": "Risk",
+          "tags": ["risk assessment", "audit", "compliance"]
+        }
+      ],
+      "realWorldApplications": [
+        {
+          "title": "The Overlooked Compliance Risk",
+          "context": "AI teams often focus intensely on model accuracy and user experience while completely missing legal and compliance risks. Many projects get to 90% complete before discovering they can't launch due to regulatory barriers or data privacy violations.",
+          "application": "Used the risk categories framework to audit all 7 risk types before deep development. Discovered that GDPR compliance (Legal & Compliance risk) and data lineage tracking (Data risk) were blockers—not model accuracy. Shifted 30% of roadmap to address compliance infrastructure first.",
+          "outcome": "Avoided 3+ month delay at launch by identifying compliance gaps early. Built audit logging and data governance from day one instead of retrofitting later. Launched on schedule because we addressed all risk categories, not just the obvious ones."
+        },
+        {
+          "title": "Dell Enterprise Risk Prioritization",
+          "context": "When deploying AI to 100K+ enterprise users across regulated industries, needed to prioritize which of the 7 risk categories would actually block adoption vs. which could be addressed iteratively post-launch.",
+          "application": "Mapped risk categories to enterprise requirements: Legal & Compliance (must-have—SOC2, data residency), User Safety & Trust (high—transparency, explainability), Model Risks (medium—could improve post-launch), Operational Risks (medium—cost at scale). This created a prioritized risk mitigation roadmap.",
+          "outcome": "Focused first 60% of effort on compliance and trust mechanisms. Passed security review in one cycle instead of 3+ iterations. Launched with 84% model accuracy (not perfect) because we proved compliance and safety first—the real enterprise blockers."
+        },
+        {
+          "title": "Consumer vs. Enterprise Risk Split Pattern",
+          "context": "Different AI products face entirely different risk profiles. A consumer chatbot and an enterprise document classifier have opposite risk priorities, but teams often apply a one-size-fits-all risk approach.",
+          "application": "Consumer product (chatbot): Prioritized User Safety & Trust (harmful outputs, misaligned expectations) and Ethical Considerations (bias, fairness). Enterprise product (document classifier): Prioritized Legal & Compliance (data privacy, audit trails) and Operational Risks (uptime, scale). Different risk mitigation strategies for each.",
+          "outcome": "Consumer product invested in content filtering and transparency (95% of risk budget). Enterprise invested in audit logging and SLAs (80% of risk budget). Both launched successfully because we addressed the risks that actually mattered for each context."
+        }
+      ],
       "relatedCards": [
         "Next: Risk Assessment Framework",
         "Deep Dive: Model Performance Degradation",
@@ -1467,6 +1683,26 @@
       "tips": [
         "Re-assess risks monthly in first 90 days post-launch—real user behavior reveals hidden risks",
         "Include diverse stakeholders in scoring—PMs, engineers, legal, support teams see different risks"
+      ],
+      "realWorldApplications": [
+        {
+          "title": "The Equal Risk Fallacy",
+          "context": "Team identified 12 AI risks across model performance, data privacy, bias, and operational issues. Without prioritization, they tried to address all risks equally, leading to analysis paralysis and delayed launch by 4 months while trying to achieve 'zero risk.'",
+          "application": "Applied risk assessment framework: scored each risk on Likelihood × Impact × Detection Difficulty. Found 3 risks scored >75 (critical): data privacy violations (5×5×4=100), biased outputs for protected classes (4×5×3=60), model performance degradation (4×4×4=64). Other 9 risks scored <50 (medium/low). Focused mitigation on the critical 3.",
+          "outcome": "Shipped in 6 weeks by addressing only critical risks before launch. Monitored medium risks post-launch with alerting. Low risks were documented but not actively mitigated. No major incidents in first 90 days because we focused on the risks that actually mattered."
+        },
+        {
+          "title": "Dell Risk Scoring for Enterprise Launch",
+          "context": "When preparing to deploy AI features to 100K+ regulated enterprise users, cross-functional team identified 18 potential risks spanning legal compliance, model performance, user trust, operational stability, and ethical concerns. Leadership wanted a data-driven way to prioritize risk mitigation investments.",
+          "application": "Convened PM, ML engineering, legal, security, and support teams to score each risk: Likelihood (historical frequency + expert judgment), Impact (user harm, business damage, regulatory penalties), Detection Difficulty (can we catch it before users?). Multiplied scores. Identified 4 critical risks (>75): SOC2 compliance gaps (5×5×3=75), data residency violations (5×5×4=100), insufficient audit logging (4×5×3=60), model drift undetected (4×4×4=64).",
+          "outcome": "Allocated 70% of pre-launch effort to the 4 critical risks. Passed security review in one cycle (typically takes 3+). Launched on schedule with monitoring for the 8 medium-priority risks. Two low-priority risks became medium post-launch (user confusion about AI transparency)—our monthly re-assessment caught them early."
+        },
+        {
+          "title": "The Hidden High-Impact Risk Pattern",
+          "context": "Teams often focus on high-likelihood risks (model accuracy issues that happen frequently) while ignoring low-likelihood but catastrophic risks (rare but devastating failures like leaking PII or producing harmful outputs).",
+          "application": "During risk scoring, identified a low-likelihood risk (1/5) but extremely high impact (5/5) and difficult to detect (5/5): model occasionally hallucinating fake financial data in edge cases. Score: 1×5×5=25 (seemed 'medium'). Adjusted framework to flag any risk with Impact=5 as auto-critical regardless of likelihood.",
+          "outcome": "Built safeguards for the rare-but-catastrophic risk: validation layer checking for impossible numbers, confidence thresholds, human review for financial outputs. The edge case happened twice in production (exactly as low-likelihood predicted) but was caught by safeguards. Would have caused major regulatory/legal issues without mitigation."
+        }
       ],
       "relatedCards": [
         "Previous: AI Risk Categories Overview",
@@ -3004,6 +3240,36 @@
       "tips": [
         "Include example inputs and expected outputs for 5 typical cases and 5 edge cases",
         "Specify what's in scope for MVP vs. future iterations—prevents scope creep"
+      ],
+      "prompts": [
+        {
+          "id": "exec-001-ai-prd",
+          "title": "Write AI Feature PRD",
+          "description": "Generate a comprehensive PRD for an AI feature with success criteria, failure modes, and edge cases",
+          "prompt": "Act as an AI Product Manager writing a PRD for an AI-powered feature.\\n\\nFeature: [YOUR AI FEATURE]\\nUser Problem: [PROBLEM IT SOLVES]\\nTarget Users: [WHO USES THIS]\\n\\nCreate a comprehensive AI Product Spec that includes:\\n\\n## 1. User Problem\\n- Current painful alternative\\n- 3-5 specific user scenarios where this matters\\n- Success criteria from user perspective\\n\\n## 2. AI Solution Overview\\n- How AI solves this problem\\n- Key capabilities required\\n- Why AI vs. traditional software\\n\\n## 3. Success Criteria\\n- Model performance thresholds (accuracy, precision, recall)\\n- Latency limits (p50, p95, p99)\\n- Cost constraints (per prediction, per user)\\n- User satisfaction targets\\n\\n## 4. Failure Modes & Graceful Degradation\\n- What happens when model is wrong?\\n- What happens when model is uncertain (low confidence)?\\n- What happens when model is slow or unavailable?\\n- How do we handle out-of-distribution inputs?\\n\\n## 5. Edge Cases (enumerate at least 10)\\nFor each edge case specify:\\n- Scenario description\\n- Expected model behavior\\n- Fallback if model fails\\n\\n## 6. Data Requirements\\n- Training data volume needed\\n- Labeling requirements\\n- Data refresh frequency\\n- Privacy constraints\\n- Retention policies\\n\\n## 7. Dependencies\\n- Required APIs\\n- Infrastructure needs\\n- Monitoring tools\\n- Human-in-the-loop processes\\n- Fallback systems\\n\\n## 8. Example Inputs/Outputs\\n- 5 typical cases with expected outputs\\n- 5 edge cases with expected handling\\n\\n## 9. MVP Scope\\n- What's included in v1?\\n- What's explicitly out of scope?\\n- Future iteration roadmap",
+          "category": "Execution",
+          "tags": ["PRD", "product spec", "requirements"]
+        }
+      ],
+      "realWorldApplications": [
+        {
+          "title": "The Traditional PRD Failure",
+          "context": "Team used their standard software PRD template for an AI recommendation feature. Spec looked complete with user stories, acceptance criteria, and success metrics. Development started and immediately hit blockers because critical AI-specific requirements were missing.",
+          "application": "Discovered gaps during development: No definition of failure modes (what happens when model is uncertain?), no latency requirements (team built a 10-second model that users hated), no data refresh strategy (model became stale in 2 weeks), no edge case documentation (model failed on 15% of production scenarios).",
+          "outcome": "Lost 6 weeks rebuilding to add graceful degradation, optimize latency, and handle edge cases. Rewrote spec template to include AI-specific sections: failure modes, probabilistic thresholds, data requirements, monitoring needs. Next AI project launched in one iteration instead of three."
+        },
+        {
+          "title": "Dell AI Spec Template Evolution",
+          "context": "When scaling AI features to 100K+ enterprise users, needed a spec template that prevented common AI project failures while keeping teams aligned across PM, ML engineering, design, and legal/compliance.",
+          "application": "Created AI-specific PRD template with mandatory sections: (1) 10+ documented edge cases with expected behaviors, (2) tiered success criteria (acceptable/target/stretch for accuracy, latency, cost), (3) failure mode matrix, (4) data lineage and privacy requirements, (5) monitoring and alerting thresholds, (6) human fallback processes.",
+          "outcome": "Spec clarity reduced development iterations from 3-4 to 1-2 cycles. Security reviews passed faster because data/privacy requirements were explicit. Achieved 8% → 47% adoption because failure modes were designed upfront, not discovered in production. Template became standard across all AI projects."
+        },
+        {
+          "title": "The Forgotten Failure Modes Pattern",
+          "context": "AI specs often focus on the happy path (model works correctly) but completely ignore failure scenarios. Teams discover in production that they have no plan for when AI is wrong, uncertain, or unavailable.",
+          "application": "Required \"failure modes\" section in every AI spec answering: (1) Model gives wrong answer with high confidence—show result with feedback mechanism, (2) Model is uncertain (low confidence)—route to human or show top 3 options, (3) Model unavailable (downtime)—fall back to rule-based system, (4) User input is out of distribution—show helpful error, not failure.",
+          "outcome": "Launched with 84% accuracy but 4.2/5 user satisfaction because failures were handled gracefully. Users trusted the system more when it admitted uncertainty vs. being confidently wrong. Reduced support tickets by 40% because edge cases had designed behaviors instead of broken experiences."
+        }
       ],
       "relatedCards": [
         "Next: Define AI Success Metrics",
@@ -4653,6 +4919,39 @@
         "Related: Evaluate Model Performance"
       ],
       "icon": "📐"
+    },
+    "EXEC-054": {
+      "id": "EXEC-054",
+      "deck": "execution",
+      "category": "AI Architecture",
+      "difficulty": "intermediate",
+      "companyContext": "both",
+      "title": "Design Multi-Agent Workflows",
+      "description": "Build AI systems with multiple specialized agents working together to handle complex tasks that single models can't solve.",
+      "whenToUse": [
+        "When a single AI model hits capability limits (e.g., can't handle research + analysis + writing in one call)",
+        "When you need specialized expertise at different workflow stages (e.g., code review needs syntax checker + security scanner + style guide enforcer)",
+        "When tasks require coordination between different AI capabilities (e.g., extract data, verify accuracy, format output, send notification)"
+      ],
+      "overview": "Agentic AI systems decompose complex problems into specialized agents that collaborate through defined workflows. Each agent has a focused responsibility, and together they solve problems that would be impossible or brittle with a single monolithic model.",
+      "steps": [
+        "Map the end-to-end workflow: Break down the user's goal into discrete sub-tasks. For example, 'Generate market research report' might be: (1) Search for sources, (2) Extract key data, (3) Synthesize findings, (4) Draft report, (5) Fact-check citations.",
+        "Define agent roles and boundaries: Create one agent per distinct capability. Name them by function (Researcher, Analyst, Writer, Validator). Each agent gets a clear scope: inputs it receives, outputs it produces, and decision authority.",
+        "Design handoff protocols: Specify how agents pass information. Use structured formats (JSON schemas, typed objects). Define what happens if an agent fails: retry with same agent, escalate to different agent, or fall back to human.",
+        "Establish orchestration logic: Decide on control flow—sequential (Agent A → Agent B → Agent C), parallel (Agents A/B/C run simultaneously), or conditional (Agent A decides which of B/C/D runs next). Use state machines or workflow engines.",
+        "Build evaluation per agent: Each agent needs its own success metrics. Don't just measure the final output—track where in the chain quality degrades. Log agent decisions for debugging.",
+        "Plan for failure modes: Agents can produce invalid outputs, infinite loops, or conflicting instructions. Set timeouts, output validation, and maximum retry limits. Always have a human-in-the-loop escape hatch."
+      ],
+      "tips": [
+        "Start with 2-3 agents max, not 10. Add complexity only when single-agent approaches fail. Most problems don't need sophisticated orchestration.",
+        "Agents aren't microservices. Don't create an agent for every tiny function. Each agent should represent a meaningful capability that users or engineers would recognize as distinct."
+      ],
+      "relatedCards": [
+        "Related: Map Model Capabilities",
+        "Related: Design Graceful Degradation",
+        "Related: Evaluate Model Performance"
+      ],
+      "icon": "🤖"
     }
   }
 }

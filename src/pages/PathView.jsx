@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { Bot } from 'lucide-react';
 import Card from '../components/Card';
 import ShareButton from '../components/ShareButton';
 import { sharePath } from '../utils/share';
@@ -25,6 +26,108 @@ function PathView() {
     risk: ['prevent-failures', 'building-trust', 'compliance-ethics', 'fixing-underperforming'],
     execution: ['scoping-first-feature', 'model-to-production', 'launching-safely', 'data-pipelines', 'ai-ux-design', 'testing-qa'],
     crosscutting: ['end-to-end-launch', 'enterprise-guide', 'cost-performance', 'ai-pm-fundamentals']
+  };
+
+  // Map paths to featured agents
+  const pathToAgent = {
+    'first-business-case': {
+      id: 'ai-roi-calculator',
+      name: 'ROI Calculator',
+      icon: '💰',
+      description: 'Build your business case in 2 hours with 3-scenario ROI analysis that CFOs trust',
+      timeToValue: '2 hours'
+    },
+    'pricing-ai-product': {
+      id: 'ai-roi-calculator',
+      name: 'ROI Calculator',
+      icon: '💰',
+      description: 'Calculate pricing models with automated ROI scenarios',
+      timeToValue: '2 hours'
+    },
+    'prevent-failures': {
+      id: 'ai-risk-auditor',
+      name: 'Risk Auditor',
+      icon: '🛡️',
+      description: 'Complete risk audit in 1 afternoon covering compliance, bias, security, and model performance',
+      timeToValue: '1 afternoon'
+    },
+    'compliance-ethics': {
+      id: 'ai-risk-auditor',
+      name: 'Risk Auditor',
+      icon: '🛡️',
+      description: 'Automated compliance audit with GDPR and AI Act considerations',
+      timeToValue: '1 afternoon'
+    },
+    'concept-to-strategy': {
+      id: 'ai-pm-value-scout',
+      name: 'Value Scout',
+      icon: '🔍',
+      description: 'Competitive analysis and positioning strategy in minutes',
+      timeToValue: 'Minutes'
+    },
+    'choosing-ai-approach': {
+      id: 'ai-pm-value-scout',
+      name: 'Value Scout',
+      icon: '🔍',
+      description: 'Compare approaches with automated competitive intelligence',
+      timeToValue: 'Minutes'
+    },
+    'ai-ux-design': {
+      id: 'ui-ux-design-auditor',
+      name: 'UX Auditor',
+      icon: '✨',
+      description: 'Comprehensive UX audit with actionable recommendations in 1 hour',
+      timeToValue: '1 hour'
+    },
+    'building-trust': {
+      id: 'ui-ux-design-auditor',
+      name: 'UX Auditor',
+      icon: '✨',
+      description: 'Trust and transparency analysis with design improvements',
+      timeToValue: '1 hour'
+    },
+    'scoping-first-feature': {
+      id: 'ai-prd-writer',
+      name: 'PRD Writer',
+      icon: '📝',
+      description: 'Generate comprehensive PRD with AI-specific considerations in 2-3 hours',
+      timeToValue: '2-3 hours'
+    },
+    'model-to-production': {
+      id: 'ai-prd-writer',
+      name: 'PRD Writer',
+      icon: '📝',
+      description: 'Production PRD with model deployment and monitoring specs',
+      timeToValue: '2-3 hours'
+    },
+    'launching-safely': {
+      id: 'ai-success-metrics',
+      name: 'Success Metrics Designer',
+      icon: '📊',
+      description: 'Define complete monitoring plan and success metrics in 1-2 hours',
+      timeToValue: '1-2 hours'
+    },
+    'fixing-underperforming': {
+      id: 'ai-success-metrics',
+      name: 'Success Metrics Designer',
+      icon: '📊',
+      description: 'Diagnose issues with comprehensive metrics analysis',
+      timeToValue: '1-2 hours'
+    },
+    'end-to-end-launch': {
+      id: 'ai-pm-card-generator',
+      name: 'Framework Generator',
+      icon: '🃏',
+      description: 'Create custom launch checklist for your team in 30 minutes',
+      timeToValue: '30 minutes'
+    },
+    'enterprise-guide': {
+      id: 'ai-pm-card-generator',
+      name: 'Framework Generator',
+      icon: '🃏',
+      description: 'Generate enterprise-specific frameworks and processes',
+      timeToValue: '30 minutes'
+    }
   };
 
   const getPathCategory = (pid) => {
@@ -181,11 +284,11 @@ function PathView() {
   const currentCard = cards[currentCardIndex];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
+    <div className="min-h-screen bg-white dark:bg-black">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8 mt-8 relative">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mt-4">{pathInfo.title}</h2>
-          <p className="text-gray-600 dark:text-gray-400 text-base mt-2">{cards.length} frameworks in sequence for this situation. Navigate with arrows (← →) or swipe on mobile. Your progress is saved automatically.</p>
+          <p className="text-gray-600 dark:text-gray-300 text-base mt-2">{cards.length} frameworks in sequence for this situation. Navigate with arrows (← →) or swipe on mobile. Your progress is saved automatically.</p>
           <div className="flex justify-center items-center gap-4 mt-4">
             <ShareButton
               onShare={() => sharePath(pathId, pathInfo.title)}
@@ -193,7 +296,7 @@ function PathView() {
             />
             {currentCardIndex > 0 && (
               <button
-                className="px-4 py-2 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-lg text-sm text-gray-600 dark:text-gray-400 cursor-pointer transition-all duration-200 hover:border-red-600 hover:text-red-600 dark:hover:border-red-500 dark:hover:text-red-500 hover:bg-red-50/10"
+                className="px-4 py-2 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-lg text-sm text-gray-600 dark:text-gray-300 cursor-pointer transition-all duration-200 hover:border-red-600 hover:text-red-600 dark:hover:border-red-500 dark:hover:text-red-500 hover:bg-red-50/10"
                 onClick={handleResetProgress}
               >
                 Reset Progress
@@ -202,17 +305,46 @@ function PathView() {
           </div>
         </div>
 
+        {/* Featured Agent */}
+        {pathToAgent[pathId] && (
+          <div className="max-w-[900px] mx-auto mb-8">
+            <div className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 border-2 border-blue-200 dark:border-blue-800 rounded-2xl p-6 flex flex-col md:flex-row items-start md:items-center gap-4">
+              <div className="flex-shrink-0 text-5xl">{pathToAgent[pathId].icon}</div>
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-2">
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white m-0">
+                    Autopilot This Path
+                  </h3>
+                  <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30 px-3 py-1 rounded-full">
+                    ⏱️ {pathToAgent[pathId].timeToValue}
+                  </span>
+                </div>
+                <p className="text-sm text-gray-700 dark:text-gray-300 m-0 mb-3">
+                  <strong className="text-gray-900 dark:text-white">{pathToAgent[pathId].name}</strong> can generate this deliverable for you: {pathToAgent[pathId].description}
+                </p>
+              </div>
+              <button
+                onClick={() => navigate('/agents')}
+                className="flex-shrink-0 flex items-center gap-2 px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-black rounded-lg font-semibold hover:bg-gray-800 dark:hover:bg-gray-100 transition-all hover:scale-105 shadow-lg"
+              >
+                <Bot className="w-5 h-5" />
+                View Agent
+              </button>
+            </div>
+          </div>
+        )}
+
         <div className="max-w-[900px] mx-auto">
           {/* Progress Indicator */}
           <div className="text-center mb-8 relative">
             <div className="flex items-center justify-center gap-4 mb-6 max-md:flex-col max-md:gap-3">
               <div className="text-xl font-bold text-primary px-6 py-3 bg-gradient-to-br from-primary/8 to-purple/8 rounded-xl inline-block border-2 border-primary/15">
-                <span className="text-[1.75rem] font-extrabold bg-gradient-to-br from-primary to-purple bg-clip-text text-transparent">{currentCardIndex + 1}</span>
-                <span className="text-gray-400 dark:text-gray-500 font-normal mx-1"> / </span>
-                <span className="text-gray-500 dark:text-gray-400 font-semibold">{cards.length}</span>
+                <span className="text-[1.75rem] font-extrabold text-primary dark:text-white">{currentCardIndex + 1}</span>
+                <span className="text-gray-400 dark:text-gray-300 font-normal mx-1"> / </span>
+                <span className="text-gray-500 dark:text-gray-300 font-semibold">{cards.length}</span>
               </div>
               <button
-                className="px-4 py-2 bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-lg text-sm font-semibold text-gray-600 dark:text-gray-400 cursor-pointer transition-all duration-200 hover:border-primary hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800 max-md:text-[0.8125rem] max-md:px-3.5"
+                className="px-4 py-2 bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-700 rounded-lg text-sm font-semibold text-gray-600 dark:text-gray-300 cursor-pointer transition-all duration-200 hover:border-primary hover:text-primary hover:bg-gray-50 dark:hover:bg-gray-800 max-md:text-[0.8125rem] max-md:px-3.5"
                 onClick={() => setShowJumpMenu(!showJumpMenu)}
                 title="Jump to card"
               >
@@ -248,9 +380,9 @@ function PathView() {
                           ? 'bg-gradient-to-br from-primary to-purple text-white'
                           : index < currentCardIndex
                           ? 'bg-emerald-600 text-white'
-                          : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
+                          : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300'
                       }`}>{index + 1}</span>
-                      <span className="flex-1 text-[0.9375rem] font-medium text-gray-900 dark:text-white max-md:text-sm">{card.title}</span>
+                      <span className="flex-1 text-[0.9375rem] font-medium text-gray-900 dark:text-gray-300 max-md:text-sm">{card.title}</span>
                       {index < currentCardIndex && <span className="flex-shrink-0 text-emerald-600 text-lg">✓</span>}
                     </button>
                   ))}
@@ -336,7 +468,7 @@ function PathView() {
                         <span className="text-primary text-xl opacity-0 transition-opacity duration-200 group-hover:opacity-100">→</span>
                       </div>
                       <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed m-0 mb-3 max-md:text-[0.8125rem]">{path.description}</p>
-                      <div className="text-[0.8125rem] text-gray-600 dark:text-gray-400">
+                      <div className="text-[0.8125rem] text-gray-600 dark:text-gray-300">
                         📚 {path.cardIds.length} cards • ⏱️ {path.duration || '~20 min'}
                       </div>
                     </button>

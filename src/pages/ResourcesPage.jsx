@@ -302,9 +302,35 @@ I know this is different from our original plan, but I believe it's the right ca
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Tactical Tools
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed mb-6">
             Interactive tools to apply the 156 frameworks to your actual work. No signup required.
           </p>
+
+          {/* Trends Callout */}
+          <div className="max-w-2xl mx-auto mb-4 p-4 bg-gradient-to-r from-orange-50 to-pink-50 dark:from-orange-950/20 dark:to-pink-950/20 border-2 border-orange-200 dark:border-orange-800 rounded-lg">
+            <p className="text-sm text-gray-900 dark:text-white mb-2">
+              <span className="font-semibold">🔥 January 2025 Trend Alert:</span> Agentic AI, evaluation frameworks, and prompt engineering for PMs
+            </p>
+            <button
+              onClick={() => navigate('/trends')}
+              className="text-sm font-semibold text-orange-600 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-300 underline"
+            >
+              Read Full Trend Alert →
+            </button>
+          </div>
+
+          {/* Agents Callout */}
+          <div className="max-w-2xl mx-auto mb-8 p-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/20 dark:to-purple-950/20 border-2 border-blue-200 dark:border-blue-800 rounded-lg">
+            <p className="text-sm text-gray-900 dark:text-white mb-2">
+              <span className="font-semibold">New:</span> Claude Code Agents for automated PRD writing, ROI calculations, risk audits, and metrics definition
+            </p>
+            <button
+              onClick={() => navigate('/agents')}
+              className="text-sm font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline"
+            >
+              View All Agents →
+            </button>
+          </div>
         </div>
 
         {/* Tab Navigation */}

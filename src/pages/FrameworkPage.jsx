@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Lightbulb } from 'lucide-react';
+import { Lightbulb, Copy, Check, Sparkles } from 'lucide-react';
 import ShareButton from '../components/ShareButton';
 import { shareCard } from '../utils/share';
 import cardDataJson from '../data/cardData.json';
@@ -11,6 +11,7 @@ function FrameworkPage() {
   const navigate = useNavigate();
   const [framework, setFramework] = useState(null);
   const [relatedFrameworks, setRelatedFrameworks] = useState([]);
+  const [copiedId, setCopiedId] = useState(null);
 
   useEffect(() => {
     // Find the framework by ID
@@ -45,6 +46,17 @@ function FrameworkPage() {
     if (foundCard) {
       navigate(`/framework/${foundCard.id}`);
       window.scrollTo(0, 0);
+    }
+  };
+
+  // Copy prompt to clipboard
+  const handleCopy = async (promptText, promptId) => {
+    try {
+      await navigator.clipboard.writeText(promptText);
+      setCopiedId(promptId);
+      setTimeout(() => setCopiedId(null), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
     }
   };
 
@@ -169,6 +181,81 @@ function FrameworkPage() {
                 </li>
               ))}
             </ul>
+          </section>
+        )}
+
+        {/* AI Prompts */}
+        {framework.prompts && framework.prompts.length > 0 && (
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-5 pb-2 border-b-2 border-gray-200 dark:border-gray-700 flex items-center gap-2">
+              <Sparkles className="w-6 h-6" />
+              <span>Ready-to-Use AI Prompts</span>
+            </h2>
+            <p className="text-gray-700 dark:text-gray-300 mb-6">
+              Copy these prompts to ChatGPT, Claude, or any AI assistant to apply this framework to your work.
+            </p>
+            <div className="space-y-6">
+              {framework.prompts.map((prompt) => (
+                <div
+                  key={prompt.id}
+                  className="bg-gradient-to-br from-blue-50/50 to-purple-50/50 dark:from-blue-950/20 dark:to-purple-950/20 border-2 border-gray-200 dark:border-gray-700 rounded-xl p-6"
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">
+                        {prompt.title}
+                      </h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                        {prompt.description}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {prompt.tags.map((tag, idx) => (
+                          <span
+                            key={idx}
+                            className="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded text-xs font-medium"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white dark:bg-gray-900 rounded-lg p-4 mb-4 font-mono text-sm text-gray-900 dark:text-gray-100 whitespace-pre-wrap max-h-64 overflow-y-auto border border-gray-200 dark:border-gray-700">
+                    {prompt.prompt.replace(/\\n/g, '\n')}
+                  </div>
+
+                  <button
+                    onClick={() => handleCopy(prompt.prompt.replace(/\\n/g, '\n'), prompt.id)}
+                    className="flex items-center gap-2 px-4 py-2 bg-gray-900 dark:bg-white text-white dark:text-black rounded-lg font-semibold hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors"
+                  >
+                    {copiedId === prompt.id ? (
+                      <>
+                        <Check className="w-4 h-4" />
+                        Copied!
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-4 h-4" />
+                        Copy Prompt
+                      </>
+                    )}
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                Want more prompts like these? Browse our complete prompt library.
+              </p>
+              <button
+                onClick={() => navigate('/prompts')}
+                className="text-sm font-semibold text-gray-900 dark:text-white hover:text-primary dark:hover:text-primary-light transition-colors"
+              >
+                View All AI Prompts →
+              </button>
+            </div>
           </section>
         )}
 

@@ -63,7 +63,7 @@ function BrowseView() {
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Browse All Frameworks
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
             {cardCounts.all} frameworks. Search or filter by deck to find what you need.
           </p>
         </div>
@@ -85,7 +85,7 @@ function BrowseView() {
             className={`px-5 py-3 rounded-lg text-base font-semibold cursor-pointer transition-all border-2 ${
               selectedDeck === 'all'
                 ? 'bg-gray-900 dark:bg-white text-white dark:text-black border-gray-900 dark:border-white'
-                : 'bg-white dark:bg-black text-gray-600 dark:text-gray-400 border-gray-300 dark:border-gray-700 hover:border-gray-900 dark:hover:border-white hover:text-gray-900 dark:hover:text-white'
+                : 'bg-white dark:bg-black text-gray-600 dark:text-gray-300 border-gray-300 dark:border-gray-700 hover:border-gray-900 dark:hover:border-white hover:text-gray-900 dark:hover:text-white'
             }`}
             onClick={() => setSelectedDeck('all')}
           >
@@ -95,7 +95,7 @@ function BrowseView() {
             className={`px-5 py-3 rounded-lg text-base font-semibold cursor-pointer transition-all border-2 ${
               selectedDeck === 'strategy'
                 ? 'bg-gray-900 dark:bg-white text-white dark:text-black border-gray-900 dark:border-white'
-                : 'bg-white dark:bg-black text-gray-600 dark:text-gray-400 border-gray-300 dark:border-gray-700 hover:border-gray-900 dark:hover:border-white hover:text-gray-900 dark:hover:text-white'
+                : 'bg-white dark:bg-black text-gray-600 dark:text-gray-300 border-gray-300 dark:border-gray-700 hover:border-gray-900 dark:hover:border-white hover:text-gray-900 dark:hover:text-white'
             }`}
             onClick={() => setSelectedDeck('strategy')}
           >
@@ -105,7 +105,7 @@ function BrowseView() {
             className={`px-5 py-3 rounded-lg text-base font-semibold cursor-pointer transition-all border-2 ${
               selectedDeck === 'risk'
                 ? 'bg-gray-900 dark:bg-white text-white dark:text-black border-gray-900 dark:border-white'
-                : 'bg-white dark:bg-black text-gray-600 dark:text-gray-400 border-gray-300 dark:border-gray-700 hover:border-gray-900 dark:hover:border-white hover:text-gray-900 dark:hover:text-white'
+                : 'bg-white dark:bg-black text-gray-600 dark:text-gray-300 border-gray-300 dark:border-gray-700 hover:border-gray-900 dark:hover:border-white hover:text-gray-900 dark:hover:text-white'
             }`}
             onClick={() => setSelectedDeck('risk')}
           >
@@ -115,7 +115,7 @@ function BrowseView() {
             className={`px-5 py-3 rounded-lg text-base font-semibold cursor-pointer transition-all border-2 ${
               selectedDeck === 'execution'
                 ? 'bg-gray-900 dark:bg-white text-white dark:text-black border-gray-900 dark:border-white'
-                : 'bg-white dark:bg-black text-gray-600 dark:text-gray-400 border-gray-300 dark:border-gray-700 hover:border-gray-900 dark:hover:border-white hover:text-gray-900 dark:hover:text-white'
+                : 'bg-white dark:bg-black text-gray-600 dark:text-gray-300 border-gray-300 dark:border-gray-700 hover:border-gray-900 dark:hover:border-white hover:text-gray-900 dark:hover:text-white'
             }`}
             onClick={() => setSelectedDeck('execution')}
           >
@@ -124,7 +124,7 @@ function BrowseView() {
         </div>
 
         {/* Results count */}
-        <div className="text-center text-gray-500 dark:text-gray-400 mb-10 text-sm">
+        <div className="text-center text-gray-600 dark:text-gray-300 mb-10 text-sm">
           Showing {filteredCards.length} {filteredCards.length === 1 ? 'framework' : 'frameworks'}
         </div>
 
@@ -149,7 +149,7 @@ function BrowseView() {
             >
               {/* Card Header */}
               <div className="flex justify-between items-center mb-4">
-                <span className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+                <span className="text-xs font-bold text-gray-600 dark:text-gray-300 uppercase tracking-wide">
                   {card.id}
                 </span>
                 <span className={`
@@ -176,12 +176,12 @@ function BrowseView() {
               </h3>
 
               {/* Category */}
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 font-semibold">
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-3 font-semibold">
                 {card.category}
               </p>
 
               {/* Description */}
-              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+              <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
                 {card.description}
               </p>
             </div>
@@ -190,7 +190,7 @@ function BrowseView() {
 
         {/* No results */}
         {filteredCards.length === 0 && (
-          <div className="text-center py-16 px-8 text-gray-600 dark:text-gray-400">
+          <div className="text-center py-16 px-8 text-gray-600 dark:text-gray-300">
             <p>No cards match your filters. Try adjusting your search.</p>
           </div>
         )}

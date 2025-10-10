@@ -8,13 +8,13 @@ function DiagnosticQ1() {
       <div className="max-w-[900px] mx-auto">
         <div className="text-center mb-12 relative">
           <button
-            className="absolute left-0 top-0 bg-transparent border-none text-gray-600 dark:text-gray-400 text-base cursor-pointer py-2 px-4 transition-colors duration-200 hover:text-gray-900 dark:hover:text-white"
+            className="absolute left-0 top-0 bg-transparent border-none text-gray-600 dark:text-gray-300 text-base cursor-pointer py-2 px-4 transition-colors duration-200 hover:text-gray-900 dark:hover:text-white"
             onClick={() => navigate('/')}
           >
             ← Back
           </button>
           <h2 className="text-4xl text-gray-900 dark:text-white mt-4 font-bold max-md:text-[2rem]">Find Your Framework in 30 Seconds</h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 mt-2 max-md:text-base">Tell us where you're stuck and we'll match you to the right tactical frameworks. No theory, just what worked in production.</p>
+          <p className="text-lg text-gray-600 dark:text-gray-300 mt-2 max-md:text-base">Tell us where you're stuck and we'll match you to the right tactical frameworks. No theory, just what worked in production.</p>
         </div>
 
         <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-8 max-w-[800px] mx-auto mb-8">
